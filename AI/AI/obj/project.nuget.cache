@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FiKtoo5VSd6fDKjvN5+noYWhDHFxptTV8HgfzNPCIVyzi9cVGiP91YbGcfqaXZmK7a0WuE6vf/NF4SYQHumNhg==",
+  "dgSpecHash": "T8HGrGSx0aMKali7zE3VIr1l2MrCAVdbj7sVvy/wbNj1FpODOktExEPW0zDQ5KfXA8cAxH5qAWgSP3sQdqgvIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\AI\\AI\\AI\\AI.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\ComputerScience\\AI\\AI\\AI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

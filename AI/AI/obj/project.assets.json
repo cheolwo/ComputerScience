@@ -186,11 +186,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\AI\\AI\\AI\\AI.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\ComputerScience\\AI\\AI\\AI.csproj",
       "projectName": "AI",
-      "projectPath": "C:\\Users\\user\\Desktop\\AI\\AI\\AI\\AI.csproj",
+      "projectPath": "C:\\Users\\user\\Desktop\\ComputerScience\\AI\\AI\\AI.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\AI\\AI\\AI\\obj\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\ComputerScience\\AI\\AI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
