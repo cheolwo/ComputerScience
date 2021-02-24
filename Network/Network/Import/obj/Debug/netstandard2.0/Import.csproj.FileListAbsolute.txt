@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\bin\Debug\netstandard2.0\Import.deps.json
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\bin\Debug\netstandard2.0\Import.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\bin\Debug\netstandard2.0\Import.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.csprojAssemblyReference.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.AssemblyInfo.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Import\obj\Debug\netstandard2.0\Import.pdb
