@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Import.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,7 @@ namespace Import.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     CommotityDetail = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -85,9 +86,7 @@ namespace Import.Migrations
                     Quantity = table.Column<int>(nullable: false),
                     SellerCodeofCommodity = table.Column<string>(nullable: true),
                     ModelNo = table.Column<string>(nullable: true),
-                    CommotityBarcode = table.Column<string>(nullable: true),
-                    ImageTitle = table.Column<string>(nullable: true),
-                    ImageData = table.Column<byte[]>(nullable: true)
+                    CommotityBarcode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,6 +107,8 @@ namespace Import.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageTitle = table.Column<string>(nullable: true),
                     ImageData = table.Column<byte[]>(nullable: true),
+                    ImageTitieofDetail = table.Column<string>(nullable: true),
+                    ImageDataofDetail = table.Column<byte[]>(nullable: true),
                     OptionNo = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

@@ -35,6 +35,9 @@ namespace Import.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CommodityNo");
 
                     b.HasIndex("CommotityDetail");
@@ -119,6 +122,12 @@ namespace Import.Migrations
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<byte[]>("ImageDataofDetail")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitieofDetail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
@@ -143,12 +152,6 @@ namespace Import.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CommotityBarcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModelNo")
@@ -202,7 +205,7 @@ namespace Import.Migrations
 
             modelBuilder.Entity("Import.Model.Image", b =>
                 {
-                    b.HasOne("Import.Model.Option", null)
+                    b.HasOne("Import.Model.Option", "Option")
                         .WithMany("Images")
                         .HasForeignKey("OptionNo");
                 });

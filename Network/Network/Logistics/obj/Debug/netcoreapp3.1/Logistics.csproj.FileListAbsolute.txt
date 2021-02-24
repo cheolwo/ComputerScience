@@ -70,8 +70,6 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.RazorComponent.input.cache
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Counter.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\FetchData.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\LoginDisplay.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -84,8 +82,6 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.TagHelpers.output.cache
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.RazorCoreGenerate.cache
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Counter.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\FetchData.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Shared\LoginDisplay.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Shared\MainLayout.razor.g.cs
@@ -108,3 +104,16 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.dll
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.pdb
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Logistics.genruntimeconfig.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\MatBlazor.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Components.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.JSInterop.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\SimpleCreate.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\SimpleCreate.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\Option.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\Option.razor.g.cs

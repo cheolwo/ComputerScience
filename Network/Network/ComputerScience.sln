@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkModule", "NetworkModule\NetworkModule.csproj", "{85BFB8EF-B23B-4964-9CEA-310833278C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Import", "Import\Import.csproj", "{C2B56FD3-8BC6-4311-93A5-D56E1E5D9BC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Import", "Import\Import.csproj", "{C2B56FD3-8BC6-4311-93A5-D56E1E5D9BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logistics", "Logistics\Logistics.csproj", "{8DBC01D5-7F6D-45F2-AC88-A6087BC869EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logistics", "Logistics\Logistics.csproj", "{8DBC01D5-7F6D-45F2-AC88-A6087BC869EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

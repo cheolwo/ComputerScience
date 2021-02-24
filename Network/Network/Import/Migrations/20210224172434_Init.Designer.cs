@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Import.Migrations
 {
     [DbContext(typeof(CommotityDataContext))]
-    [Migration("20210224130745_init")]
-    partial class init
+    [Migration("20210224172434_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,9 @@ namespace Import.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommodityNo");
@@ -121,6 +124,12 @@ namespace Import.Migrations
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<byte[]>("ImageDataofDetail")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitieofDetail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
@@ -145,12 +154,6 @@ namespace Import.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CommotityBarcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModelNo")
@@ -204,7 +207,7 @@ namespace Import.Migrations
 
             modelBuilder.Entity("Import.Model.Image", b =>
                 {
-                    b.HasOne("Import.Model.Option", null)
+                    b.HasOne("Import.Model.Option", "Option")
                         .WithMany("Images")
                         .HasForeignKey("OptionNo");
                 });

@@ -20,12 +20,7 @@ namespace Import.Model
         /// <summary>
         /// 대표이미지
         /// </summary>
-        public string ImageTitle { get; set; }
-        public byte[] ImageData { get; set; }
 
-        /// <summary>
-        /// 추가이미지
-        /// </summary>
-        public List<Image> Images { get; set; }
+        public List<Image> Images { get; set; }            
     }
 }

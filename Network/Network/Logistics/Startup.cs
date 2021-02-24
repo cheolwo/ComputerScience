@@ -1,21 +1,16 @@
 using Import.ImportDataContext;
 using Logistics.Areas.Identity;
 using Logistics.Data;
+using MatBlazor;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Logistics
 {
@@ -41,6 +36,8 @@ namespace Logistics
                options.UseSqlServer(
                    Configuration.GetConnectionString("CommodityConnection")));
 
+            services.AddSingleton<HttpClient>();
+            services.AddMatBlazor();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();

@@ -75,6 +75,14 @@ using Logistics.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
+using MatBlazor;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Commotity")]
     public partial class Get : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

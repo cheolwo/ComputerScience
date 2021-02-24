@@ -9,6 +9,7 @@ namespace Import.Model
         [Key] public int CommodityNo { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
+        public string Url { get; set; }
         public List<Option> Options { get; set; }
 
         [ForeignKey("CommotityDetail")] public CommodityDetail CommodityDetail { get; set; }

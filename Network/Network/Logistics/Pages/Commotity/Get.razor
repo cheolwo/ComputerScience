@@ -1,5 +1,31 @@
-﻿<h3>Get</h3>
+﻿@page "/Commotity"
 
-@code {
+<h3>Get</h3>
+<SimpleCreate></SimpleCreate>
 
-}
+<MatTable Items="@Commotities" class="mat-elevation-z5">
+    <MatTableHeader>
+        <th>CommodityNo</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Option</th>
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@context.CommodityNo</td>
+        <td>@context.Name</td>
+        <td>@context.Category</td>
+        <td><a href="/Option/@context.CommodityNo"><MatButton Raised="true">OptionsDetail</MatButton></a></td>
+    </MatTableRow>
+</MatTable>
+
+ @*[Key] public int CommodityNo { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public List<Option>
+    Options { get; set; }
+
+    [ForeignKey("CommotityDetail")] public CommodityDetail CommodityDetail { get; set; }*@
+
+    @code {
+
+    }
