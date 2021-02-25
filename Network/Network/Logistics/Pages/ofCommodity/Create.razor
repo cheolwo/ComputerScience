@@ -1,0 +1,53 @@
+﻿@page "/Create/Commodity"
+@using BlazorInputFile
+
+<MatDivider></MatDivider>
+
+
+<center>
+    <div class="align-baseline">
+        <MatTextField @bind-Value="@Commodity.Name">Name</MatTextField> <br />
+        <MatTextField @bind-Value="@Commodity.Category">Category</MatTextField> <br />
+        <MatTextField @bind-Value="@Commodity.Url">Url</MatTextField> <br />
+    </div>
+</center>
+
+
+<a href="/Get/Commodity"><MatButton Raised="true">Back</MatButton></a>
+<MatButton OnClick="@Add">OK</MatButton>
+
+<MatFileUpload OnChange="MatFileUpload">MatFileUpload</MatFileUpload>
+@if (MatFile != null)
+{
+    <p>Name : @MatFile.Name</p>
+    <p>Size in Bytes :: @MatFile.Size</p>
+    <p>File type:@MatFile.Type</p>
+}
+
+
+@code{
+    public IFileListEntry File { get; set; }
+    async Task FileUpload(IFileListEntry[] Files)
+    {
+        File = Files.FirstOrDefault();
+        if (File != null)
+        {
+            await FileManager.UploadAsync(File);
+        }
+    }
+
+    public IMatFileUploadEntry MatFile { get; set; }
+
+    async Task MatFileUpload(IMatFileUploadEntry[] MatFiles)
+    {
+        MatFile = MatFiles.FirstOrDefault();
+
+        if(MatFile != null)
+        {
+            await MatFileManager.UploadAsync(MatFile);
+        }
+    }
+}
+
+
+

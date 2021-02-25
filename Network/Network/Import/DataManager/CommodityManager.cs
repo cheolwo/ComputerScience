@@ -56,11 +56,11 @@ namespace Import.DataManager
 
         public Commodity GetById(int id)
         {
-            Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
-            commodity.Options = _OptionManager.GetByCommodityToList(commodity);
-            commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
+            //Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
+            //commodity.Options = _OptionManager.GetByCommodityToList(commodity);
+            //commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
 
-            return commodity;
+            return _CommodityDataContext.Commodities.Find(id);
         }
 
         public Commodity GetByIdWithOption(int id)
@@ -71,7 +71,7 @@ namespace Import.DataManager
             return commodity;
         }
 
-        public List<Commodity> GetByList()
+        public List<Commodity> GetToList()
         {
             return _CommodityDataContext.Commodities.ToList();
         }

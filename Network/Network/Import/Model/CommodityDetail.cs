@@ -20,7 +20,10 @@ namespace Import.Model
         public DateTime DurationTime { get; set; }
         public bool IsVAT { get; set; }
         public string WarehouseCode { get; set; }
+
         public List<Doc> Docs { get; set; }
+
+        public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
         public List<ImageofDetail> Images { get; set; }
     }

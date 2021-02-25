@@ -11,7 +11,15 @@ namespace Import.ImportDataContext
        public CommotityDataContext(DbContextOptions options)
             :base(options)
         {
+           
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Commodity>()
+                .HasOne(a => a.CommodityDetail)
+                .WithOne(b => b.Commodity)
+                .HasForeignKey<CommodityDetail>(b => b.CommodityNo);
         }
 
         public DbSet<Commodity> Commodities { get; set; }

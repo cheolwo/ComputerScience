@@ -15,6 +15,6 @@ namespace Import.DataManager
         void DeleteById(int id);
         void DeleteByEntity(Commodity commodity);
         Commodity GetById(int id);
-        List<Commodity> GetByList();  
+        List<Commodity> GetToList();  
     }
 }

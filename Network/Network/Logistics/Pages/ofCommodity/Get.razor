@@ -1,20 +1,26 @@
 ﻿
-@page "/Commotity"
+@page "/Get/Commotity"
 
-<h3>Get</h3>
-<SimpleCreate></SimpleCreate>
+<a href="/Create/Commodity"><MatButton Raised="true">Create</MatButton></a>
+
+<MatDivider></MatDivider>
 
 <MatTable Items="@Commotities" class="mat-elevation-z5">
     <MatTableHeader>
         <th>CommodityNo</th>
         <th>Name</th>
         <th>Category</th>
-        <th>Option</th>
+        <th>Manager</th>
     </MatTableHeader>
     <MatTableRow>
         <td>@context.CommodityNo</td>
         <td>@context.Name</td>
         <td>@context.Category</td>
-        <td><a href="/Option/@context.CommodityNo"><MatButton Raised="true">OptionsDetail</MatButton></a></td>
+        <td>
+            <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">OptionsDetail</MatButton></a>
+            <a href="/Update/Commodity/@context.CommodityNo"><MatButton Raised="true">Update</MatButton></a>    
+            <a href="/Delete/Commodity/@context.CommodityNo"><MatButton Raised="true">Delete</MatButton></a>
+            <a href="/Detail/Commodity/@context.CommodityNo"><MatButton Raised="true">Detail</MatButton></a>
+        </td>
     </MatTableRow>
 </MatTable>

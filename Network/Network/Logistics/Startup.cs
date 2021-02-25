@@ -2,6 +2,7 @@ using Import.DataManager;
 using Import.ImportDataContext;
 using Logistics.Areas.Identity;
 using Logistics.Data;
+using Logistics.Service;
 using MatBlazor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -39,8 +40,12 @@ namespace Logistics
 
             services.AddSingleton<HttpClient>();
             services.AddTransient<ICommodityManager, CommodityManager>();
-            services.AddTransient<IOptionManager, OptionManager>();
             services.AddTransient<ICommodityDetailManager, CommodityDetailManager>();
+            services.AddTransient<IOptionManager, OptionManager>();
+            services.AddTransient<IImageofDetailManager, ImageofDeatilManager>();
+            services.AddTransient<IImageofOptionManager, ImageofOptionManager>();
+            services.AddScoped<IFileManager, FileManager>();
+            services.AddScoped<IMatFileManager, MatFileManager>();
 
             services.AddMatBlazor();
             services.AddRazorPages();

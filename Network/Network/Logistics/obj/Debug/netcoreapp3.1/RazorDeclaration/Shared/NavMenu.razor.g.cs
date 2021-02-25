@@ -82,6 +82,20 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
+using BlazorInputFile;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -90,7 +104,7 @@ using MatBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 24 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Shared\NavMenu.razor"
+#line 23 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

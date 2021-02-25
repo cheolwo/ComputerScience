@@ -40,7 +40,13 @@ namespace Import.DataManager
 
         public void Update(ImageofDetail Image)
         {
-            throw new NotImplementedException();
+            ImageofDetail UpdateImage = GetById(Image.ImageNo);
+            UpdateImage.ImageData = Image.ImageData;
+            UpdateImage.ImageTitle = Image.ImageTitle;
+            UpdateImage.CommodityDetail = Image.CommodityDetail;
+
+            _commotityDataContext.ImageofDetails.Update(UpdateImage);
+            _commotityDataContext.SaveChanges();
         }
     }
 }

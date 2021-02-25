@@ -65,7 +65,7 @@ namespace Import.DataManager
         public Option GetById(int OptionNo)
         {
             Option option = _commotityDataContext.Options.Find(OptionNo);
-            option.Images = _commotityDataContext.Images.Where(
+            option.Images = _commotityDataContext.ImageofOptions.Where(
                 u => u.Option.Equals(option)).ToList();
 
             return option;

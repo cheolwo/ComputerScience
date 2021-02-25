@@ -18,7 +18,7 @@ namespace Logistics.Pages.ofOption
         public List<Option> Options { get; set; }
         public Commodity CommodityByParameter { get; set; }
         public Option Option { get; set; }
-        public Image Image { get; set; }
+        public ImageofOption Image { get; set; }
 
         protected override void OnInitialized()
         {
