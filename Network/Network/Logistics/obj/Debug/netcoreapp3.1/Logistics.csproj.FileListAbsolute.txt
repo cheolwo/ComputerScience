@@ -111,9 +111,10 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Components.Web.dll
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\Microsoft.JSInterop.dll
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\Get.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\Get.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\SimpleCreate.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\SimpleCreate.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Commotity\Option.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\Commotity\Option.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\SimpleCreate.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofOption\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\SimpleCreate.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofOption\Get.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofOption\Create.razor.g.cs

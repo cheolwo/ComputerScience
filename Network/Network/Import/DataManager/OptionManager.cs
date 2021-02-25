@@ -51,7 +51,7 @@ namespace Import.DataManager
             
             foreach(var option in options)
             {
-                option.Images = _commotityDataContext.Images.Where(e => e.Option.Equals(option)).ToList();
+               
             }
 
             return options;

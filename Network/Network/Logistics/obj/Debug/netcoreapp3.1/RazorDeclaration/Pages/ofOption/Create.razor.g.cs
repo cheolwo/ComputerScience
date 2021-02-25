@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Logistics.Pages.Commotity
+namespace Logistics.Pages.ofOption
 {
     #line hidden
     using System;
@@ -82,8 +82,7 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/SimpleCreate")]
-    public partial class SimpleCreate : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Create : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

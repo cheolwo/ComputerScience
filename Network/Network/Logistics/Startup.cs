@@ -1,3 +1,4 @@
+using Import.DataManager;
 using Import.ImportDataContext;
 using Logistics.Areas.Identity;
 using Logistics.Data;
@@ -37,6 +38,10 @@ namespace Logistics
                    Configuration.GetConnectionString("CommodityConnection")));
 
             services.AddSingleton<HttpClient>();
+            services.AddTransient<ICommodityManager, CommodityManager>();
+            services.AddTransient<IOptionManager, OptionManager>();
+            services.AddTransient<ICommodityDetailManager, CommodityDetailManager>();
+
             services.AddMatBlazor();
             services.AddRazorPages();
             services.AddServerSideBlazor();

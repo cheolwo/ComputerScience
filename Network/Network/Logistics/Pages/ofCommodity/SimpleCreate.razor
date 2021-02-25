@@ -1,0 +1,22 @@
+﻿@page "/SimpleCreate"
+
+<MatButton Raised="true" @onclick="DialogSwitch">Create</MatButton>
+
+<MatDivider></MatDivider>
+
+@if (DialogIsOpen)
+{
+    <MatDialog @bind-IsOpen="@DialogIsOpen">
+        <MatDialogTitle>SimpleCreatingofCommotity</MatDialogTitle>
+        <MatDialogContent>
+            <MatTextField @bind-Value="@Commodity.Name">Name</MatTextField>
+            <MatTextField @bind-Value="@Commodity.Category">Category</MatTextField>
+            <MatTextField @bind-Value="@Commodity.Url">Url</MatTextField>
+        </MatDialogContent>
+        <MatDialogActions>
+            <MatButton OnClick="@(e => { DialogIsOpen = false; })">No Thanks</MatButton>
+            <MatButton OnClick="@Create">OK</MatButton>
+        </MatDialogActions>
+    </MatDialog>
+}
+

@@ -12,6 +12,6 @@ namespace Import.Model
         public string Url { get; set; }
         public List<Option> Options { get; set; }
 
-        [ForeignKey("CommotityDetail")] public CommodityDetail CommodityDetail { get; set; }
+        public CommodityDetail CommodityDetail { get; set; }
     }
 }

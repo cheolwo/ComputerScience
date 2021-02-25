@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Logistics.Pages.Commotity
+namespace Logistics.Pages.ofOption
 {
     #line hidden
     using System;
@@ -82,7 +82,7 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Commotity")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Option/{CommodityNo}")]
     public partial class Get : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

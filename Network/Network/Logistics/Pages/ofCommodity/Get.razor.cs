@@ -1,10 +1,12 @@
 ﻿using Import.ImportDataContext;
 using Import.Model;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace Logistics.Pages.Commotity
+namespace Logistics.Pages.ofCommodity
 {
     public partial class Get
     {
@@ -14,6 +16,6 @@ namespace Logistics.Pages.Commotity
         protected override void OnInitialized()
         {
             Commotities = CommotityDataContext.Commodities.ToList();
-        }              
+        }
     }
 }

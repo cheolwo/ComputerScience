@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Import.Model
 {
-    public class Image
+    public class ImageofOption
     {
         [Key] public int ImageNo { get; set; }
         public string ImageTitle { get; set; }
         public byte[] ImageData { get; set; }
-        
-        public string ImageTitieofDetail { get; set; }
-        public byte[] ImageDataofDetail { get; set; }
-
+      
         public Option Option { get; set; }
-    } 
+    }
 }

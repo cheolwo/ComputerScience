@@ -21,7 +21,8 @@ namespace Import.Model
         public bool IsVAT { get; set; }
         public string WarehouseCode { get; set; }
         public List<Doc> Docs { get; set; }
-        [ForeignKey("Commotity")] public Commodity Commodity { get; set; }
+        public Commodity Commodity { get; set; }
+        public List<ImageofDetail> Images { get; set; }
     }
 
     public enum Authenticate { 인증대상 = 0, 상세페이지별도표기 = 1, 인증대상아님 = 2 }

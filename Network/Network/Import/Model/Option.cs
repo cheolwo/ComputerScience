@@ -17,10 +17,6 @@ namespace Import.Model
         public string ModelNo { get; set; }
         public string CommotityBarcode { get; set; }
 
-        /// <summary>
-        /// 대표이미지
-        /// </summary>
-
-        public List<Image> Images { get; set; }            
+        public List<ImageofOption> Images { get; set; }
     }
 }
