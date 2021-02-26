@@ -32,7 +32,18 @@ namespace Import.DataManager
             return _commotityDataContext.ImageofDetails.Where(
                 e => e.CommodityDetail.Commodity.Equals(commodity)).ToList();
         }
-
+        
+        public async Task<List<ImageofDetail>> GetByEntityToList(CommodityDetail commodityDetail)
+        {
+            return await _commodityDataContext.ImageofDetails.Where(
+                e => e.CommodityDetail.Equals(commodityDetail)).ToListAsync();
+        }
+        
+        public async Task GetByEntity(CommodityDetail commotiyDetail)
+        {
+            commodityDetail.Images = await GetByEntityToList(commodityDetail);
+        }
+        
         public ImageofDetail GetById(int ImageNo)
         {
             return _commotityDataContext.ImageofDetails.Find(ImageNo);
