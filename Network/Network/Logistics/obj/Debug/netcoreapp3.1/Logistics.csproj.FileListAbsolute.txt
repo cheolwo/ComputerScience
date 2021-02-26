@@ -147,3 +147,5 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\bin\Debug\netcoreapp3.1\BlazorInputFile.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ImageLoad.razor.g.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ImageLoad.razor.g.cs

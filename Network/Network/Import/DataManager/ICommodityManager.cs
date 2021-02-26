@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -11,10 +12,12 @@ namespace Import.DataManager
     public interface ICommodityManager
     {
         void Add(Commodity commodity);
+        Task AddAsync(Commodity commodity);
         void Upetae(int EntityNo, Commodity commodity);
         void DeleteById(int id);
         void DeleteByEntity(Commodity commodity);
         Commodity GetById(int id);
         List<Commodity> GetToList();  
+        // Task AddAsync() 
     }
 }

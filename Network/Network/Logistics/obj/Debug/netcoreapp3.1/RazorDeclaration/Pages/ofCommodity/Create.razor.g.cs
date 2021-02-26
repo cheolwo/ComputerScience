@@ -105,29 +105,15 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
+#line 43 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
       
-    public IFileListEntry File { get; set; }
-    async Task FileUpload(IFileListEntry[] Files)
-    {
-        File = Files.FirstOrDefault();
-        if (File != null)
-        {
-            await FileManager.UploadAsync(File);
-        }
-    }
+    [Inject]
+    IJSRuntime JS { get; set; }
 
-    public IMatFileUploadEntry MatFile { get; set; }
-
-    async Task MatFileUpload(IMatFileUploadEntry[] MatFiles)
-    {
-        MatFile = MatFiles.FirstOrDefault();
-
-        if(MatFile != null)
-        {
-            await MatFileManager.UploadAsync(MatFile);
-        }
-    }
+    async Task Success() =>
+        await JS.InvokeAsync<object>
+    ("alert", "Comodity Add!");
+    
 
 #line default
 #line hidden

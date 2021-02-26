@@ -96,7 +96,7 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Get/Commotity")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Get/Commodity")]
     public partial class Get : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

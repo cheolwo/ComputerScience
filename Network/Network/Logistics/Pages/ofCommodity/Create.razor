@@ -1,22 +1,38 @@
 ﻿@page "/Create/Commodity"
 @using BlazorInputFile
 
+<h2>Register Commodity</h2>
 <MatDivider></MatDivider>
+<br />
 
+<EditForm EditContext="EditContext" OnValidSubmit="Success">
+    <DataAnnotationsValidator />
+    <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+        <p>
+            <MatTextField Label="Name" @bind-Value="@commodityModel.Name"></MatTextField>
+            <ValidationMessage For="@(() =>commodityModel.Name)" />
+        </p>
+        <p>
+            <MatTextField Label="Category" @bind-Value="@commodityModel.Category"></MatTextField>
+            <ValidationMessage For="@(() =>commodityModel.Category)" />
+        </p>
+        <p>
+            <MatTextField Label="Url" @bind-Value="@commodityModel.Url"></MatTextField>
+            <ValidationMessage For="@(() =>commodityModel.Url)" />
+        </p>
 
-<center>
-    <div class="align-baseline">
-        <MatTextField @bind-Value="@Commodity.Name">Name</MatTextField> <br />
-        <MatTextField @bind-Value="@Commodity.Category">Category</MatTextField> <br />
-        <MatTextField @bind-Value="@Commodity.Url">Url</MatTextField> <br />
+        <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
+        <ValidationMessage For="@(() =>commodityModel.MatFile)" />
     </div>
-</center>
+    <MatButton Type="submit" OnClick="Add" Raised="true">Add</MatButton>
+</EditForm>
 
-
+<MatDivider></MatDivider>
+<br /><br />
 <a href="/Get/Commodity"><MatButton Raised="true">Back</MatButton></a>
-<MatButton OnClick="@Add">OK</MatButton>
 
-<MatFileUpload OnChange="MatFileUpload">MatFileUpload</MatFileUpload>
+<p>@ErrorMessage</p>
+
 @if (MatFile != null)
 {
     <p>Name : @MatFile.Name</p>
@@ -24,29 +40,14 @@
     <p>File type:@MatFile.Type</p>
 }
 
-
 @code{
-    public IFileListEntry File { get; set; }
-    async Task FileUpload(IFileListEntry[] Files)
-    {
-        File = Files.FirstOrDefault();
-        if (File != null)
-        {
-            await FileManager.UploadAsync(File);
-        }
-    }
+    [Inject]
+    IJSRuntime JS { get; set; }
 
-    public IMatFileUploadEntry MatFile { get; set; }
-
-    async Task MatFileUpload(IMatFileUploadEntry[] MatFiles)
-    {
-        MatFile = MatFiles.FirstOrDefault();
-
-        if(MatFile != null)
-        {
-            await MatFileManager.UploadAsync(MatFile);
-        }
-    }
+    async Task Success() =>
+        await JS.InvokeAsync<object>
+    ("alert", "Comodity Add!");
+    
 }
 
 

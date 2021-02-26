@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -25,6 +26,12 @@ namespace Import.DataManager
         {
             _CommodityDataContext.Add(commodity);
             _CommodityDataContext.SaveChanges();
+        }
+
+        public async Task AddAsync(Commodity commodity)
+        {
+            _CommodityDataContext.Add(commodity);
+            await _CommodityDataContext.SaveChangesAsync();
         }
 
         public void DeleteByEntity(Commodity commodity)
@@ -56,9 +63,9 @@ namespace Import.DataManager
 
         public Commodity GetById(int id)
         {
-            //Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
-            //commodity.Options = _OptionManager.GetByCommodityToList(commodity);
-            //commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
+            Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
+            commodity.Options = _OptionManager.GetByCommodityToList(commodity);
+            commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
 
             return _CommodityDataContext.Commodities.Find(id);
         }
