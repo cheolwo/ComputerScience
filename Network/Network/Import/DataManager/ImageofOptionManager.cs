@@ -25,7 +25,21 @@ namespace Import.DataManager
         {
             _commotityDataContext.ImageofOptions.Remove(GetById(ImageNo));
         }
-
+        
+        public async Task GetByEntities(List<Option> options)
+        {
+            foreach(var option in options)
+            {
+                option.Images = await GetByOption(option);
+            }
+        }
+        
+        public async Task<List<ImageofOption>> GetByOption(Option option)
+        {
+            return await _commodityDataContext.ImageofOptions.Where(
+            e => e.Option.Equals(option)).ToListAsync();
+        }
+        
         public List<ImageofOption> GetByCommodityToList(Commodity commodity)
         {
             return _commotityDataContext.ImageofOptions.Where(
