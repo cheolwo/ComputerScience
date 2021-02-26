@@ -14,6 +14,8 @@ namespace Logistics.Pages.ofCommodity
         [Inject] IOptionManager OptionManager {get; set;}
         [Inject] ICommodityDetailManager CommodityDetailManager {get; set;}
         [Inject] ICommodityFileManager FileManager {get; set;}
+        [Inject] IImageofDetailManager ImageofDetailManager {get; set;}
+        [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
         
         [Parameter] public string CommodityNo { get; set; }
         public CommodityModel commodityModel { get; set; }
@@ -24,12 +26,10 @@ namespace Logistics.Pages.ofCommodity
             commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             commodity.Options = OptionManager.GetByCommodityToList(commodity);
             commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
+            
+            ImageofDeatilManager.GetByEntity(commodity.ComodityDetail);
+            ImageofOptionManager.GetByEntity(commodity.Options);
         }
         
-        public void ModelToViewModel(Commdity commodity, CommodityModel commodityModel)
-        {
-         
-        }
-              
     }
 }
