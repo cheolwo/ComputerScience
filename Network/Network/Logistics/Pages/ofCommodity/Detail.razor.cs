@@ -28,7 +28,7 @@ namespace Logistics.Pages.ofCommodity
             commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
             
             ImageofDeatilManager.GetByEntity(commodity.ComodityDetail);
-            ImageofOptionManager.GetByEntity(commodity.Options);
+            ImageofOptionManager.GetByEntities(commodity.Options);
         }
         
     }
