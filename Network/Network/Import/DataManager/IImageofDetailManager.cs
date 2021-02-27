@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -12,5 +13,7 @@ namespace Import.DataManager
         ImageofDetail GetById(int ImageNo);
         List<ImageofDetail> GetByCommodityToList(Commodity commodity);
         void Update(ImageofDetail Image);
+
+        Task GetByEntity(CommodityDetail commodityDetail);
     }
 }

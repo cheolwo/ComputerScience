@@ -13,7 +13,8 @@ namespace Import.DataManager
     {
         void Add(Commodity commodity);
         Task AddAsync(Commodity commodity);
-        void Upetae(int EntityNo, Commodity commodity);
+        void Update(int EntityNo, Commodity commodity);
+        void Update(Commodity commodity);
         void DeleteById(int id);
         void DeleteByEntity(Commodity commodity);
         Commodity GetById(int id);

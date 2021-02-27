@@ -1,6 +1,27 @@
 ﻿@page "/Update/Commodity/{CommodityNo}"
 
-<h3>Update</h3>
+<center><h3>Update</h3></center>
+<center>
+    <img src="@Img" asp-append-version="true" style="width:400px; height:400px;" />
+</center>
+<br />
+<MatDivider></MatDivider>
+<br />
+<center>
+    <p>
+        <MatTextField Label="Name" @bind-Value="@Commodity.Name"></MatTextField>
+    </p>
+    <p>
+        <MatTextField Label="Category" @bind-Value="@Commodity.Category"></MatTextField>
+    </p>
+    <p>
+        <MatTextField Label="Url" @bind-Value="@Commodity.Url"></MatTextField>
+    </p>
+    <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
+
+    <MatButton Type="submit" OnClick="UpdateCommodity" Raised="true">Update</MatButton>
+</center>
+
 
 @code {
 

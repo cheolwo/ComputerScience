@@ -1,10 +1,12 @@
 ﻿using Import.DataManager;
 using Import.Model;
+using Logistics.Service;
 using Logistics.ViewModel;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Logistics.Pages.ofCommodity
 {
@@ -21,15 +23,14 @@ namespace Logistics.Pages.ofCommodity
         public CommodityModel commodityModel { get; set; }
         public Commodity commodity { get; set; }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             commodity.Options = OptionManager.GetByCommodityToList(commodity);
             commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
-            
-            ImageofDeatilManager.GetByEntity(commodity.ComodityDetail);
-            ImageofOptionManager.GetByEntities(commodity.Options);
-        }
-        
+           
+            await ImageofDetailManager.GetByEntity(commodity.CommodityDetail);
+            await ImageofOptionManager.GetByEntities(commodity.Options);
+        }     
     }
 }

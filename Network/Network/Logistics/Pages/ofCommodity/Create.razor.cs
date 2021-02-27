@@ -1,14 +1,8 @@
 ﻿using Import.DataManager;
-using Import.ImportDataContext;
 using MatBlazor;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Win32.SafeHandles;
 using System.IO;
-using System.Drawing;
 using Logistics.Service;
-using System.ComponentModel.DataAnnotations;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
@@ -87,7 +81,7 @@ namespace Logistics.Pages.ofCommodity
             var isValid = EditContext.Validate();
             if (isValid)
             {
-                path = Path.Combine(_environment.ContentRootPath, "File\\Commodity", commodityModel.MatFile.Name);
+                path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images", commodityModel.MatFile.Name);
 
                 try
                 {

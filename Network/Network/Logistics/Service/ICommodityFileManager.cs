@@ -1,14 +1,19 @@
-﻿using MatBlazor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Import.Model;
+using MatBlazor;
 using System.Threading.Tasks;
 
 namespace Logistics.Service
 {
-    interface ICommodityFileManager
+    public interface ICommodityFileManager
     {
         Task UploadExampleImage(IMatFileUploadEntry ImageFile);
-        Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path);
+        Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path);      
+        Task DeleteOptionImage(Commodity commodity);
+        Task DeleteOptionImageById(int OptionNo);
+        Task DeleteOptionImageByEntity(Option option);
+        Task DeleteDetailImage(Commodity commodity);
+        Task DeleteDeatilImageById(int DetailNo);
+        Task DeleteDetailImageByEntity(CommodityDetail commodityDetail);
+        void DeleteExampleImage(Commodity commodity);
     }
 }

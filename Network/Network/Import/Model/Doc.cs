@@ -7,7 +7,7 @@ namespace Import.Model
     {
         [Key] public int DocNo { get; set; }
         public string NameofDoc { get; set; }
-        public byte[] Document { get; set; }
+        public string DocRoute { get; set; }
 
         public CommodityDetail CommodityDetail { get; set; }
     }

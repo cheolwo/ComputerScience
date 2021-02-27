@@ -90,9 +90,20 @@ namespace Import.DataManager
         /// <param name="commodity"></param>
         /// <param name="EntityNo"></param>
         /// 
-        public void Upetae(int EntityNo, Commodity commodity)
+        public void Update(int EntityNo, Commodity commodity)
         {
             Commodity UpdateCommodity = GetById(EntityNo);
+            UpdateCommodity.Category = commodity.Category;
+            UpdateCommodity.Name = commodity.Name;
+            UpdateCommodity.Url = commodity.Url;
+
+            _CommodityDataContext.Commodities.Update(UpdateCommodity);
+            _CommodityDataContext.SaveChanges();
+        }
+
+        public void Update(Commodity commodity)
+        {
+            Commodity UpdateCommodity = GetById(commodity.CommodityNo);
             UpdateCommodity.Category = commodity.Category;
             UpdateCommodity.Name = commodity.Name;
             UpdateCommodity.Url = commodity.Url;

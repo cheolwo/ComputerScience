@@ -1,6 +1,7 @@
 ﻿using Import.Model;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -12,6 +13,6 @@ namespace Import.DataManager
         List<ImageofOption> GetByCommodityToList(Commodity commodity);
         void Update(ImageofOption Image);
         
-        Task GetByEntities(List<option> options);
+        Task GetByEntities(List<Option> options);
     }
 }

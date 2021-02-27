@@ -9,7 +9,7 @@ namespace Import.Model
     {
         [Key] public int ImageNo { get; set; }
         public string ImageTitle { get; set; }
-        public byte[] ImageData { get; set; }
+        public string ImageRoute { get; set; }
       
         public Option Option { get; set; }
     }

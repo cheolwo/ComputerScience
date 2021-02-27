@@ -5,24 +5,41 @@
 
 <MatDivider></MatDivider>
 
+
 <MatTable Items="@Commodities" class="mat-elevation-z5">
     <MatTableHeader>
-        <th>CommodityNo</th>
+        <th>No</th>
         <th>Name</th>
         <th>Category</th>
-        <th>Manager</th>
+        <th>DataManager</th>
     </MatTableHeader>
     <MatTableRow>
         <td>@context.CommodityNo</td>
         <td>@context.Name</td>
         <td>@context.Category</td>
         <td>
-            <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">OptionsDetail</MatButton></a>
-            <a href="/Update/Commodity/@context.CommodityNo"><MatButton Raised="true">Update</MatButton></a>    
-            <a href="/Delete/Commodity/@context.CommodityNo"><MatButton Raised="true">Delete</MatButton></a>
-            <a href="/Detail/Commodity/@context.CommodityNo"><MatButton Raised="true">Detail</MatButton></a>
+            <a href="/Update/Commodity/@context.CommodityNo"><MatButton Raised="true">수정</MatButton></a>
+            <MatButton Raised="true" @onclick="() => DeleteDialogSwitch(context.CommodityNo)">삭제</MatButton>
+            <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">옵션</MatButton></a>
+            <a href="/Get/Commodity/Detail/@context.CommodityNo"><MatButton Raised="true">배송</MatButton></a>
+            @*<a href="/Detail/Commodity/@context.CommodityNo"><MatButton Raised="true">Detail</MatButton></a>*@
         </td>
     </MatTableRow>
 </MatTable>
 
-<img src="C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\File\Commodity\대화내용 23.PNG">
+@if (DeleteDialogIsOpen)
+{
+    <MatDialog @bind-IsOpen="@DeleteDialogIsOpen">
+        <MatDialogTitle>Hi</MatDialogTitle>
+        <MatDialogContent>
+            <p>Really Delete of Commodity?</p>
+        </MatDialogContent>
+        <MatDialogActions>
+            <MatButton OnClick="@(e => { DeleteDialogIsOpen = false; })">NO</MatButton>
+            <MatButton OnClick="() =>DeleteCommodity(CommodityNo)">OK</MatButton>
+        </MatDialogActions>
+    </MatDialog>
+}
+
+@code{
+}

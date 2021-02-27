@@ -1,9 +1,11 @@
 ﻿using Import.ImportDataContext;
 using Import.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -35,11 +37,11 @@ namespace Import.DataManager
         
         public async Task<List<ImageofDetail>> GetByEntityToList(CommodityDetail commodityDetail)
         {
-            return await _commodityDataContext.ImageofDetails.Where(
+            return await _commotityDataContext.ImageofDetails.Where(
                 e => e.CommodityDetail.Equals(commodityDetail)).ToListAsync();
         }
         
-        public async Task GetByEntity(CommodityDetail commotiyDetail)
+        public async Task GetByEntity(CommodityDetail commodityDetail)
         {
             commodityDetail.Images = await GetByEntityToList(commodityDetail);
         }
@@ -52,7 +54,7 @@ namespace Import.DataManager
         public void Update(ImageofDetail Image)
         {
             ImageofDetail UpdateImage = GetById(Image.ImageNo);
-            UpdateImage.ImageData = Image.ImageData;
+            UpdateImage.ImageRoute = Image.ImageRoute;
             UpdateImage.ImageTitle = Image.ImageTitle;
             UpdateImage.CommodityDetail = Image.CommodityDetail;
 
