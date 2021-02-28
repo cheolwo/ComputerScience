@@ -1,7 +1,7 @@
 ﻿@page "/Get/Commodity/Option/{CommodityNo}"
 
 <h3>Option</h3>
-<MatButton @onclick="AddDialogSwitch">Add</MatButton>
+<MatButton Raised="true" @onclick="AddDialogSwitch">Add</MatButton>
 
 @if (Options.Count == 0)
 {
@@ -31,68 +31,58 @@ else
             </td>
         </MatTableRow>
     </MatTable>
-
-    @if (UpdateDialogIsOpen)
-    {
-
-    }
-
-    @if (DeleteDialogIsOpen)
-    {
-
-    }
-
-    //public int OptionNo { get; set; }
-    //public string Name { get; set; }
-    //public string Value { get; set; }
-    //public Commodity Commodity { get; set; }
-
-    //public string NormalPrice { get; set; }
-    //public string SalePrice { get; set; }
-    //public int Quantity { get; set; }
-    //public string SellerCodeofCommodity { get; set; }
-    //public string ModelNo { get; set; }
-    //public string CommotityBarcode { get; set; }
-
-    ///// <summary>
-    ///// 대표이미지
-    ///// </summary>
-
-    //public List<Image> Images { get; set; }
-
+}
 @if (AddDialogIsOpen)
-    {
+{
 <MatDialog @bind-IsOpen="@AddDialogIsOpen">
     <MatDialogTitle>Add_Option</MatDialogTitle>
-    <MatDialogContent>
-        <MatTextField @bind-Value="@Option.Name">Name</MatTextField>
-        <MatTextField @bind-Value="@Option.Value">Value </MatTextField>
-        <MatTextField @bind-Value="@Option.NormalPrice">NormalPrice</MatTextField>
-        <MatTextField @bind-Value="@Option.SalePrice">SalePrice</MatTextField>
-        <MatTextField @bind-Value="@Option.SellerCodeofCommodity">SellerCode</MatTextField>
-        <MatTextField @bind-Value="@Option.ModelNo">ModelNo</MatTextField>
-        <MatTextField @bind-Value="@Option.CommotityBarcode">Barcode</MatTextField>
-        <MatNumericUpDownField @bind-Value="@Option.Quantity">Quantity</MatNumericUpDownField>
-        @*<MatFileUpload OnChange="MultipleFilesReady" AllowMultiple="true" Label="Drop files here or Browse">옵션 이미지</MatFileUpload>
-        <MatFileUpload OnChange="MultipleFilesReady" AllowMultiple="true" Label="Drop files here or Browse">상세페이지 이미지</MatFileUpload>*@
-    </MatDialogContent>
-    <MatDialogActions>
-        <MatButton OnClick="@(e => { AddDialogIsOpen = false; })">No Thanks</MatButton>
-        <MatButton OnClick="@Add">OK</MatButton>
-    </MatDialogActions>
+    <EditForm EditContext="EditContext">
+        <MatDialogContent>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+                <p><MatTextField @bind-Value="@Option.Name">Name</MatTextField></p>
+                <ValidationMessage For="@(() =>Option.Name)" />
+                <p><MatTextField @bind-Value="@Option.Value">Value </MatTextField></p>
+                <ValidationMessage For="@(() =>Option.Value)" />
+                <p><MatTextField @bind-Value="@Option.NormalPrice">NormalPrice</MatTextField></p>
+                <ValidationMessage For="@(() =>Option.NormalPrice)" />
+                <p><MatTextField @bind-Value="@Option.SalePrice">SalePrice</MatTextField></p>
+                <ValidationMessage For="@(() =>Option.SalePrice)" />
+
+                <p><MatTextField @bind-Value="@Option.SellerCodeofCommodity">SellerCode</MatTextField></p>
+                <p><MatTextField @bind-Value="@Option.ModelNo">ModelNo</MatTextField></p>
+                <p><MatTextField @bind-Value="@Option.CommotityBarcode">Barcode</MatTextField></p>
+                <p><MatNumericUpDownField @bind-Value="@Option.Quantity">Quantity</MatNumericUpDownField></p>
+                <p><MatFileUpload OnChange="FileUpload" Label="Drop files here or Browse">옵션 이미지</MatFileUpload></p>
+            </div>      
+        </MatDialogContent>
+        <MatDialogActions>
+            <MatButton OnClick="@(e => { AddDialogIsOpen = false; })">No Thanks</MatButton>
+            <MatButton Type="submit" OnClick="Add" Raised="true">등록</MatButton>
+        </MatDialogActions>
+    </EditForm>
 </MatDialog>
-    }
+}
+
+@if (UpdateDialogIsOpen)
+{
+
+}
+
+@if (DeleteDialogIsOpen)
+{
+
 }
 
 @code {
     @*void MultipleFilesReady(IMatFileUploadEntry[] files)
-    {       
-        foreach (var file in files)
         {
-            @Image.
-            @Option.Images.Add()
-            multiplelist.Add($"Name: {file.Name} - Size: {file.Size}");
-        }
-    }*@
+            foreach (var file in files)
+            {
+                @Image.
+                @Option.Images.Add()
+                multiplelist.Add($"Name: {file.Name} - Size: {file.Size}");
+            }
+        }*@
 }
 

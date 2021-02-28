@@ -7,7 +7,12 @@ namespace Logistics.Service
     public interface ICommodityFileManager
     {
         Task UploadExampleImage(IMatFileUploadEntry ImageFile);
-        Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path);      
+        Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path);
+        Task UploadOptionImage(IMatFileUploadEntry[] entries);
+        Task UploadDetailImage(IMatFileUploadEntry[] entries);
+        Task UploadOptionImage(IMatFileUploadEntry entry);
+        Task UploadOptionImage(IMatFileUploadEntry entry, string path);
+
         Task DeleteOptionImage(Commodity commodity);
         Task DeleteOptionImageById(int OptionNo);
         Task DeleteOptionImageByEntity(Option option);
@@ -15,5 +20,6 @@ namespace Logistics.Service
         Task DeleteDeatilImageById(int DetailNo);
         Task DeleteDetailImageByEntity(CommodityDetail commodityDetail);
         void DeleteExampleImage(Commodity commodity);
+
     }
 }

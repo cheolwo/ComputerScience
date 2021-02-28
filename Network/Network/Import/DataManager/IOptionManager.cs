@@ -7,7 +7,7 @@ namespace Import.DataManager
 {
     public interface IOptionManager
     {
-        void Add(Option option);
+        Option Add(Option option);
         List<Option> GetByCommodityToList(Commodity commodity);
         Option GetById(int OptionNo);
         void Update(int OptionNo, Option option);

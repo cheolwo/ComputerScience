@@ -18,6 +18,11 @@ namespace Logistics.Service
         private readonly IImageofDetailManager _imageofDetailManager;
         private readonly IImageofOptionManager _imageofOptionManager;
 
+        public MemoryStream ms { get; set; }
+        //public string ExamplePath { get; set; }
+        //public string DetailPath { get; set; }
+        //public string OptionPath { get; set; }
+
         public CommodityFileManager(IWebHostEnvironment environment, ICommodityManager commodityManager,
             IOptionManager optionManager, ICommodityDetailManager commodityDetailManager,
             IImageofDetailManager imageofDetailManager, IImageofOptionManager imageofOptionManager)
@@ -28,6 +33,8 @@ namespace Logistics.Service
             _commodityDetailManager = commodityDetailManager;
             _imageofDetailManager = imageofDetailManager;
             _imageofOptionManager = imageofOptionManager;
+
+            ms = new MemoryStream();          
         }
 
         public void DeleteDeatilImageById(int DetailNo)
@@ -83,9 +90,8 @@ namespace Logistics.Service
                 throw new ArgumentNullException("FILE_NULL");
             }
 
-            var path = Path.Combine(_environment.ContentRootPath, "File\\Commodity", ImageFile.Name);
-
-            var ms = new MemoryStream();
+            var path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Example", ImageFile.Name);
+        
             await ImageFile.WriteToStreamAsync(ms);
 
             using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
@@ -94,16 +100,83 @@ namespace Logistics.Service
 
         public async Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path)
         {
-            var ms = new MemoryStream();
             await ImageFile.WriteToStreamAsync(ms);
 
             using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
             ms.WriteTo(file);
         }
 
+        public async Task UploadOptionImage(IMatFileUploadEntry[] entries)
+        {
+            string path;
+            if (entries.Length > 0)
+            {
+                foreach (var entry in entries)
+                {
+                    path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Option", entry.Name);
+                    await entry.WriteToStreamAsync(ms);
+                    using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+                    ms.WriteTo(file);
+                }
+            }
+        }
+        public async Task UploadOptionImage(IMatFileUploadEntry[] entries, string path)
+        {
+            if (entries.Length > 0)
+            {
+                foreach (var entry in entries)
+                {                    
+                    await entry.WriteToStreamAsync(ms);
+                    using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+                    ms.WriteTo(file);
+                }
+            }
+        }
+
+        public async Task UploadDetailImage(IMatFileUploadEntry[] entries)
+        {
+            string path;
+            if (entries.Length > 0)
+            {
+                foreach (var entry in entries)
+                {
+                    path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Detail", entry.Name);
+                    await entry.WriteToStreamAsync(ms);
+                    using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+                    ms.WriteTo(file);
+                }
+            }
+        }
+
         Task ICommodityFileManager.DeleteDeatilImageById(int DetailNo)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task UploadOptionImage(IMatFileUploadEntry entry)
+        {
+            if (entry == null)
+            {
+                throw new ArgumentNullException("FILE_NULL");
+            }
+
+            var path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Option", entry.Name);
+
+            await entry.WriteToStreamAsync(ms);
+            using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+            ms.WriteTo(file);
+        }
+
+        public async Task UploadOptionImage(IMatFileUploadEntry entry, string path)
+        {
+            if (entry == null)
+            {
+                throw new ArgumentNullException("FILE_NULL");
+            }
+       
+            await entry.WriteToStreamAsync(ms);
+            using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+            ms.WriteTo(file);
         }
     }
 }

@@ -116,7 +116,6 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Get.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofOption\Get.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\Create.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\Delete.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\Detail.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofCommodity\Update.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofDetail\Create.razor.g.cs
@@ -129,7 +128,6 @@ C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcor
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofOption\Detail.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ofOption\Update.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Create.razor.g.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Delete.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Detail.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofCommodity\Update.razor.g.cs
 C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\obj\Debug\netcoreapp3.1\Razor\Pages\ofDetail\Create.razor.g.cs

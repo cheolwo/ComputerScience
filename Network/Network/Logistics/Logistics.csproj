@@ -24,6 +24,9 @@
     <Folder Include="File\Commodity\Doc\" />
     <Folder Include="File\Commodity\Image\Detail\" />
     <Folder Include="File\Commodity\Image\Option\" />
+    <Folder Include="wwwroot\Images\Detail\" />
+    <Folder Include="wwwroot\Images\Option\" />
+    <Folder Include="wwwroot\Images\Example\" />
   </ItemGroup>
 
 </Project>

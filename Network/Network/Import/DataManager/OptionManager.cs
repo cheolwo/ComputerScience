@@ -33,10 +33,12 @@ namespace Import.DataManager
             _commotityDataContext = commotityDataContext;
         }
 
-        public void Add(Option option)
+        public Option Add(Option option)
         {
             _commotityDataContext.Add(option);
             _commotityDataContext.SaveChanges();
+
+            return _commotityDataContext.Options.OrderBy(e => e.OptionNo).ToList().Last();
         }
 
         public void DeleteById(int OptionNo)

@@ -1,7 +1,7 @@
 ﻿@page "/Create/Commodity"
 @using BlazorInputFile
 
-<h2>Register Commodity</h2>
+<h2>상품등록</h2>
 <MatDivider></MatDivider>
 <br />
 
@@ -24,12 +24,12 @@
         <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
         <ValidationMessage For="@(() =>commodityModel.MatFile)" />
     </div>
-    <MatButton Type="submit" OnClick="Add" Raised="true">Add</MatButton>
+    <MatButton Type="submit" OnClick="Add" Raised="true">등록</MatButton>
 </EditForm>
 
 <MatDivider></MatDivider>
 <br /><br />
-<a href="/Get/Commodity"><MatButton Raised="true">Back</MatButton></a>
+<a href="/Get/Commodity"><MatButton Raised="true">뒤로</MatButton></a>
 
 <p>@ErrorMessage</p>
 
