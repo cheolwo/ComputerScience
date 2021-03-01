@@ -11,7 +11,7 @@ namespace Warehouse.Model
         public string Address { get; set; }
         public Country Country { get; set; }
 
-        public List<Commodity> Commodities { get; set; }
+        public List<WCommodity> WCommodities { get; set; }
         public List<LoadFrmae> LoadFrmaes { get; set; }
     }
 
@@ -19,7 +19,7 @@ namespace Warehouse.Model
 
     // Load 기획 필요
 
-    public class Commodity
+    public class WCommodity
     {
         [Key] public int CommodityNo { get; set; }
         public string Name { get; set; }
@@ -46,7 +46,7 @@ namespace Warehouse.Model
         public int Quantity { get; set; }
 
         public LoadFrmae LoadFrmae { get; set; }
-        public Commodity Commodity { get; set; }
+        public WCommodity WCommodity { get; set; }
         public List<ImageofLoading> ImagesofLoading {get; set;}
     }
 
@@ -71,7 +71,7 @@ namespace Warehouse.Model
         public string Route { get; set; }
         public string Name { get; set; }
 
-        public Commodity Commodity { get; set; }
+        public WCommodity WCommodity { get; set; }
     }
 
     public class ImageofIncoming
@@ -81,7 +81,7 @@ namespace Warehouse.Model
         public string Name { get; set; }
         public DateTime DateTime { get; set; }
 
-        public Commodity Commodity { get; set; }
+        public WCommodity WCommodity { get; set; }
     }
 
     public class ImageofLoading
