@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse.Model
 {
-
     public class Warehouse
     {
         [Key] public int WarehouseNo { get; set; }
