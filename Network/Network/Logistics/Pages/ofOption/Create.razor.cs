@@ -20,27 +20,29 @@ namespace Logistics.Pages.ofOption
         [Inject] IOptionManager OptionManager { get; set; }
         [Inject] ICommodityFileManager CommodityFileManager { get; set; }
         [Inject] IWebHostEnvironment Environment { get; set; }
-        [Inject] NavigationManager NavigationManager { get; set; }
 
-        public bool AddDialogIsOpen { get; set; }
-        public Option Option = new Option();      
+        [Property] public bool AddDialogIsOpen { get; set; }
+        [Property] public List<Option> Options {get; set;}
+        [Property] public string CommodityNo {get; set;}
+        
+        public Option Option = new Option();
+        public Commodity Commodity = new Commodity();
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
         public EditContext EditContext { get; set; }
         public ImageofOption ImageofOption = new ImageofOption();
         
         public string ErrorMessage { get; set; }
-        public string CurrentPath { get; set; }
-
+        
         protected override void OnInitialized()
         {
+            Commodity = ICommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Option.Commodity = Commodity;
             EditContext = new EditContext(Option);
-            AddDialogIsOpen = true;
         }
 
         public void AddDialogSwitch()
         {
            AddDialogIsOpen = !AddDialogIsOpen;
-           NavigationManager.NavigateTo(CurrentPath);
         }
 
         public void FileUpload(IMatFileUploadEntry[] entries)
@@ -55,20 +57,14 @@ namespace Logistics.Pages.ofOption
             }
         }
 
-        public void RefreshByCommodityNo(string CommodityNo)
-        {
-            var path = string.Format("{0}/{1}", "/Get/Commodity/Option", CommodityNo);
-            NavigationManager.NavigateTo(path);
-        }
-
         public async void Add()
         {
-            string path;
-            if (EditContext.Validate())
+            bool Validate = EditContext.Validate();
+            if (Validate)
             {
                 try
                 {
-                    Option = OptionManager.Add(Option);
+                    Option = await OptionManager.Add(Option);
 
                     if (Files.Count > 0)
                     {
@@ -81,27 +77,25 @@ namespace Logistics.Pages.ofOption
                             await CommodityFileManager.UploadOptionImage(File, path);
                         }
                     }
+                    Options.Add(Option);
+                    Reset(Option);
                     AddDialogSwitch();
-                    Reset();
                 }
                 catch (Exception e)
                 {
                     ErrorMessage = e.Message;
-                    AddDialogSwitch();
                     Reset();
+                    AddDialogSwitch();
                 }
             }
         }
-        public void Reset()
+        public void Reset(Option Option)
         {
             Files.Clear();
-            Option.Commodity = null;
             Option.CommotityBarcode = null;
-            Option.Images = null;
             Option.ModelNo = null;
             Option.Name = null;
             Option.NormalPrice = null;
-            Option.OptionNo = 0;
             Option.Quantity = 0;
             Option.SalePrice = null;
             Option.SellerCodeofCommodity = null;
