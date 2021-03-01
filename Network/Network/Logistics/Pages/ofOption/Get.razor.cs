@@ -24,6 +24,7 @@ namespace Logistics.Pages.ofOption
         public Commodity Commodity = new Commodity();
         public Option Option = new Option();
         
+        public string OptionNo {get; set;} 
         public bool AddDialogIsOpen = false;
         public bool DeleteDialogIsOpen = false;
         
