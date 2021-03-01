@@ -14,75 +14,25 @@ using System.Threading.Tasks;
 
 namespace Logistics.Pages.ofOption
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class Get
-    {
-        [Inject] CommotityDataContext CommotityDataContext { get; set; }    
-        [Inject] IOptionManager OptionManager { get; set; }
-        [Inject] IImageofOptionManager ImageofOptionManager { get; set; }      
-        [Inject] NavigationManager NavigationManager { get; set; }
-
-        [Inject] Create Create { get; set; }
-
-        public string ErrorMessage { get; set; }
-        public string path { get; set; }
-
-        public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
-        
-        public List<Option> Options { get; set; }
+    {        
+        [Inject] IOptionManager OptionManager { get; set; }   
+        [Inject] ICommodityManager CommodityManager {get; set;}       
+        [Parameter] public string CommodityNo { get; set; }
+              
+        public List<Option> Options = new List<Option>();
         public Commodity Commodity = new Commodity();
         public Option Option = new Option();
-        public ImageofOption ImageofOption = new ImageofOption();
-        public EditContext EditContext { get; set; }
-
-        protected override void OnInitialized()
-        {
-            Commodity = CommotityDataContext.Commodities.FirstOrDefault(
-                u => u.CommodityNo.Equals(Convert.ToInt32(CommodityNo)));
-
-            Option.Commodity = Commodity;
-            Options = OptionManager.GetByCommodityToList(Commodity);
-            path = string.Format("{0}/{1}", "/Get/Commodity/Option", CommodityNo);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-
-        public void Reset()
-        {
-            Files.Clear();
-            Option.Commodity = null;
-            Option.CommotityBarcode = null;
-            Option.Images = null;
-            Option.ModelNo = null;
-            Option.Name = null;
-            Option.NormalPrice = null;
-            Option.OptionNo = 0;
-            Option.Quantity = 0;
-            Option.SalePrice = null;
-            Option.SellerCodeofCommodity = null;
-            Option.Value = null;
-        }
-
-        public void Delete()
-        {
-            DeleteDialogSwitch();
-        }
-
-        public void Update()
-        {
-            UpdateDialogSwitch();
-        }
-
-        [Parameter]
-        public string CommodityNo { get; set; }
-
+        
         public bool AddDialogIsOpen = false;
         public bool DeleteDialogIsOpen = false;
-        public bool UpdateDialogIsOpen = false;
+        
+        protected override void OnInitialized()
+        {
+            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Option.Commodity = Commodity;
+            Options = OptionManager.GetByCommodityToList(Commodity);
+        }
 
         public void AddDialogSwitch()
         {
@@ -94,9 +44,6 @@ namespace Logistics.Pages.ofOption
             DeleteDialogIsOpen = !DeleteDialogIsOpen;
         }
 
-        public void UpdateDialogSwitch()
-        {
-            UpdateDialogIsOpen = !UpdateDialogIsOpen;
-        }
+
     }
 }
