@@ -89,7 +89,7 @@ namespace Warehouse.Model
         public string Route { get; set; }
         public string Name { get; set; }
         public DateTime DateTime { get; set; }
-
-        public Commodity Commodity { get; set; }
+    
+        public DividedCommodity DividedCommodity {get; set;}
     }
 }
