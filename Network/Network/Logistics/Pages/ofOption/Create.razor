@@ -1,6 +1,39 @@
-﻿@page "/Create/Commodity/Option/{CommodityNo}"
+﻿
+    <MatDialog @bind-IsOpen=AddDialogIsOpen>
+        <MatDialogTitle>Add_Option</MatDialogTitle>
+        <EditForm EditContext="EditContext">
+            <MatDialogContent>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+                    <p><MatTextField @bind-Value="@Option.Name">Name</MatTextField></p>
+                    <ValidationMessage For="@(() =>Option.Name)" />
+                    <p><MatTextField @bind-Value="@Option.Value">Value </MatTextField></p>
+                    <ValidationMessage For="@(() =>Option.Value)" />
+                    <p><MatTextField @bind-Value="@Option.NormalPrice">NormalPrice</MatTextField></p>
+                    <ValidationMessage For="@(() =>Option.NormalPrice)" />
+                    <p><MatTextField @bind-Value="@Option.SalePrice">SalePrice</MatTextField></p>
+                    <ValidationMessage For="@(() =>Option.SalePrice)" />
 
-<h3>Create</h3>
+                    <p><MatTextField @bind-Value="@Option.SellerCodeofCommodity">SellerCode</MatTextField></p>
+                    <p><MatTextField @bind-Value="@Option.ModelNo">ModelNo</MatTextField></p>
+                    <p><MatTextField @bind-Value="@Option.CommotityBarcode">Barcode</MatTextField></p>
+                    <p><MatNumericUpDownField @bind-Value="@Option.Quantity">Quantity</MatNumericUpDownField></p>
+                    <p><MatFileUpload OnChange="FileUpload" Label="Drop files here or Browse">옵션 이미지</MatFileUpload></p>
+                    @if (Files.Count > 0)
+                    { 
+                        foreach (var File in Files)
+                        {
+                            <p>@File.Name</p>    
+                        } 
+                    }
+                </div>
+            </MatDialogContent>
+            <MatDialogActions>
+                <MatButton OnClick="AddDialogSwitch">No Thanks</MatButton>
+                <MatButton Type="submit" OnClick="Add" Raised="true">등록</MatButton>
+            </MatDialogActions>
+        </EditForm>
+    </MatDialog>
 
 @code {
 

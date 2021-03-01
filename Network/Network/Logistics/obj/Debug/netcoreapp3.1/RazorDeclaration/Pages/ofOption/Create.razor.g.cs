@@ -96,7 +96,6 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Create/Commodity/Option/{CommodityNo}")]
     public partial class Create : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

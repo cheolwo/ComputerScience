@@ -2,6 +2,7 @@ using Import.DataManager;
 using Import.ImportDataContext;
 using Logistics.Areas.Identity;
 using Logistics.Data;
+using Logistics.Pages.ofOption;
 using Logistics.Service;
 using MatBlazor;
 using Microsoft.AspNetCore.Builder;
@@ -39,11 +40,14 @@ namespace Logistics
                    Configuration.GetConnectionString("CommodityConnection")));
 
             services.AddSingleton<HttpClient>();
+            services.AddTransient<HttpContent>();
             services.AddTransient<ICommodityManager, CommodityManager>();
             services.AddTransient<ICommodityDetailManager, CommodityDetailManager>();
             services.AddTransient<IOptionManager, OptionManager>();
             services.AddTransient<IImageofDetailManager, ImageofDeatilManager>();
             services.AddTransient<IImageofOptionManager, ImageofOptionManager>();
+            services.AddTransient<Create>();
+            services.AddSingleton<Get>();
 
             services.AddScoped<IFileManager, FileManager>();
             services.AddScoped<IMatFileManager, MatFileManager>();
