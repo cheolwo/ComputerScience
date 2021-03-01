@@ -7,6 +7,7 @@ namespace Warehouse.IDataManager
     Task DeleteById(int WarehouseNo);
     Task<Warehouse> GetById(int WarehouseNo);
     Task<Warehouse> Update(Warehouse Warehouse);
+    Task<List<Warehouses>> GetToList();
   }
   
   public interface IWCommodityDataManager
