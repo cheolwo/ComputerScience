@@ -7,7 +7,7 @@ namespace Warehouse
      {}
     
     public DbSet<Warehouse> Warehouses {get; set;}
-    public DbSet<Commodity> Commodities {get; set;}
+    public DbSet<WCommodity> WCommodities {get; set;}
     public DbSet<DividedCommodity> DividedCommodities {get; set;}
     public DbSet<LoadFrame> LoadFrames {get; set;}
     public DbSet<ImageofCommodity> ImagesofCommodity {get; set;}
