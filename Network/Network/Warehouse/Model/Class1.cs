@@ -47,6 +47,7 @@ namespace Warehouse.Model
 
         public LoadFrmae LoadFrmae { get; set; }
         public Commodity Commodity { get; set; }
+        public List<ImageofLoading> ImagesofLoading {get; set;}
     }
 
     public enum StateofIncoming { Waiting = 1, Inspecting = 2, Returing = 3, Loading = 4 }
