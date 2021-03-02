@@ -19,6 +19,7 @@ namespace Logistics.Pages.ofCommodity
     public partial class Create
     {
         [Inject] ICommodityManager CommodityManager { get; set; }
+        [Inject] ICommodityDetailManager CommodityDetailManager {get; set;}
         [Inject] ICommodityFileManager CommodityFileManager { get; set; }
         [Inject] IWebHostEnvironment _environment { get; set; }
 
@@ -87,8 +88,8 @@ namespace Logistics.Pages.ofCommodity
                 {
                     await MatFileUpload(commodityModel, path);
                     ViewModelToModel(commodityModel, commodity, path);
-                    await CommodityManager.AddAsync(commodity);
-
+                    commodity = CommodityManager.AddAsync(commodity);
+                    CommodityDetailManger.Add(commodity);
                     Reset(commodityModel);
                 }
                 catch (Exception e)
