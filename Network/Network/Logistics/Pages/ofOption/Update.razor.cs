@@ -53,7 +53,8 @@ namespace Logistics.Pages.ofOption
                     ImageofOptionManager.Update(Image);
                 }
             }
-           
+            
+            Reset();                      
         }
         
         public void Update(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos)
