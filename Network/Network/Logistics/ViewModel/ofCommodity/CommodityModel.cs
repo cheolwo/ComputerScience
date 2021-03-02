@@ -12,7 +12,7 @@ namespace Logistics.ViewModel
         [Required] public string Name { get; set; }
         [Required] public string Category { get; set; }
         public string Url { get; set; }
-        public Import Import {get; set;} // 등록목적
+        [Required] public Import Import {get; set;} // 등록목적
        
         [Required] public IMatFileUploadEntry MatFile { get; set; }
        
