@@ -12,14 +12,14 @@ namespace Import.Model
         public string Brand { get; set; }
         public string Menufactured { get; set; }
         
-        public Authenticate Authenticate { get; set; }
-        public Import Import { get; set; }
+        [Required] public Authenticate Authenticate { get; set; }
+        [Required] public Import Import { get; set; }
 
-        public bool PossibleUnder20 { get; set; }
-        public int MaximumPossibleQuantity { get; set; } // per Individual
-        public DateTime DurationTime { get; set; }
-        public bool IsVAT { get; set; }
-        public string WarehouseCode { get; set; }
+        [Required] public bool PossibleUnder20 { get; set; }
+        [Required] public int MaximumPossibleQuantity { get; set; } // per Individual
+        [Required] public DateTime DurationTime { get; set; }
+        [Required] public bool IsVAT { get; set; }
+        [Required] public string WarehouseCode { get; set; }
 
         public List<Doc> Docs { get; set; }
 
