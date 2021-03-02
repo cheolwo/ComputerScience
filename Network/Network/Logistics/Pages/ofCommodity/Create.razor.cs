@@ -25,6 +25,7 @@ namespace Logistics.Pages.ofCommodity
 
         public CommodityModel commodityModel = new CommodityModel();
         public Commodity commodity = new Commodity();
+        public CommodityDetail commodityDetail = new CommodityDetail();
         public string path { get; set; }
         public string ErrorMessage { get; set; }
         public EditContext EditContext { get; set; }
@@ -42,6 +43,7 @@ namespace Logistics.Pages.ofCommodity
             commodityModel.Category = null;
             commodityModel.Url = null;
             commodityModel.MatFile = null;
+            commodityModel.Import = null;
         }
 
         public IMatFileUploadEntry MatFile { get; set; }
@@ -86,15 +88,28 @@ namespace Logistics.Pages.ofCommodity
 
                 try
                 {
+                    // 상품등록
                     await MatFileUpload(commodityModel, path);
                     ViewModelToModel(commodityModel, commodity, path);
                     commodity = CommodityManager.AddAsync(commodity);
-                    CommodityDetailManger.Add(commodity);
-                    Reset(commodityModel);
+                    
+                    // 상품등록 목적확인
+                    if(commodityModel.Import.Equal(Import.Import)) { commodityDetail.ImportDefaultValue(); }
+                    else { commodityDetal.AgencyDefaultValue(); }
+                    
+                    // 상품디테일 기본값 생성
+                    commodityDetail.Commodity = commodity;
+                    await CommodityDetailManger.Add(commodityDetail);
                 }
                 catch (Exception e)
                 {
                     ErrorMessage = e.Message;
+                    
+                    // Awesome....
+                }
+                finally
+                {
+                    Reset(commodityModel);
                 }
             }
             else
