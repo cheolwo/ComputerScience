@@ -33,7 +33,7 @@ namespace Logistics.Pages.ofOption
             }
         }
         
-        public void FileUpdate(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos Nos)
+        public void FileUpdate(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos)
         {
             if (Nos.Count > 0)
             {
@@ -69,6 +69,8 @@ namespace Logistics.Pages.ofOption
             // UpdateOption.... null
             
             Images.Clear();
+            ImageofOptionNos.Clear();
+            
         }
         
     }
