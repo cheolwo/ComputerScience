@@ -10,10 +10,12 @@ namespace Import.DataManager
     public class CommodityDetailManager : ICommodityDetailManager
     {
         private readonly CommotityDataContext _commotityDataContext;
+        public CommodityDetail CommodityDetail {get; set;}
 
         public CommodityDetailManager(CommotityDataContext commotityDataContext)
         {
             _commotityDataContext = commotityDataContext;
+            CommodityDetail.DefaultValue();
         }
         
         public void Add(CommodityDetail commodityDetail)
