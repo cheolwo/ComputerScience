@@ -32,6 +32,6 @@ namespace Logistics.ViewModel
         }
     }
     
-   public enum Import { 병행수입 = 0, 그외 = 1 }
+   public enum Import { Import = 0, Agency = 1 }
 
 }
