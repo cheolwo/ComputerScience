@@ -54,5 +54,5 @@ namespace Import.Model
     }
 
     public enum Authenticate { 인증대상 = 0, 상세페이지별도표기 = 1, 인증대상아님 = 2 }
-    public enum Import { 병행수입 = 0, 그외 = 1 }
+    public enum Import { Import = 0, Agency = 1 }
 }
