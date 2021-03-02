@@ -19,13 +19,38 @@ namespace Import.Model
         [Required] public int MaximumPossibleQuantity { get; set; } // per Individual
         [Required] public int DurationTime { get; set; } // 단위 : 일
         [Required] public bool IsVAT { get; set; }
-        [Required] public string WarehouseCode { get; set; }
+        public int WarehouseNo { get; set; }
 
         public List<Doc> Docs { get; set; }
-
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
         public List<ImageofDetail> Images { get; set; }
+        
+        public void ImportDefaultValue(Commodity Commodity)
+        {
+            Authenticate = 0;
+            Import = 0;
+            PossibleUnder20 = true;
+            MaximumPossibleQuantity = 3;
+            DuraionTime = 3;
+            IsVat = true;
+            
+            Commodity = Commodity;
+            CommodityNo = Commodity.CommodityNo;
+        }
+        
+        public void AgencyDefauleValue(Commodity Commodity)
+        {
+            Authenticate = 2;
+            Import = 1;
+            PossibleUnder20 = true;
+            MaximumPossibleQuantity = 3;
+            DuraionTime = 7;
+            IsVat = false;
+            
+            Commodity = Commodity;
+            CommodityNo = Commodity.CommodityNo;
+        }
     }
 
     public enum Authenticate { 인증대상 = 0, 상세페이지별도표기 = 1, 인증대상아님 = 2 }
