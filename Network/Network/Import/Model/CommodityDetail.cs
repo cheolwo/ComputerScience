@@ -17,7 +17,7 @@ namespace Import.Model
 
         [Required] public bool PossibleUnder20 { get; set; }
         [Required] public int MaximumPossibleQuantity { get; set; } // per Individual
-        [Required] public DateTime DurationTime { get; set; }
+        [Required] public int DurationTime { get; set; } // 단위 : 일
         [Required] public bool IsVAT { get; set; }
         [Required] public string WarehouseCode { get; set; }
 
