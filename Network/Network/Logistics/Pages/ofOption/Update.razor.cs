@@ -10,10 +10,12 @@ namespace Logistics.Pages.ofOption
         [Inject] IOptionManager OptionManager {get; set;}
         [Inject] ICommodityFileManager FileManager {get; set;}
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
+        [Inject] IWebHostEnvironment WebHostEnvironment {get; set;}
         
         [Parameter] public string OptionNo {get; set;}
         
-        public List<IMatFileUploadEntry> Images = new List<IMatFileUploadEntry>();
+        public Dictionary<int, IMatFileUploadEntry> Images = new Dictionary<int, IMatFileUploadEntry>();
+        public List<int> ImageofOptionNos = new List<int>();
         public Option UpdateOption = new Option();
             
         protected override void OnInitialized()
@@ -22,21 +24,43 @@ namespace Logistics.Pages.ofOption
             UpdateOption.Images = ImageofOptionManager.GetByOption(UpdateOption);
         }
         
-        public void FileUpload(IMatFileUploadEntry[] Files)
+        public void FileUpload(int ImageofOptionNo, IMatFileUploadEntry File)
         {
-            if (Files.Count > 0)
+            if (File != null)
             {
-                foreach(var File in Files)
-                {
-                    var Exist = Images.Find(File);
-                    if(Exist == null) { Images.Add(Exist); }
-                }
+                UploadImages.Add(ImageofOptionNo, File);
+                ImageofOptionNos.Add(ImageofOptionNo);
             }
         }
         
-        public void Update()
+        public void FileUpdate(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos Nos)
+        {
+            if (Nos.Count > 0)
+            {
+                foreach(var No in Nos)
+                {
+                    // 기존 이미지 삭제
+                    var Image = ImageofOptionManager.GetById(No);
+                    File.Delete(Image.Route);
+                    
+                    var File = Images[No].Value;
+                    Image.Name = File.Name;
+                    Image.path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Options", Image.Name);     
+                    
+                    // 파일 업로드
+                    FileManager.UpdateImageofOption(File, Image.path);
+                    // 이미지 경로 업데이트
+                    ImageofOptionManager.Update(Image);
+                }
+            }
+           
+        }
+        
+        public void Update(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos)
         {
             
+            OptionManager.Update(Option);
+            FileUpldate(Images, ImageofOptionNos);
         }
         
         public void Reset()
