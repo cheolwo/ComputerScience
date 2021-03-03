@@ -31,6 +31,7 @@ namespace Logistics.Pages.ofCommodity
         public EditContext EditContext { get; set; }
 
         [Parameter] public string CommodityNo { get; set; }
+        [Parameter] public List<Commodity> Commodities {get; set;}
 
         protected override void OnInitialized()
         {
@@ -109,7 +110,9 @@ namespace Logistics.Pages.ofCommodity
                 }
                 finally
                 {
+                    Commodites.Add(commodity);
                     Reset(commodityModel);
+                    AddDialogIsOpen = false;
                 }
             }
             else
