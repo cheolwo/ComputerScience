@@ -97,6 +97,7 @@ namespace Logistics.Pages.ofCommodity
       finally
       {
          Commodity =  null;
+         DeleteDialogSwitch();
       }
     } 
   }
