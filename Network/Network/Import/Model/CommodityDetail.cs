@@ -12,22 +12,49 @@ namespace Import.Model
         public string Brand { get; set; }
         public string Menufactured { get; set; }
         
-        public Authenticate Authenticate { get; set; }
-        public Import Import { get; set; }
+        [Required] public Authenticate Authenticate { get; set; }
+        [Required] public Import Import { get; set; }
 
-        public bool PossibleUnder20 { get; set; }
-        public int MaximumPossibleQuantity { get; set; } // per Individual
-        public DateTime DurationTime { get; set; }
-        public bool IsVAT { get; set; }
-        public string WarehouseCode { get; set; }
+        [Required] public bool PossibleUnder20 { get; set; }
+        [Required] public int MaximumPossibleQuantity { get; set; } // per Individual
+        [Required] public int DurationTime { get; set; } // 단위 : 일
+        [Required] public bool IsVAT { get; set; }
+        public int WarehouseNo { get; set; }
 
         public List<Doc> Docs { get; set; }
-
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
-        public List<ImageofDetail> Images { get; set; }
+        
+        public string NameofGuidanceImage {get; set;}
+        public string RouteofGuidanceImage {get; set;}
+        
+        public void ImportDefaultValue(Commodity Commodity)
+        {
+            Authenticate = 0;
+            Import = 0;
+            PossibleUnder20 = true;
+            MaximumPossibleQuantity = 3;
+            DuraionTime = 3;
+            IsVat = true;
+            
+            Commodity = Commodity;
+            CommodityNo = Commodity.CommodityNo;
+        }
+        
+        public void AgencyDefauleValue(Commodity Commodity)
+        {
+            Authenticate = 2;
+            Import = 1;
+            PossibleUnder20 = true;
+            MaximumPossibleQuantity = 3;
+            DuraionTime = 7;
+            IsVat = false;
+            
+            Commodity = Commodity;
+            CommodityNo = Commodity.CommodityNo;
+        }
     }
 
     public enum Authenticate { 인증대상 = 0, 상세페이지별도표기 = 1, 인증대상아님 = 2 }
-    public enum Import { 병행수입 = 0, 그외 = 1 }
+    public enum Import { Import = 0, Agency = 1 }
 }

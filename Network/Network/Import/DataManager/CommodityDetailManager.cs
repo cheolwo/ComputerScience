@@ -10,7 +10,7 @@ namespace Import.DataManager
     public class CommodityDetailManager : ICommodityDetailManager
     {
         private readonly CommotityDataContext _commotityDataContext;
-
+  
         public CommodityDetailManager(CommotityDataContext commotityDataContext)
         {
             _commotityDataContext = commotityDataContext;
