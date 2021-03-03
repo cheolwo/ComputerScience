@@ -58,7 +58,7 @@ namespace Logistics.Pages.ofCommodity
             {
                 var UpldateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
                 UpdateCommodity = Commodity; 
-                UpdateDialogIsOpen = false;
+                DialogSwitch.Async();
             }         
         }
 
