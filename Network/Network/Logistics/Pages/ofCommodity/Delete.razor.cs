@@ -27,6 +27,8 @@ namespace Logistics.Pages.ofCommodity
     [Property] public List<Commodity> Commodities {get; set;}
     [Property] public bool DeleteDialogIsOpen {get; set;}
     
+    [Parameter] public EventCallback DialogSwitch {get; set;}
+    
     public bool IsDetached {get; set;}
     public Commodity Commodity = new Commodity();
     
@@ -97,7 +99,7 @@ namespace Logistics.Pages.ofCommodity
       finally
       {
          Commodity =  null;
-         DeleteDialogSwitch();
+         DialogSwitch.IovokAsync();
       }
     } 
   }
