@@ -10,6 +10,6 @@ namespace Import.Model
         public string ImageTitle { get; set; }
         public string ImageRoute { get; set; }      
         
-        public CommodityDetail CommodityDetail { get; set; }
+        public Option Option {get; set;}
     } 
 }
