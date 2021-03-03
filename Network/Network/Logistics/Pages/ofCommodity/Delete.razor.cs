@@ -100,4 +100,9 @@ namespace Logistics.Pages.ofCommodity
       }
     } 
   }
+  
+  public void DeleteDialogSwitch()
+  {
+    DeleteDialogSwitch =  !DeleteDialogSwitch;
+  }
 }
