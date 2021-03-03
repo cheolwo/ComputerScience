@@ -18,19 +18,16 @@ namespace Logistics.Pages.ofCommodity
         public List<Commodity> Commodities { get; set; }
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
-      
+        
+        public bool CreateDialogIsOpen {get; set;}
+        public bool UpdateDialogIsOpen {get; set;}
+        public bool DeleteDialogIsOpen { get; set; }
+        
         protected override void OnInitialized()
         {
             Commodities = CommodityManager.GetToList();
         }
    
-        public bool DeleteDialogIsOpen { get; set; }
-        public void DeleteDialogSwitch(int CommodityNo)
-        {
-            DeleteDialogIsOpen = !DeleteDialogIsOpen;
-            this.CommodityNo = CommodityNo;
-        }
-
         public void DeleteCommodity(int CommodityNo)
         {
             Commodity = CommodityManager.GetById(CommodityNo);
@@ -43,6 +40,21 @@ namespace Logistics.Pages.ofCommodity
 
             DeleteDialogIsOpen = false;
             Commodities = CommodityManager.GetToList();
+        }
+        
+        public void CreateDialogSwith()
+        {
+            CreateDialogIsOpen = !CreateDialogIsOpen;
+        }
+                
+        public void UpdateDialogSwitch()
+        {
+            UpdateDialogIsOpen = !UpdateDialogIsOpen;
+        }
+               
+        public void DeleteDialogSwitch()
+        {
+            DeleteDialogIsOpen = !DeleteDialogIsOpen;
         }
 
     }
