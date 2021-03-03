@@ -25,14 +25,17 @@ namespace Logistics.Pages.ofOption
         public Option Option = new Option();
         
         public string OptionNo {get; set;} 
-        public bool AddDialogIsOpen = false;
-        public bool DeleteDialogIsOpen = false;
+        public bool AddDialogIsOpen {get; set;}
+        public bool DeleteDialogIsOpen {get; set;}
         
         protected override void OnInitialized()
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = Commodity;
             Options = OptionManager.GetByCommodityToList(Commodity);
+            
+            AddDialogIsOpen = false;
+            DeleteDialogIsOpen = false;
         }
 
         public void AddDialogSwitch()
