@@ -25,28 +25,40 @@ namespace Logistics.Pages.ofCommodity
 
         public IMatFileUploadEntry MatFile { get; set; }
 
-        public Commodity Commodity { get; set; }
+        public Commodity Commodity = new Commodity();
         public string ImgName { get; set; }
         public string Img { get; set; }
 
-        protected override void OnInitialized()
+        protected override async void OnInitializedAsync()
         {
-            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Commodity = await CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             ReadFile(Commodity);
         }
 
-        public void UpdateCommodity()
+        public async void UpdateCommodity()
         {
-            if(MatFile != null)
+            try
             {
-                string path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images", MatFile.Name);
-                File.Delete(Commodity.ImageRoute);
-                Commodity.ImageRoute = path;
-                Commodity.ImageTitle = MatFile.Name;
-                FileManager.UploadExampleImage(MatFile, path);
-            }    
-            CommodityManager.Update(Commodity);
-            NavigationManager.NavigateTo("/Get/Commodity");
+                if(MatFile != null)
+                {
+                    string path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images", MatFile.Name);
+                    File.Delete(Commodity.ImageRoute);
+                    Commodity.ImageRoute = path;
+                    Commodity.ImageTitle = MatFile.Name;
+                    FileManager.UploadExampleImage(MatFile, path);
+                }    
+               Commodity = await CommodityManager.Update(Commodity);
+            }
+            catch(Exception e)
+            {
+                // Awesome...
+            }
+            finally
+            {
+                var UpldateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
+                UpdateCommodity = Commodity; 
+                UpdateDialogIsOpen = false;
+            }         
         }
 
         public void UploadToBuffer(IMatFileUploadEntry[] MatFiles)
