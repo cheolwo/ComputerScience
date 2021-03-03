@@ -28,5 +28,7 @@ namespace Import.ImportDataContext
         public DbSet<ImageofDetail> ImageofDetails { get; set; }
         public DbSet<ImageofOption> ImageofOptions { get; set; }
         public DbSet<Option> Options { get; set; }
+        public DbSet<CompanyofBuying> CompanyofBuyings { get; set; }
+        public DbSet<Buying> Buyings { get; set; }
     }
 }

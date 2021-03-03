@@ -43,7 +43,8 @@ namespace Import.DataManager
 
         public void DeleteById(int OptionNo)
         {
-            _commotityDataContext.Remove(OptionNo);
+            Option option = GetById(OptionNo);
+            _commotityDataContext.Remove(option);
             _commotityDataContext.SaveChanges();
         }
 
@@ -65,12 +66,8 @@ namespace Import.DataManager
         /// <param name="OptionNo"></param>
         /// <returns></returns>
         public Option GetById(int OptionNo)
-        {
-            Option option = _commotityDataContext.Options.Find(OptionNo);
-            option.Images = _commotityDataContext.ImageofOptions.Where(
-                u => u.Option.Equals(option)).ToList();
-
-            return option;
+        {               
+             return _commotityDataContext.Options.Find(OptionNo);
         }
 
         public void Update(int OptionNo, Option option)

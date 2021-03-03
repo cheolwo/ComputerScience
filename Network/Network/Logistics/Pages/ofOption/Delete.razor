@@ -1,6 +1,14 @@
 ﻿@page "/Delete/Commodity/Option/{CommodityNo}" 
 
-<h3>Delete</h3>
+<MatDialog @bind-IsOpen ="DeleteDialogIsOpen">
+    <MatDialogContent>
+        <MatH2>정말로 삭제하시겠습니까?</MatH2>
+    </MatDialogContent>
+    <MatDialogActions>
+        <MatButton Raised="true" Label="Yes" OnClick="() => DeleteById(OptionNo)"></MatButton>
+        <MatButton Raised="true" Label="No" OnClick="DialogSwitch.InvokeAsync"></MatButton>
+    </MatDialogActions>
+</MatDialog>
 
 @code {
 

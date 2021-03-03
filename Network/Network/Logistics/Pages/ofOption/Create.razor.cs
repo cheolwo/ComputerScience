@@ -18,80 +18,29 @@ namespace Logistics.Pages.ofOption
     public partial class Create
     {
         [Inject] IOptionManager OptionManager { get; set; }
-        [Inject] ICommodityFileManager CommodityFileManager { get; set; }
-        [Inject] IWebHostEnvironment Environment { get; set; }
+        [Inject] ICommodityManager CommodityManager { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
+        [Parameter] public bool AddDialogIsOpen { get; set; }
+        [Parameter] public string CommodityNo { get; set; }
 
-        public bool AddDialogIsOpen { get; set; }
-        public Option Option = new Option();      
+        [Parameter] public Option Option { get; set; }
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
+
         public EditContext EditContext { get; set; }
         public ImageofOption ImageofOption = new ImageofOption();
         
         public string ErrorMessage { get; set; }
-        public string CurrentPath { get; set; }
-
+        
         protected override void OnInitialized()
         {
             EditContext = new EditContext(Option);
-            AddDialogIsOpen = true;
+            Option.Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
         }
 
-        public void AddDialogSwitch()
-        {
-           AddDialogIsOpen = !AddDialogIsOpen;
-           NavigationManager.NavigateTo(CurrentPath);
-        }
+        public void FileUpload () { }
+        [Parameter] public EventCallback DialogSwitch { get; set; }
+        [Parameter] public EventCallback Add { get; set; }
 
-        public void FileUpload(IMatFileUploadEntry[] entries)
-        {
-            if (entries.Length > 0)
-            {
-                foreach (var entry in entries)
-                {
-                    var File = Files.FirstOrDefault(e => e.Equals(entry));
-                    if (File == null) { Files.Add(entry); }
-                }
-            }
-        }
-
-        public void RefreshByCommodityNo(string CommodityNo)
-        {
-            var path = string.Format("{0}/{1}", "/Get/Commodity/Option", CommodityNo);
-            NavigationManager.NavigateTo(path);
-        }
-
-        public async void Add()
-        {
-            string path;
-            if (EditContext.Validate())
-            {
-                try
-                {
-                    Option = OptionManager.Add(Option);
-
-                    if (Files.Count > 0)
-                    {
-                        foreach (var File in Files)
-                        {
-                            path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images\\Option", File.Name);
-                            ImageofOption.Option = Option;
-                            ImageofOption.ImageRoute = path;
-                            ImageofOption.ImageTitle = File.Name;
-                            await CommodityFileManager.UploadOptionImage(File, path);
-                        }
-                    }
-                    AddDialogSwitch();
-                    Reset();
-                }
-                catch (Exception e)
-                {
-                    ErrorMessage = e.Message;
-                    AddDialogSwitch();
-                    Reset();
-                }
-            }
-        }
         public void Reset()
         {
             Files.Clear();
@@ -106,6 +55,9 @@ namespace Logistics.Pages.ofOption
             Option.SalePrice = null;
             Option.SellerCodeofCommodity = null;
             Option.Value = null;
+
+            NavigationManager.NavigateTo(string.Format("/Get/Commodity/Option/{0}", CommodityNo));
+
         }
     }
 }

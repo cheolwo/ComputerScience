@@ -40,7 +40,6 @@ namespace Logistics
                    Configuration.GetConnectionString("CommodityConnection")));
 
             services.AddSingleton<HttpClient>();
-            services.AddTransient<HttpContent>();
             services.AddTransient<ICommodityManager, CommodityManager>();
             services.AddTransient<ICommodityDetailManager, CommodityDetailManager>();
             services.AddTransient<IOptionManager, OptionManager>();

@@ -25,28 +25,23 @@ else
             <td>@context.SalePrice</td>
             <td>@context.Quantity</td>
             <td>
-                <MatButton OnClick="UpdateDialogSwitch">Update</MatButton>
-                <MatButton OnClick="DeleteDialogSwitch">Delete</MatButton>
+                <MatButton @onclick="UpdateDialogSwitch">Update</MatButton>
+                <MatButton @onclick="() => DeleteDialogSwitch(context.OptionNo)">Delete</MatButton>
                 <MatButton><a href="/Commodity/Option/@Option.OptionNo">Detail</a></MatButton>
             </td>
         </MatTableRow>
     </MatTable>
 }
-
-@if (AddDialogIsOpen)
-{
-    <Create></Create>
-}
+<Create AddDialogIsOpen="@AddDialogIsOpen"  Add="@Add" Option="@Option" CommodityNo="@CommodityNo" DialogSwitch="AddDialogSwitch"></Create>
 
 @if (UpdateDialogIsOpen)
 {
 
 }
 
-@if (DeleteDialogIsOpen)
-{
 
-}
+<Delete DeleteDialogIsOpen="@DeleteDialogIsOpen" CommodityNo="@CommodityNo" OptionNo="@DeleteOptionNo" DialogSwitch="DeleteDialogSwitch"></Delete>
+
 
 @code {
     @*void MultipleFilesReady(IMatFileUploadEntry[] files)

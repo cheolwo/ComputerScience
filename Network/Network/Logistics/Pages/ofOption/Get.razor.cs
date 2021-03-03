@@ -21,21 +21,23 @@ namespace Logistics.Pages.ofOption
     {
         [Inject] CommotityDataContext CommotityDataContext { get; set; }    
         [Inject] IOptionManager OptionManager { get; set; }
-        [Inject] IImageofOptionManager ImageofOptionManager { get; set; }      
-        [Inject] NavigationManager NavigationManager { get; set; }
-
-        [Inject] Create Create { get; set; }
 
         public string ErrorMessage { get; set; }
-        public string path { get; set; }
 
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
-        
-        public List<Option> Options { get; set; }
+        public List<Option> Options = new List<Option>();
         public Commodity Commodity = new Commodity();
         public Option Option = new Option();
         public ImageofOption ImageofOption = new ImageofOption();
-        public EditContext EditContext { get; set; }
+
+        [Parameter]
+        public string CommodityNo { get; set; }
+
+        public bool AddDialogIsOpen = false;
+        public bool DeleteDialogIsOpen = false;
+        public bool UpdateDialogIsOpen = false;
+
+        public int DeleteOptionNo { get; set; }
 
         protected override void OnInitialized()
         {
@@ -43,8 +45,7 @@ namespace Logistics.Pages.ofOption
                 u => u.CommodityNo.Equals(Convert.ToInt32(CommodityNo)));
 
             Option.Commodity = Commodity;
-            Options = OptionManager.GetByCommodityToList(Commodity);
-            path = string.Format("{0}/{1}", "/Get/Commodity/Option", CommodityNo);
+            Options = OptionManager.GetByCommodityToList(Commodity);           
         }
 
         /// <summary>
@@ -54,7 +55,6 @@ namespace Logistics.Pages.ofOption
         public void Reset()
         {
             Files.Clear();
-            Option.Commodity = null;
             Option.CommotityBarcode = null;
             Option.Images = null;
             Option.ModelNo = null;
@@ -67,6 +67,13 @@ namespace Logistics.Pages.ofOption
             Option.Value = null;
         }
 
+        public void Add()
+        {
+            OptionManager.Add(Option);
+            Options = OptionManager.GetByCommodityToList(Commodity);
+            AddDialogSwitch();
+        }
+
         public void Delete()
         {
             DeleteDialogSwitch();
@@ -77,16 +84,15 @@ namespace Logistics.Pages.ofOption
             UpdateDialogSwitch();
         }
 
-        [Parameter]
-        public string CommodityNo { get; set; }
-
-        public bool AddDialogIsOpen = false;
-        public bool DeleteDialogIsOpen = false;
-        public bool UpdateDialogIsOpen = false;
-
         public void AddDialogSwitch()
         {
             AddDialogIsOpen = !AddDialogIsOpen;
+        }
+
+        public void DeleteDialogSwitch(int OptionNo)
+        {
+            DeleteOptionNo = OptionNo;
+            DeleteDialogIsOpen = !DeleteDialogIsOpen;
         }
 
         public void DeleteDialogSwitch()
