@@ -14,36 +14,52 @@ namespace Logistics.Pages.ofCommodity
 {
     public partial class Update
     {
-        [Parameter] public string CommodityNo { get; set; }
         [Inject] public ICommodityManager CommodityManager { get; set; }
         [Inject] public ICommodityFileManager FileManager { get; set; }
         [Inject] public IWebHostEnvironment Environment { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
+        
+        [Parameter] public string CommodityNo { get; set; }
+        [Parameter] public bool UpdateDialogIsOpen {get; set;}
+        [Parameter] public List<Commodity> Commodities {get; set;}
+        [Parameter] public EventCallBack DialogSwitch {get; set;}
 
         public IMatFileUploadEntry MatFile { get; set; }
 
-        public Commodity Commodity { get; set; }
+        public Commodity Commodity = new Commodity();
         public string ImgName { get; set; }
         public string Img { get; set; }
 
-        protected override void OnInitialized()
+        protected override async void OnInitializedAsync()
         {
-            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Commodity = await CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             ReadFile(Commodity);
         }
 
-        public void UpdateCommodity()
+        public async void UpdateCommodity()
         {
-            if(MatFile != null)
+            try
             {
-                string path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images", MatFile.Name);
-                File.Delete(Commodity.ImageRoute);
-                Commodity.ImageRoute = path;
-                Commodity.ImageTitle = MatFile.Name;
-                FileManager.UploadExampleImage(MatFile, path);
-            }    
-            CommodityManager.Update(Commodity);
-            NavigationManager.NavigateTo("/Get/Commodity");
+                if(MatFile != null)
+                {
+                    string path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images", MatFile.Name);
+                    File.Delete(Commodity.ImageRoute);
+                    Commodity.ImageRoute = path;
+                    Commodity.ImageTitle = MatFile.Name;
+                    FileManager.UploadExampleImage(MatFile, path);
+                }    
+               Commodity = await CommodityManager.Update(Commodity);
+            }
+            catch(Exception e)
+            {
+                // Awesome...
+            }
+            finally
+            {
+                var UpldateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
+                UpdateCommodity = Commodity; 
+                DialogSwitch.Async();
+            }         
         }
 
         public void UploadToBuffer(IMatFileUploadEntry[] MatFiles)

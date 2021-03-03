@@ -30,7 +30,10 @@ namespace Logistics.Pages.ofCommodity
         public string ErrorMessage { get; set; }
         public EditContext EditContext { get; set; }
 
+        [Parameter] public bool CreateDialogIsOpen {get; set;}
         [Parameter] public string CommodityNo { get; set; }
+        [Parameter] public List<Commodity> Commodities {get; set;}
+        [Parameter[ public EventCallback DialogSwitch {get; set;}
 
         protected override void OnInitialized()
         {
@@ -109,7 +112,9 @@ namespace Logistics.Pages.ofCommodity
                 }
                 finally
                 {
+                    Commodites.Add(commodity);
                     Reset(commodityModel);
+                    DialogSwitch.InvokeAsync();
                 }
             }
             else
