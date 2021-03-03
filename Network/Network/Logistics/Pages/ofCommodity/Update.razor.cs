@@ -14,11 +14,14 @@ namespace Logistics.Pages.ofCommodity
 {
     public partial class Update
     {
-        [Parameter] public string CommodityNo { get; set; }
         [Inject] public ICommodityManager CommodityManager { get; set; }
         [Inject] public ICommodityFileManager FileManager { get; set; }
         [Inject] public IWebHostEnvironment Environment { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
+        
+        [Parameter] public string CommodityNo { get; set; }
+        [Parameter] public bool UpdateDialogIsOpen {get; set;}
+        [Parameter] public List<Commodity> Commodities {get; set;}
 
         public IMatFileUploadEntry MatFile { get; set; }
 
