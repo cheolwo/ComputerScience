@@ -30,6 +30,7 @@ namespace Logistics.Pages.ofCommodity
         public string ErrorMessage { get; set; }
         public EditContext EditContext { get; set; }
 
+        [Parameter] public bool CreateDialogIsOpen {get; set;}
         [Parameter] public string CommodityNo { get; set; }
         [Parameter] public List<Commodity> Commodities {get; set;}
 
