@@ -36,6 +36,8 @@ namespace Logistics.Pages.ofCommodity
       DataLoad();
       await ImageLoad(Commodity.Options);
       await DocLoad(Commodity.Detail);
+      
+      IsDetached = false;
     }
     
     // 데이터 로드
