@@ -33,6 +33,7 @@ namespace Logistics.Pages.ofCommodity
         [Parameter] public bool CreateDialogIsOpen {get; set;}
         [Parameter] public string CommodityNo { get; set; }
         [Parameter] public List<Commodity> Commodities {get; set;}
+        [Parameter[ public EventCallback DialogSwitch {get; set;}
 
         protected override void OnInitialized()
         {
@@ -113,7 +114,7 @@ namespace Logistics.Pages.ofCommodity
                 {
                     Commodites.Add(commodity);
                     Reset(commodityModel);
-                    AddDialogIsOpen = false;
+                    DialogSwitch.InvokeAsync();
                 }
             }
             else
