@@ -22,6 +22,7 @@ namespace Logistics.Pages.ofCommodity
         [Parameter] public string CommodityNo { get; set; }
         [Parameter] public bool UpdateDialogIsOpen {get; set;}
         [Parameter] public List<Commodity> Commodities {get; set;}
+        [Parameter] public EventCallBack DialogSwitch {get; set;}
 
         public IMatFileUploadEntry MatFile { get; set; }
 
