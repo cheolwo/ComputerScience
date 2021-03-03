@@ -11,6 +11,7 @@ namespace Import.Model
         public string ImageTitle { get; set; }
         public string ImageRoute { get; set; }
       
+        public List<ImageofDetail> ImagesofDetail {get; set;}
         public Option Option { get; set; }
     }
 }
