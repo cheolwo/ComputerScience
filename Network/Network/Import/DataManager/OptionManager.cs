@@ -1,9 +1,11 @@
 ﻿using Import.ImportDataContext;
 using Import.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -21,7 +23,7 @@ namespace Import.DataManager
             _commotityDataContext.Options.Add(option);
             _commotityDataContext.SaveChanges();
 
-            return await _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefaultAsync<Option>();
+            return await _commotityDataContext.Options.OrderByDescending(e => e.OptionNo).FirstOrDefaultAsync();
         }
 
         public Option Add(Option option)
@@ -29,14 +31,9 @@ namespace Import.DataManager
             _commotityDataContext.Options.Add(option);
             _commotityDataContext.SaveChanges();
 
-            return _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefault();
+            return _commotityDataContext.Options.OrderByDescending(e => e.OptionNo).FirstOrDefault();
         }
 
-        public async Task DeleteByEntity(Option option)
-        {
-            _commotityDataContext.Remove(OptionNo);
-            _commotityDataContext.SaveChanges();
-        }
 
         public async Task<List<Option>> GetToListByCommodityAsync(Commodity commodity)
         {
@@ -45,33 +42,39 @@ namespace Import.DataManager
 
         public List<Option> GetToListByCommodity(Commodity commodity)
         {
-            return _CommodityDataContext.Options.ToList();
+            return _commotityDataContext.Options.Where(u => u.Commodity.Equals(commodity)).ToList();
         }
 
         public async Task<Option> GetByIdAsync(int optionNo)
         {
-            return _CommodityDataContext.Options.FindAsync(optionNo);
+            return await _commotityDataContext.Options.FindAsync(optionNo);
         }
 
         public Option GetById(int optionNo)
         {
-            return _CommodityDataContext.Options.Find(optionNo);
+            return _commotityDataContext.Options.Find(optionNo);
         }
 
-        /// <summary>
-        /// 이미지도 함께
-        /// </summary>
-        /// <param name="OptionNo"></param>
-        /// <returns></returns>
-        public Option GetById(int OptionNo)
+        public async Task<Option> UpdateAsync(Option option)
         {
-            Option option = _commotityDataContext.Options.Find(OptionNo);
-            option.Images = _commotityDataContext.ImageofOptions.Where(
-                u => u.Option.Equals(option)).ToList();
+            Option UpdateOption = await GetByIdAsync(option.OptionNo);
+            UpdateOption.Commodity = option.Commodity;
+            UpdateOption.CommotityBarcode = option.CommotityBarcode;
+            UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
+            UpdateOption.Images = option.Images;
+            UpdateOption.ModelNo = option.ModelNo;
+            UpdateOption.Name = option.Name; // 색상
+            UpdateOption.Value = option.Value; // 빨, 주, 노, 초
+            UpdateOption.NormalPrice = option.NormalPrice;
+            UpdateOption.Quantity = option.Quantity;
+            UpdateOption.SalePrice = option.SalePrice;
 
-            return option;
+            _commotityDataContext.Options.Update(UpdateOption);
+            await _commotityDataContext.SaveChangesAsync();
+
+            return UpdateOption;
         }
-        
+
         public Option Update(Option option)
         {
             Option UpdateOption = GetById(option.OptionNo);
@@ -90,6 +93,30 @@ namespace Import.DataManager
             _commotityDataContext.SaveChanges();
 
             return UpdateOption;
+        }
+
+        public async Task DeleteByIdAsync(int optionNo)
+        {
+            _commotityDataContext.Options.Remove(GetById(optionNo));
+            await _commotityDataContext.SaveChangesAsync();
+        }
+
+        public void DeleteById(int optionNo)
+        {
+            _commotityDataContext.Options.Remove(GetById(optionNo));
+            _commotityDataContext.SaveChanges();
+        }
+
+        public async Task DeleteByEntityAsync(Option option)
+        {
+            _commotityDataContext.Remove(option.OptionNo);
+            await _commotityDataContext.SaveChangesAsync();
+        }
+
+        public void DeleteByEntity(Option option)
+        {
+            _commotityDataContext.Remove(option.OptionNo);
+            _commotityDataContext.SaveChanges();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Logistics.Pages.ofOption
         protected override void OnInitialized()
         {
             DeleteOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
-            DeleteOption.Images = ImageofOptionManager.GetByOptionToList(DeleteOption);
+            DeleteOption.Images = ImageofOptionManager.GetToListByOption(DeleteOption);
         }
         
         public void OptionDelete()

@@ -28,7 +28,7 @@ namespace Logistics.Pages.ofOption
         protected override void OnInitialized()
         {
             UpdateOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
-            UpdateOption.Images = ImageofOptionManager.GetByOptionToList(UpdateOption);
+            UpdateOption.Images = ImageofOptionManager.GetToListByOption(UpdateOption);
         }
         
         public void FileUpload(int ImageofOptionNo, IMatFileUploadEntry File)

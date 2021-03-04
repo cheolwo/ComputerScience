@@ -32,7 +32,7 @@ namespace Logistics.Pages.ofOption
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = Commodity;
-            Options = OptionManager.GetByCommodityToList(Commodity);
+            Options = OptionManager.GetToListByCommodity(Commodity);
             
             AddDialogIsOpen = false;
             DeleteDialogIsOpen = false;

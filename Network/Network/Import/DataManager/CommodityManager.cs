@@ -1,5 +1,6 @@
 ﻿using Import.ImportDataContext;
 using Import.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,20 @@ namespace Import.DataManager
         public async Task<Commodity> AddAsync(Commodity commodity)
         {
             _CommodityDataContext.Commodities.Add(commodity);
-            await _CommodityDataContext.SaveChanges();
-            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefaultAsync<Commodity>();
+            await _CommodityDataContext.SaveChangesAsync();
+            return await _CommodityDataContext.Commodities.OrderByDescending(e=>e.CommodityNo).FirstOrDefaultAsync();
         }
 
         public Commodity Add(Commodity commodity)
         {
             _CommodityDataContext.Add(commodity);
             _CommodityDataContext.SaveChanges();         
-            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefault();   
+            return _CommodityDataContext.Commodities.OrderByDescending(e=>e.CommodityNo).FirstOrDefault();   
         }
 
-        public Task<Commodity> GetByIdAsync(int id)
+        public async Task<Commodity> GetByIdAsync(int id)
         {
-            Commodity commodity  = await _CommodityDataContext.Commodities.FindAsync(id);         
-            return commodity;
+            return await _CommodityDataContext.Commodities.FindAsync(id);
         }
 
         public Commodity GetById(int id)
@@ -52,21 +52,14 @@ namespace Import.DataManager
             return _CommodityDataContext.Commodities.ToList();
         }
 
-
-        /// <summary>
-        /// UpdatingofName,Category,Url
-        /// </summary>
-        /// <param name="commodity"></param>
-        /// <param name="EntityNo"></param>
-        /// 
-        public async Task<Commodity> Update(Commodity commodity)
+        public async Task<Commodity> UpdateAsync(Commodity commodity)
         {
-            Task<Commodity> UpdateCommodity = await GetByIdAsync(commodity.CommodityNo);
-            UpdateCommodity.Result.Category = commodity.Category;
-            UpdateCommodity.Result.Name = commodity.Name;
-            UpdateCommodity.Result.Url = commodity.Url;
-            UpdateCommodity.Result.ImageTitle = commodity.ImageTitle;
-            UpdateCommodity.Result.ImageRoute = commodity.ImageRoute;
+            Commodity UpdateCommodity = await GetByIdAsync(commodity.CommodityNo);
+            UpdateCommodity.Category = commodity.Category;
+            UpdateCommodity.Name = commodity.Name;
+            UpdateCommodity.Url = commodity.Url;
+            UpdateCommodity.ImageTitle = commodity.ImageTitle;
+            UpdateCommodity.ImageRoute = commodity.ImageRoute;
 
             _CommodityDataContext.Commodities.Update(UpdateCommodity);
             await _CommodityDataContext.SaveChangesAsync();
@@ -101,7 +94,7 @@ namespace Import.DataManager
             _CommodityDataContext.SaveChanges();
         }
 
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
              Commodity commodity = await _CommodityDataContext.Commodities.FirstOrDefaultAsync(
                 e => e.CommodityNo.Equals(id));

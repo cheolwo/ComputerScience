@@ -44,7 +44,7 @@ namespace Logistics.Pages.ofCommodity
         public void DataLoad()
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
-            Commodity.Options = CommodityOptionManager.GetByCommodityToList(Commodity);
+            Commodity.Options = CommodityOptionManager.GetToListByCommodity(Commodity);
             Commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(Commodity);
         }
 
@@ -55,12 +55,12 @@ namespace Logistics.Pages.ofCommodity
             {
                 foreach (var Option in Options)
                 {
-                    Option.Images = ImageofOptionManager.GetByOptionToList(Option);
+                    Option.Images = ImageofOptionManager.GetToListByOption(Option);
                     if (Option.Images != null)
                     {
                         foreach (var ImageofOption in Option.Images)
                         {
-                            ImageofOption.ImagesofDetail = ImageofDetailManager.GetByOptionToList(ImageofOption);
+                            ImageofOption.ImagesofDetail = ImageofDetailManager.GetToListByImageofOption(ImageofOption);
                         }
                     }
                 }

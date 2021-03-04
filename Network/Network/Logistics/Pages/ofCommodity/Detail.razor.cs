@@ -26,7 +26,7 @@ namespace Logistics.Pages.ofCommodity
         protected override void OnInitialized()
         {
             commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
-            commodity.Options = OptionManager.GetByCommodityToList(commodity);
+            commodity.Options = OptionManager.GetToListByCommodity(commodity);
             commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
            
             //await ImageofDetailManager.GetByEntity(commodity.CommodityDetail);

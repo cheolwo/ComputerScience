@@ -47,7 +47,7 @@ namespace Logistics.Pages.ofCommodity
             commodityModel.Category = null;
             commodityModel.Url = null;
             commodityModel.MatFile = null;
-            commodityModel.Import = null;      
+            commodityModel.Import = ViewModel.Import.Import;     
         }
 
         public IMatFileUploadEntry MatFile { get; set; }

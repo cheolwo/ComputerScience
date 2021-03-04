@@ -15,11 +15,11 @@ namespace Import.DataManager
         List<ImageofDetail> GetToListByImageofOption(ImageofOption imageofOption);
         ImageofDetail Update(ImageofDetail image);
 
-        Task<ImageofDatail> AddAsync(ImageofDetail image);
+        Task<ImageofDetail> AddAsync(ImageofDetail image);
         Task DeleteByEntityAsync(ImageofDetail imageofDetail);
         Task DeleteByIdAsync(int imageNo);
         Task<ImageofDetail> GetByIdAsync(int imageNo);
         Task<List<ImageofDetail>> GetToListByImageofOptionAsync(ImageofOption imageofOption);
-        Task<ImageofDetail> UpdaetAsync(ImageofDetail image);
+        Task<ImageofDetail> UpdateAsync(ImageofDetail image);
     }
 }

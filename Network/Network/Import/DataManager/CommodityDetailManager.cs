@@ -1,15 +1,17 @@
 ﻿using Import.ImportDataContext;
 using Import.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
     public class CommodityDetailManager : ICommodityDetailManager
     {
-        private readonly CommotityDetailDataContext _commotityDataContext;
+        private readonly CommotityDataContext _commotityDataContext;
   
         public CommodityDetailManager(CommotityDataContext commotityDataContext)
         {
@@ -21,7 +23,7 @@ namespace Import.DataManager
             _commotityDataContext.CommodityDetails.Add(commodityDetail);     
             _commotityDataContext.SaveChanges();
 
-            return await _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefaultAsync<CommodityDetail>();       
+            return await _commotityDataContext.CommodityDetails.OrderByDescending(e=>e.CommodityDetailNo).FirstOrDefaultAsync();       
         }
         
         public CommodityDetail Add(CommodityDetail commodityDetail)
@@ -29,7 +31,7 @@ namespace Import.DataManager
             _commotityDataContext.CommodityDetails.Add(commodityDetail);
             _commotityDataContext.SaveChanges();
 
-            return _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefault(); 
+            return _commotityDataContext.CommodityDetails.OrderByDescending(e=>e.CommodityDetailNo).FirstOrDefault(); 
         }
 
         public async Task DeleteByIdAsync(int DetailNo)
@@ -70,26 +72,25 @@ namespace Import.DataManager
 
         public async Task<CommodityDetail> UpdateAsync(CommodityDetail commodityDetail)
         {
-            Task<CommodityDetail> UpdateDetail = await GetByIdAsync(commodityDetail.CommodityDetailNo);
+            CommodityDetail UpdateDetail = await GetByIdAsync(commodityDetail.CommodityDetailNo);
             
-            UpdateDetail.Result.Authenticate = commodityDetail.Authenticate;
-            UpdateDetail.Result.Brand = commodityDetail.Brand;
-            UpdateDetail.Result.Commodity = commodityDetail.Commodity;
-            UpdateDetail.Result.Docs = commodityDetail.Docs;
-            UpdateDetail.Result.DurationTime = commodityDetail.DurationTime;
-            UpdateDetail.Result.Import = commodityDetail.Import;
-            UpdateDetail.Result.IsVAT = commodityDetail.IsVAT;
-            UpdateDetail.Result.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
-            UpdateDetail.Result.Menufactured = commodityDetail.Menufactured;
-            UpdateDetail.Result.PossibleUnder20 = commodityDetail.PossibleUnder20;
-            UpdateDetail.Result.WarehouseNo = commodityDetail.WarehouseNo;
+            UpdateDetail.Authenticate = commodityDetail.Authenticate;
+            UpdateDetail.Brand = commodityDetail.Brand;
+            UpdateDetail.Commodity = commodityDetail.Commodity;
+            UpdateDetail.Docs = commodityDetail.Docs;
+            UpdateDetail.DurationTime = commodityDetail.DurationTime;
+            UpdateDetail.Import = commodityDetail.Import;
+            UpdateDetail.IsVAT = commodityDetail.IsVAT;
+            UpdateDetail.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
+            UpdateDetail.Menufactured = commodityDetail.Menufactured;
+            UpdateDetail.PossibleUnder20 = commodityDetail.PossibleUnder20;
+            UpdateDetail.WarehouseNo = commodityDetail.WarehouseNo;
 
             _commotityDataContext.CommodityDetails.Update(UpdateDetail);
             await _commotityDataContext.SaveChangesAsync();
 
             return UpdateDetail;
         }
-
 
         public CommodityDetail Update(CommodityDetail commodityDetail)
         {
@@ -116,12 +117,12 @@ namespace Import.DataManager
 
         public async Task<List<CommodityDetail>> GetToListAsync()
         {
-            return await _CommodityDetailManager.CommodityDetails.ToListAsync();
+            return await _commotityDataContext.CommodityDetails.ToListAsync();
         }
 
         public List<CommodityDetail> GetToList()
         {
-            return _CommodityDetailManager.CommodityDetails.ToList();
+            return _commotityDataContext.CommodityDetails.ToList();
         }
     }
 }

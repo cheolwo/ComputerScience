@@ -18,7 +18,7 @@ namespace Import.DataManager
         Task<Commodity> GetByIdAsync(int id);
         Task<List<Commodity>> GetToListAsync();  
 
-        Commodity Add(Commodty commodity);
+        Commodity Add(Commodity commodity);
         Commodity GetById(int id);
         List<Commodity> GetToList();
         Commodity Update(Commodity commodity);

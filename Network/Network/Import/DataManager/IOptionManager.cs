@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Import.DataManager
 {
@@ -19,6 +20,6 @@ namespace Import.DataManager
         Task<Option> GetByIdAsync(int optionNo);
         Task<Option> UpdateAsync(Option option);
         Task DeleteByIdAsync(int optionNo);
-        Task DeleteByEntity(Option option);
+        Task DeleteByEntityAsync(Option option);
     }
 }
