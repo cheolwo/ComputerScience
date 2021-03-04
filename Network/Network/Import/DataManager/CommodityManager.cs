@@ -19,14 +19,16 @@ namespace Import.DataManager
 
         public async Task<Commodity> AddAsync(Commodity commodity)
         {
-            _CommodityDataContext.Add(commodity);
-            await _CommodityDataContext.SaveChangesAsync();
+            _CommodityDataContext.Commodities.Add(commodity);
+            await _CommodityDataContext.SaveChanges();
+            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefaultAsync();
         }
 
         public Commodity Add(Commodty commodity)
         {
             _CommodityDataContext.Add(commodity);
-            _CommodityDataContext.SaveChanges();            
+            _CommodityDataContext.SaveChanges();         
+            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefault();   
         }
 
         public Task<Commodity> GetByIdAsync(int id)
@@ -37,16 +39,12 @@ namespace Import.DataManager
 
         public Commodity GetById(int id)
         {
-            Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
-            commodity.Options = _OptionManager.GetByCommodityToList(commodity);
-            commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
-
             return _CommodityDataContext.Commodities.Find(id);
         }
 
-        public Task<List<Commodity>> GetToListAsync()
+        public async Task<List<Commodity>> GetToListAsync()
         {
-            return _CommodityDataContext.Commodities.ToListAsync();
+            return await _CommodityDataContext.Commodities.ToListAsync();
         }
    
         public List<Commodity> GetToList()
@@ -61,7 +59,7 @@ namespace Import.DataManager
         /// <param name="commodity"></param>
         /// <param name="EntityNo"></param>
         /// 
-        public Task<Commodity> Update(Commodity commodity)
+        public async Task<Commodity> Update(Commodity commodity)
         {
             Commodity UpdateCommodity = GetById(commodity.CommodityNo);
             UpdateCommodity.Category = commodity.Category;
@@ -91,7 +89,7 @@ namespace Import.DataManager
             return UpdateCommodity;
         }
         
-        public Task DeleteByEntityAsync(Commodity commodity)
+        public async Task DeleteByEntityAsync(Commodity commodity)
         {
             _CommodityDataContext.Commodities.Remove(commodity);
             _CommodityDataContext.SaveChangesAsync();

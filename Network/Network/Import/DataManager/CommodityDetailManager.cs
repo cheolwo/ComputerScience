@@ -19,9 +19,9 @@ namespace Import.DataManager
         public async Task<CommodityDetail> AddAsync(CommodityDetail commodityDetail)
         {
             _commotityDataContext.CommodityDetails.Add(commodityDetail);     
-            _commotityDataContext.SaveChangesAsync();
+            _commotityDataContext.SaveChanges();
 
-            return await _commotityDataContext.CommodityDetails.ToListAsync().Last();       
+            return await _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefaultAsync();       
         }
         
         public CommodityDetail Add(CommodityDetail commodityDetail)
@@ -29,7 +29,7 @@ namespace Import.DataManager
             _commotityDataContext.CommodityDetails.Add(commodityDetail);
             _commotityDataContext.SaveChanges();
 
-            return _commotityDataContext.CommodityDetails.ToList().Last();
+            return _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefault(); 
         }
 
         public async Task DeleteByIdAsync(int DetailNo)
