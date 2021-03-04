@@ -11,7 +11,7 @@ namespace Import.DataManager
     /// </summary>
     public interface ICommodityManager
     {
-        Task<Commodity> Add(Commodity commodity);
+        Task<Commodity> AddAsync(Commodity commodity);
         Task<Commodity> Update(Commodity commodity);
         Task DeleteById(int id);
         Task DeleteByEntity(Commodity commodity);
