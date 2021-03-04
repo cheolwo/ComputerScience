@@ -17,51 +17,96 @@ namespace Import.DataManager
             _commotityDataContext = commotityDataContext;
         }
 
-        public void Add(ImageofOption Image)
+        public async Task<ImageofOption> AddAsync(ImageofOption image)
+        {
+            _commotityDataContext.ImageofOptions.Add(Image);
+            await _commotityDataContext.SaveChangesAsync();
+
+            return await _commotityDataContext.ImageofOptions.OrderByDesending(e=>e.ImageNo).FirstOrDefaultAsync();
+        }
+
+        public ImageofOption Add(ImageofOption image)
         {
             _commotityDataContext.ImageofOptions.Add(Image);
             _commotityDataContext.SaveChanges();
+
+             return _commotityDataContext.ImageofOptions.OrderByDesending(e=>e.ImageNo).FirstOrDefault();
+        }
+        
+        public async Task DeleteByEntityAsync(ImageofOption imageofOption)
+        {
+            _commotityDataContext.ImageofOptions.Remove(ImageofOption);
+            await _commotityDataContext.SaveChangesAsync();
         }
 
-        public void DeleteById(int ImageNo)
+        public void DeleteByEntity(ImageofOption imageofOption)
         {
-            _commotityDataContext.ImageofOptions.Remove(GetById(ImageNo));
+            _commotityDataContext.ImageofOptions.Remove(ImageofOption);
+            _commotityDataContext.SaveChanges();
         }
-        
-        public async Task GetByEntities(List<Option> options)
+
+        public async Task DeleteByIdAsync(int imageNo)
         {
-            foreach(var option in options)
-            {
-                option.Images = await GetByOption(option);
-            }
+            ImageofOption ImageofOption = await GetByIdAsync(imgaeNo);
+            _commotityDataContext.ImageofOptions.Remove(ImageofOption);
+            await _commotityDataContext.SaveChangesAsync();
         }
-        
-        public async Task<List<ImageofOption>> GetByOption(Option option)
+
+        public void DeleteById(int imageNo)
+        {
+            ImageofOption ImageofOption = GetById(imageNo));
+            _CommodityDataContext.ImageofOptions.Remove(ImageofOption);
+            _CommodityDataContext.SaveChanges();
+        }
+                
+        public async Task<List<ImageofOption>> GetToListByOptionAsync(Option option)
         {
             return await _commotityDataContext.ImageofOptions.Where(
             e => e.Option.Equals(option)).ToListAsync();
         }
         
-        public List<ImageofOption> GetByCommodityToList(Commodity commodity)
+        public List<ImageofOption> GetToListByOption(Commodity commodity)
         {
             return _commotityDataContext.ImageofOptions.Where(
                 e => e.Option.Commodity.Equals(commodity)).ToList();
         }
 
-        public ImageofOption GetById(int ImageNo)
+        public ImageofOption GetById(int imageNo)
         {
-            return _commotityDataContext.ImageofOptions.Find(ImageNo);
+            return _commotityDataContext.ImageofOptions.Find(imageNo);
         }
 
-        public void Update(ImageofOption Image)
+        public async Task<ImageofOption> GetByIdAsync(int imageNo)
         {
-            ImageofOption UpdateOption = GetById(Image.ImageNo);
-            UpdateOption.ImageRoute= Image.ImageRoute;
-            UpdateOption.ImageTitle = Image.ImageTitle;
-            UpdateOption.Option = Image.Option;
+            return _commotityDataContext.ImageofOptions.FindAsync(imageNo);
+        }
+
+        public Task<ImageofOption> UpdateAsync(ImageofOption image)
+        {
+            ImageofOption UpdateOption = await GetByIdAsync(image.ImageNo);
+            UpdateOption.ImageRoute= image.ImageRoute;
+            UpdateOpiion.ImageTitle = image.ImageTitle;
+            UpdateOption.Option = image.Option;
+            UpdateOption.ImagesofDetail = image.ImagesofDetail;
+
+            _commotityDataContext.ImageofOptions.Update(UpdateOption);
+            await _commotityDataContext.SaveChanges();
+
+            return UpdateOption;
+        }
+
+        public ImageofOption Update(ImageofOption image)
+        {
+            ImageofOption UpdateOption = GetById(image.ImageNo);
+            UpdateOption.ImageRoute= image.ImageRoute;
+            UpdateOpiion.ImageTitle = image.ImageTitle;
+            UpdateOption.Option = image.Option;
+            UpdateOption.ImagesofDetail = image.ImagesofDetail;
 
             _commotityDataContext.ImageofOptions.Update(UpdateOption);
             _commotityDataContext.SaveChanges();
+
+            return UpdateOption;
         }
     }
 }

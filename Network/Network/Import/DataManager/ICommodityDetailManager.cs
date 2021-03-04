@@ -13,7 +13,7 @@ namespace Import.DataManager
         Task<CommodityDetail> GetByIdAsync(int DetailNo);
         Task<CommodityDetail> GetByCommodityAsync(Commodity commodity);
         Task<List<CommodityDetail>> GetToListAsync();
-
+        
         CommodityDetail Add(CommodityDetail commodityDetail);
         CommodityDetail Update(CommodityDetail commodityDetail);
         void DeleteById(int DetailNo);

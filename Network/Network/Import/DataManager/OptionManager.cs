@@ -45,7 +45,7 @@ namespace Import.DataManager
         
         public async Task DeleteById(int optionNo)
         {
-            Option option = await GetByIdAsync(optionNo);
+            Option option = GetById(optionNo);
             _commotityDataContext.Options.Remove(option);
             await _CommodityDataContext.SaveChangesAsync();            
         }

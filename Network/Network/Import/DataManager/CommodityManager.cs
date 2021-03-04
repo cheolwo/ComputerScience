@@ -92,7 +92,7 @@ namespace Import.DataManager
         public async Task DeleteByEntityAsync(Commodity commodity)
         {
             _CommodityDataContext.Commodities.Remove(commodity);
-            _CommodityDataContext.SaveChangesAsync();
+            await _CommodityDataContext.SaveChangesAsync();
         }
 
         public void DeleteByEntity(Commodity commodity)
