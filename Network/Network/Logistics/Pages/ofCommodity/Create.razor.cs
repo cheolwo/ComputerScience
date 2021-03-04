@@ -42,11 +42,11 @@ namespace Logistics.Pages.ofCommodity
 
         public void Reset(CommodityModel commodityModel)
         {
-            commodityModel.Name = null;
+            commodityModel.Name = null;           
             commodityModel.Category = null;
             commodityModel.Url = null;
             commodityModel.MatFile = null;
-            commodityModel.Import = null;
+            commodityModel.Import = null;      
         }
 
         public IMatFileUploadEntry MatFile { get; set; }

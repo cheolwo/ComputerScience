@@ -19,7 +19,7 @@ namespace Import.DataManager
         {
             _CommodityDataContext = CommotityDataContext;
             _CommodityDetailManager = CommodityDetailManager;
-            _OptionManager = OptionManager;
+            _OptionManager = Opt    ionManager;
         }
 
         public Task<Commodity> Add(Commodity commodity)
