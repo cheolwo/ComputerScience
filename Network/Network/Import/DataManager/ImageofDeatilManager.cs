@@ -29,26 +29,24 @@ namespace Import.DataManager
             _commotityDataContext.ImageofDetails.Remove(GetById(ImageNo));
         }
 
-        public List<ImageofDetail> GetByCommodityToList(Commodity commodity)
+        public List<ImageofDetail> GetByCommodityToList(ImageofOption option)
         {
-            return _commotityDataContext.ImageofDetails.Where(
-                e => e.CommodityDetail.Commodity.Equals(commodity)).ToList();
+            return _commotityDataContext.ImageofDetails.Where(u => u.ImageofOption.Equals(option)).ToList();
         }
-        
-        public async Task<List<ImageofDetail>> GetByEntityToList(CommodityDetail commodityDetail)
+
+        public async Task<ImageofDetail> GetByEntity(ImageofDetail Detail)
         {
-            return await _commotityDataContext.ImageofDetails.Where(
-                e => e.CommodityDetail.Equals(commodityDetail)).ToListAsync();
+            return await _commotityDataContext.ImageofDetails.FindAsync(Detail);
         }
-        
-        public async Task GetByEntity(CommodityDetail commodityDetail)
-        {
-            commodityDetail.Images = await GetByEntityToList(commodityDetail);
-        }
-        
+
         public ImageofDetail GetById(int ImageNo)
         {
             return _commotityDataContext.ImageofDetails.Find(ImageNo);
+        }
+
+        public List<ImageofDetail> GetByOptionToList(ImageofOption option)
+        {
+            return _commotityDataContext.ImageofDetails.Where(u => u.ImageofOption.Equals(option)).ToList();
         }
 
         public void Update(ImageofDetail Image)
@@ -56,7 +54,7 @@ namespace Import.DataManager
             ImageofDetail UpdateImage = GetById(Image.ImageNo);
             UpdateImage.ImageRoute = Image.ImageRoute;
             UpdateImage.ImageTitle = Image.ImageTitle;
-            UpdateImage.CommodityDetail = Image.CommodityDetail;
+           // UpdateImage.CommodityDetail = Image.CommodityDetail;
 
             _commotityDataContext.ImageofDetails.Update(UpdateImage);
             _commotityDataContext.SaveChanges();

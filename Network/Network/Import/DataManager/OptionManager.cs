@@ -41,6 +41,12 @@ namespace Import.DataManager
             return _commotityDataContext.Options.OrderBy(e => e.OptionNo).ToList().Last();
         }
 
+        public void DeleteByEntity(Option option)
+        {
+            _commotityDataContext.Remove(option);
+            _commotityDataContext.SaveChanges();
+        }
+
         public void DeleteById(int OptionNo)
         {
             Option option = GetById(OptionNo);

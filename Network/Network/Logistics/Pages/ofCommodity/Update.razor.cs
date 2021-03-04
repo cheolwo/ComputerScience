@@ -22,7 +22,7 @@ namespace Logistics.Pages.ofCommodity
         [Parameter] public string CommodityNo { get; set; }
         [Parameter] public bool UpdateDialogIsOpen {get; set;}
         [Parameter] public List<Commodity> Commodities {get; set;}
-        [Parameter] public EventCallBack DialogSwitch {get; set;}
+        [Parameter] public EventCallback DialogSwitch {get; set;}
 
         public IMatFileUploadEntry MatFile { get; set; }
 
@@ -30,13 +30,13 @@ namespace Logistics.Pages.ofCommodity
         public string ImgName { get; set; }
         public string Img { get; set; }
 
-        protected override async void OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            Commodity = await CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             ReadFile(Commodity);
         }
 
-        public async void UpdateCommodity()
+        public void UpdateCommodity()
         {
             try
             {
@@ -48,17 +48,17 @@ namespace Logistics.Pages.ofCommodity
                     Commodity.ImageTitle = MatFile.Name;
                     FileManager.UploadExampleImage(MatFile, path);
                 }    
-               Commodity = await CommodityManager.Update(Commodity);
+               Commodity = CommodityManager.Update(Commodity);
             }
-            catch(Exception e)
+            catch
             {
                 // Awesome...
             }
             finally
             {
-                var UpldateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
-                UpdateCommodity = Commodity; 
-                DialogSwitch.Async();
+                var UpdateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
+                UpdateCommodity = Commodity;
+                UpdateDialogIsOpen = false;
             }         
         }
 

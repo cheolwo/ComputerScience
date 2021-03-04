@@ -63,5 +63,10 @@ namespace Import.DataManager
             _commotityDataContext.ImageofOptions.Update(UpdateOption);
             _commotityDataContext.SaveChanges();
         }
+
+        public List<ImageofOption> GetByOptionToList(Option option)
+        {
+            return _commotityDataContext.ImageofOptions.Where(u => u.Option.Equals(option)).ToList();
+        }
     }
 }

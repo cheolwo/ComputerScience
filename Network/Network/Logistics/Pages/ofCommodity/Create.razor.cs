@@ -10,6 +10,7 @@ using Logistics.ViewModel;
 using Import.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Components.Forms;
+using System.Collections.Generic;
 
 namespace Logistics.Pages.ofCommodity
 {
@@ -33,7 +34,7 @@ namespace Logistics.Pages.ofCommodity
         [Parameter] public bool CreateDialogIsOpen {get; set;}
         [Parameter] public string CommodityNo { get; set; }
         [Parameter] public List<Commodity> Commodities {get; set;}
-        [Parameter[ public EventCallback DialogSwitch {get; set;}
+        [Parameter] public EventCallback DialogSwitch {get; set;}
 
         protected override void OnInitialized()
         {
@@ -46,7 +47,7 @@ namespace Logistics.Pages.ofCommodity
             commodityModel.Category = null;
             commodityModel.Url = null;
             commodityModel.MatFile = null;
-            commodityModel.Import = null;
+            commodityModel.Import = ViewModel.Import.Import;
         }
 
         public IMatFileUploadEntry MatFile { get; set; }
@@ -94,15 +95,15 @@ namespace Logistics.Pages.ofCommodity
                     // 상품등록
                     await MatFileUpload(commodityModel, path);
                     ViewModelToModel(commodityModel, commodity, path);
-                    commodity = CommodityManager.AddAsync(commodity);
+                    commodity = CommodityManager.Add(commodity);
                     
                     // 상품등록 목적확인
-                    if(commodityModel.Import.Equal(Import.Import)) { commodityDetail.ImportDefaultValue(); }
-                    else { commodityDetal.AgencyDefaultValue(); }
+                    if(commodityModel.Import.Equals(ViewModel.Import.Import)) { commodityDetail.ImportDefaultValue(commodity); }
+                    else { commodityDetail.AgencyDefaultValue(commodity); }
                     
                     // 상품디테일 기본값 생성
                     commodityDetail.Commodity = commodity;
-                    await CommodityDetailManger.Add(commodityDetail);
+                    CommodityDetailManager.Add(commodityDetail);
                 }
                 catch (Exception e)
                 {
@@ -112,9 +113,9 @@ namespace Logistics.Pages.ofCommodity
                 }
                 finally
                 {
-                    Commodites.Add(commodity);
+                    Commodities.Add(commodity);
                     Reset(commodityModel);
-                    DialogSwitch.InvokeAsync();
+                    CreateDialogIsOpen = false;
                 }
             }
             else

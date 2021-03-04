@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Import.DataManager;
+using Import.Model;
+using Logistics.Service;
+using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,32 +24,32 @@ namespace Logistics.Pages.ofOption
         
         protected override void OnInitialized()
         {
-            DeleteOption = OptionManager.GetById(OptionNo);
-            DeleteOption.ImageofOptions = ImageofOptionManager.GetByOption(DeleteOption);
+            DeleteOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
+            DeleteOption.Images = ImageofOptionManager.GetByOptionToList(DeleteOption);
         }
         
-        public async void OptionDelete()
+        public void OptionDelete()
         {
             try
             {
-                if(DeleteOption.ImageofOptions.Count > 0)
+                if(DeleteOption.Images.Count > 0)
                 {
-                    foreach(var Image in ImageofOptions)
+                    foreach(var Image in DeleteOption.Images)
                     {
-                        FileManager.Delete(Image);
+                        File.Delete(Image.ImageRoute);
                     }
                 }
                 
-                await OptionManager.Delete(DeleteOption);
+                OptionManager.DeleteByEntity(DeleteOption);
                 Options.Remove(DeleteOption);
                 DialogSwitch();
             }
-            catch(Exception e)
+            catch
             {
                 // Awesome.... 
             }
         }
         
-        public void DialogSwitch() { DialogIsOpen = !DialogIsOpen }        
+        public void DialogSwitch() { DialogIsOpen = !DialogIsOpen; }        
     }
 }

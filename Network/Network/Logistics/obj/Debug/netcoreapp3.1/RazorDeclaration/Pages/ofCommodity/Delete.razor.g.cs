@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Logistics.Pages.ofOption
+namespace Logistics.Pages.ofCommodity
 {
     #line hidden
     using System;

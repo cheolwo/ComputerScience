@@ -13,6 +13,8 @@ namespace Logistics.Service
         Task UploadOptionImage(IMatFileUploadEntry entry);
         Task UploadOptionImage(IMatFileUploadEntry entry, string path);
 
+        //void UpdateImageofOption(IMatFileUploadEntry entry, string path);
+
         Task DeleteOptionImage(Commodity commodity);
         Task DeleteOptionImageById(int OptionNo);
         Task DeleteOptionImageByEntity(Option option);

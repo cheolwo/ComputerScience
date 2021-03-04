@@ -45,8 +45,7 @@ namespace Logistics
             services.AddTransient<IOptionManager, OptionManager>();
             services.AddTransient<IImageofDetailManager, ImageofDeatilManager>();
             services.AddTransient<IImageofOptionManager, ImageofOptionManager>();
-            services.AddTransient<Create>();
-            services.AddSingleton<Get>();
+            services.AddTransient<ICommodityDocManager, CommodityDocManager>();
 
             services.AddScoped<IFileManager, FileManager>();
             services.AddScoped<IMatFileManager, MatFileManager>();

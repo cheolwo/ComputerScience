@@ -37,20 +37,20 @@ namespace Logistics.Service
             ms = new MemoryStream();          
         }
 
-        public void DeleteDeatilImageById(int DetailNo)
-        {
-            var Entity = _commodityManager.GetById(DetailNo);
+        //public void DeleteDeatilImageById(int DetailNo)
+        //{
+        //    var Entity = _commodityManager.GetById(DetailNo);
             
-            if(Entity == null) { throw new ArgumentNullException("ENTITY_IS_NULL"); }
-            List<ImageofDetail> ImageofDetails = _imageofDetailManager.GetByCommodityToList(Entity);
+        //    if(Entity == null) { throw new ArgumentNullException("ENTITY_IS_NULL"); }
+        //    List<ImageofDetail> ImageofDetails = _imageofDetailManager.GetByCommodityToList(Entity);
 
-            if (ImageofDetails.Count == 0) { throw new ArgumentNullException("LIST_IS_EMPTY"); }
+        //    if (ImageofDetails.Count == 0) { throw new ArgumentNullException("LIST_IS_EMPTY"); }
 
-            foreach(var Image in ImageofDetails)
-            {
-                File.Delete(Image.ImageRoute);
-            }
-        }
+        //    foreach(var Image in ImageofDetails)
+        //    {
+        //        File.Delete(Image.ImageRoute);
+        //    }
+        //}
 
         public Task DeleteDetailImage(Commodity commodity)
         {

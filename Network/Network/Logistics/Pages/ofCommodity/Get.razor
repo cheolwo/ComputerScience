@@ -19,7 +19,7 @@
         <td>@context.Category</td>
         <td>
             <a href="/Update/Commodity/@context.CommodityNo"><MatButton Raised="true">수정</MatButton></a>
-            <MatButton Raised="true" @onclick="() => DeleteDialogSwitch(context.CommodityNo)">삭제</MatButton>
+            @*<MatButton Raised="true" @onclick="() => DeleteDialogSwitch(context.CommodityNo)">삭제</MatButton>*@
             <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">옵션</MatButton></a>
             <a href="/Get/Commodity/Detail/@context.CommodityNo"><MatButton Raised="true">배송</MatButton></a>
             @*<a href="/Detail/Commodity/@context.CommodityNo"><MatButton Raised="true">Detail</MatButton></a>*@

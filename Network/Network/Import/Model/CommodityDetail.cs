@@ -20,6 +20,7 @@ namespace Import.Model
         [Required] public int DurationTime { get; set; } // 단위 : 일
         [Required] public bool IsVAT { get; set; }
         public int WarehouseNo { get; set; }
+        public string WarehouseCode { get; set; }
 
         public List<Doc> Docs { get; set; }
         public int CommodityNo { get; set; }
@@ -34,23 +35,23 @@ namespace Import.Model
             Import = 0;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
-            DuraionTime = 3;
-            IsVat = true;
+            DurationTime = 3;
+            IsVAT = true;
             
-            Commodity = Commodity;
+            this.Commodity = Commodity;
             CommodityNo = Commodity.CommodityNo;
         }
         
-        public void AgencyDefauleValue(Commodity Commodity)
+        public void AgencyDefaultValue(Commodity Commodity)
         {
-            Authenticate = 2;
-            Import = 1;
+            Authenticate = Authenticate.인증대상아님;
+            Import = Import.Import;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
-            DuraionTime = 7;
-            IsVat = false;
+            DurationTime = 7;
+            IsVAT = false;
             
-            Commodity = Commodity;
+            this.Commodity = Commodity;
             CommodityNo = Commodity.CommodityNo;
         }
     }

@@ -22,10 +22,13 @@ namespace Import.DataManager
             _OptionManager = optionManager;
         }
 
-        public void Add(Commodity commodity)
+        public Commodity Add(Commodity commodity)
         {
             _CommodityDataContext.Add(commodity);
             _CommodityDataContext.SaveChanges();
+
+            var commoditiy = _CommodityDataContext.Commodities.ToList().Last();
+            return commoditiy;
         }
 
         public async Task AddAsync(Commodity commodity)
@@ -101,7 +104,7 @@ namespace Import.DataManager
             _CommodityDataContext.SaveChanges();
         }
 
-        public void Update(Commodity commodity)
+        public Commodity Update(Commodity commodity)
         {
             Commodity UpdateCommodity = GetById(commodity.CommodityNo);
             UpdateCommodity.Category = commodity.Category;
@@ -110,7 +113,9 @@ namespace Import.DataManager
 
             _CommodityDataContext.Commodities.Update(UpdateCommodity);
             _CommodityDataContext.SaveChanges();
-        }
+
+            return UpdateCommodity;
+        }       
 
         //public void UpdateWithOptions(int EntityNo, Commodity commodity, List<Option> options)
         //{

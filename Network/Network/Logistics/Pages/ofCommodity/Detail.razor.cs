@@ -23,14 +23,14 @@ namespace Logistics.Pages.ofCommodity
         public CommodityModel commodityModel { get; set; }
         public Commodity commodity { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             commodity.Options = OptionManager.GetByCommodityToList(commodity);
             commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
            
-            await ImageofDetailManager.GetByEntity(commodity.CommodityDetail);
-            await ImageofOptionManager.GetByEntities(commodity.Options);
+            //await ImageofDetailManager.GetByEntity(commodity.CommodityDetail);
+            //await ImageofOptionManager.GetByEntities(commodity.Options);
         }     
     }
 }

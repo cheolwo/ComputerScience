@@ -1,6 +1,6 @@
 ﻿@page "/Get/Commodity/Option/{CommodityNo}"
 
-<h3>Option</h3>
+@*<h3>Option</h3>
 <MatButton Raised="true" @onclick="AddDialogSwitch">Add</MatButton>
 
 @if (Options.Count == 0)
@@ -40,7 +40,7 @@ else
 }
 
 
-<Delete DeleteDialogIsOpen="@DeleteDialogIsOpen" CommodityNo="@CommodityNo" OptionNo="@DeleteOptionNo" DialogSwitch="DeleteDialogSwitch"></Delete>
+<Delete DeleteDialogIsOpen="@DeleteDialogIsOpen" CommodityNo="@CommodityNo" OptionNo="@DeleteOptionNo" DialogSwitch="DeleteDialogSwitch"></Delete>*@
 
 
 @code {

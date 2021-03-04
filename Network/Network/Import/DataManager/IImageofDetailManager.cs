@@ -11,9 +11,10 @@ namespace Import.DataManager
         void Add(ImageofDetail Image);
         void DeleteById(int ImageNo);
         ImageofDetail GetById(int ImageNo);
-        List<ImageofDetail> GetByCommodityToList(Commodity commodity);
         void Update(ImageofDetail Image);
+        List<ImageofDetail> GetByOptionToList(ImageofOption option);
 
-        Task GetByEntity(CommodityDetail commodityDetail);
+
+        Task<ImageofDetail> GetByEntity(ImageofDetail Detail);
     }
 }

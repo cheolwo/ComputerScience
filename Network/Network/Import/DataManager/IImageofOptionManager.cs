@@ -12,6 +12,7 @@ namespace Import.DataManager
         ImageofOption GetById(int ImageNo);
         List<ImageofOption> GetByCommodityToList(Commodity commodity);
         void Update(ImageofOption Image);
+        List<ImageofOption> GetByOptionToList(Option option);
         
         Task GetByEntities(List<Option> options);
     }
