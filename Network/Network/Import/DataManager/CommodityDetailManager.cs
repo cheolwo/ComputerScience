@@ -94,6 +94,7 @@ namespace Import.DataManager
             UpdateDetail.Authenticate = commodityDetail.Authenticate;
             UpdateDetail.Brand = commodityDetail.Brand;
             UpdateDetail.Commodity = commodityDetail.Commodity;
+            UpdateDetail.CommodityNo = commodityDetail.CommodityNo;
             UpdateDetail.Docs = commodityDetail.Docs;
             UpdateDetail.DurationTime = commodityDetail.DurationTime;
             UpdateDetail.Import = commodityDetail.Import;
