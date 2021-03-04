@@ -21,10 +21,10 @@ namespace Import.DataManager
         {
             _CommodityDataContext.Commodities.Add(commodity);
             await _CommodityDataContext.SaveChanges();
-            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefaultAsync();
+            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefaultAsync<Commodity>();
         }
 
-        public Commodity Add(Commodty commodity)
+        public Commodity Add(Commodity commodity)
         {
             _CommodityDataContext.Add(commodity);
             _CommodityDataContext.SaveChanges();         

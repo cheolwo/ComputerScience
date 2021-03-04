@@ -22,7 +22,7 @@ namespace Import.DataManager
             _commotityDataContext.ImageofOptions.Add(Image);
             await _commotityDataContext.SaveChangesAsync();
 
-            return await _commotityDataContext.ImageofOptions.OrderByDesending(e=>e.ImageNo).FirstOrDefaultAsync();
+            return await _commotityDataContext.ImageofOptions.OrderByDesending(e=>e.ImageNo).FirstOrDefaultAsync<ImageofOption>();
         }
 
         public ImageofOption Add(ImageofOption image)

@@ -21,7 +21,7 @@ namespace Import.DataManager
             _commotityDataContext.CommodityDetails.Add(commodityDetail);     
             _commotityDataContext.SaveChanges();
 
-            return await _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefaultAsync();       
+            return await _commotityDataContext.CommodityDetails.OrderByDesending(e=>e.CommodityDetailNo).FirstOrDefaultAsync<CommodityDetail>();       
         }
         
         public CommodityDetail Add(CommodityDetail commodityDetail)
