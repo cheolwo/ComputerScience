@@ -17,6 +17,14 @@ namespace Import.DataManager
         Task DeleteByEntityAsync(Commodity commodity);
         Task<Commodity> GetByIdAsync(int id);
         Task<List<Commodity>> GetToListAsync();  
+
+        Commodity Add(Commodty commodity);
+        Commodity GetById(int id);
+        List<Commodity> GetToList();
+        Commodity Update(Commodity commodity);
+        void DeleteByEntity(Commodity commodity);
+        void DeleteById(int id);
+
         // Task AddAsync() 
     }
 }

@@ -11,14 +11,11 @@ namespace Import.DataManager
     public class CommodityManager : ICommodityManager
     {
         private readonly CommotityDataContext _CommodityDataContext;
-        private readonly ICommodityDetailManager _CommodityDetailManager;
-        private readonly IOptionManager _OptionManager;
 
         public CommodityManager(CommotityDataContext CommotityDataContext)
         {
             _CommodityDataContext = CommotityDataContext;
         }
-
 
         public async Task<Commodity> AddAsync(Commodity commodity)
         {
