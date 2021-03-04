@@ -7,23 +7,6 @@ using System.Text;
 
 namespace Import.DataManager
 {
-    //[Key] public int OptionNo { get; set; }
-    //public string Name { get; set; }
-    //public string Value { get; set; }
-    //public Commodity Commodity { get; set; }
-
-    //public string NormalPrice { get; set; }
-    //public string SalePrice { get; set; }
-    //public int Quantity { get; set; }
-    //public string SellerCodeofCommodity { get; set; }
-    //public string ModelNo { get; set; }
-    //public string CommotityBarcode { get; set; }
-
-    ///// <summary>
-    ///// 대표이미지
-    ///// </summary>
-    // public List<Image> Images { get; set; }
-
     public class OptionManager : IOptionManager
     {
         private readonly CommotityDataContext _commotityDataContext;
@@ -33,37 +16,46 @@ namespace Import.DataManager
             _commotityDataContext = commotityDataContext;
         }
 
+        public async Task<Option> AddAsync(Option option)
+        {
+            _commotityDataContext.Options.Add(option);
+            _commotityDataContext.SaveChanges();
+
+            return await _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefaultAsync<Option>();
+        }
+
         public Option Add(Option option)
         {
-            _commotityDataContext.Add(option);
+            _commotityDataContext.Options.Add(option);
             _commotityDataContext.SaveChanges();
 
-            return _commotityDataContext.Options.OrderBy(e => e.OptionNo).ToList().Last();
+            return _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefault();
         }
 
-        public void DeleteByEntity(Option option)
+        public async Task DeleteByEntity(Option option)
         {
-            _commotityDataContext.Remove(option);
-            _commotityDataContext.SaveChanges();
-        }
-
-        public void DeleteById(int OptionNo)
-        {
-            Option option = GetById(OptionNo);
-            _commotityDataContext.Remove(option);
+            _commotityDataContext.Remove(OptionNo);
             _commotityDataContext.SaveChanges();
         }
 
-        public List<Option> GetByCommodityToList(Commodity commodity)
+        public async Task<List<Option>> GetToListByCommodityAsync(Commodity commodity)
         {
-            List<Option> options =  _commotityDataContext.Options.Where(e => e.Commodity.Equals(commodity)).ToList();
-            
-            foreach(var option in options)
-            {
-               
-            }
+            return await _commotityDataContext.Options.ToListAsync();
+        }
 
-            return options;
+        public List<Option> GetToListByCommodity(Commodity commodity)
+        {
+            return _CommodityDataContext.Options.ToList();
+        }
+
+        public async Task<Option> GetByIdAsync(int optionNo)
+        {
+            return _CommodityDataContext.Options.FindAsync(optionNo);
+        }
+
+        public Option GetById(int optionNo)
+        {
+            return _CommodityDataContext.Options.Find(optionNo);
         }
 
         /// <summary>
@@ -72,13 +64,17 @@ namespace Import.DataManager
         /// <param name="OptionNo"></param>
         /// <returns></returns>
         public Option GetById(int OptionNo)
-        {               
-             return _commotityDataContext.Options.Find(OptionNo);
-        }
-
-        public void Update(int OptionNo, Option option)
         {
-            Option UpdateOption = GetById(OptionNo);
+            Option option = _commotityDataContext.Options.Find(OptionNo);
+            option.Images = _commotityDataContext.ImageofOptions.Where(
+                u => u.Option.Equals(option)).ToList();
+
+            return option;
+        }
+        
+        public Option Update(Option option)
+        {
+            Option UpdateOption = GetById(option.OptionNo);
             UpdateOption.Commodity = option.Commodity;
             UpdateOption.CommotityBarcode = option.CommotityBarcode;
             UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
@@ -92,6 +88,8 @@ namespace Import.DataManager
 
             _commotityDataContext.Options.Update(UpdateOption);
             _commotityDataContext.SaveChanges();
+
+            return UpdateOption;
         }
     }
 }

@@ -11,14 +11,20 @@ namespace Import.DataManager
     /// </summary>
     public interface ICommodityManager
     {
-        Commodity Add(Commodity commodity);
-        Task AddAsync(Commodity commodity);
-        void Update(int EntityNo, Commodity commodity);
-        Commodity Update(Commodity commodity);
-        void DeleteById(int id);
-        void DeleteByEntity(Commodity commodity);
+        Task<Commodity> AddAsync(Commodity commodity);
+        Task<Commodity> UpdateAsync(Commodity commodity);
+        Task DeleteByIdAsync(int id);
+        Task DeleteByEntityAsync(Commodity commodity);
+        Task<Commodity> GetByIdAsync(int id);
+        Task<List<Commodity>> GetToListAsync();  
+
+        Commodity Add(Commodty commodity);
         Commodity GetById(int id);
-        List<Commodity> GetToList();  
+        List<Commodity> GetToList();
+        Commodity Update(Commodity commodity);
+        void DeleteByEntity(Commodity commodity);
+        void DeleteById(int id);
+
         // Task AddAsync() 
     }
 }

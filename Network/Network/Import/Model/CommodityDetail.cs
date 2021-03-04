@@ -23,16 +23,14 @@ namespace Import.Model
         public string WarehouseCode { get; set; }
 
         public List<Doc> Docs { get; set; }
+
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
         
-        public string NameofGuidanceImage {get; set;}
-        public string RouteofGuidanceImage {get; set;}
-        
         public void ImportDefaultValue(Commodity Commodity)
         {
-            Authenticate = 0;
-            Import = 0;
+            Authenticate = Authenticate.인증대상;
+            Import = Import.Import;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
             DurationTime = 3;
@@ -45,7 +43,7 @@ namespace Import.Model
         public void AgencyDefaultValue(Commodity Commodity)
         {
             Authenticate = Authenticate.인증대상아님;
-            Import = Import.Import;
+            Import = Import.Agency;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
             DurationTime = 7;

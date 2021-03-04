@@ -9,7 +9,6 @@ namespace Import.Model
         [Required] public string Name { get; set; }
         [Required] public string Value { get; set; }
         [Required] public Commodity Commodity { get; set; }
-
         [Required] public string NormalPrice { get; set; }
         [Required] public string SalePrice { get; set; }
         public int Quantity { get; set; }

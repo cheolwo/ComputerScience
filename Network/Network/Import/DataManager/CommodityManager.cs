@@ -11,76 +11,42 @@ namespace Import.DataManager
     public class CommodityManager : ICommodityManager
     {
         private readonly CommotityDataContext _CommodityDataContext;
-        private readonly ICommodityDetailManager _CommodityDetailManager;
-        private readonly IOptionManager _OptionManager;
 
-        public CommodityManager(CommotityDataContext CommotityDataContext, 
-            ICommodityDetailManager commodityDetailManager, IOptionManager optionManager)
+        public CommodityManager(CommotityDataContext CommotityDataContext)
         {
             _CommodityDataContext = CommotityDataContext;
-            _CommodityDetailManager = commodityDetailManager;
-            _OptionManager = optionManager;
+        }
+
+        public async Task<Commodity> AddAsync(Commodity commodity)
+        {
+            _CommodityDataContext.Commodities.Add(commodity);
+            await _CommodityDataContext.SaveChanges();
+            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefaultAsync<Commodity>();
         }
 
         public Commodity Add(Commodity commodity)
         {
             _CommodityDataContext.Add(commodity);
-            _CommodityDataContext.SaveChanges();
-
-            var commoditiy = _CommodityDataContext.Commodities.ToList().Last();
-            return commoditiy;
+            _CommodityDataContext.SaveChanges();         
+            return _CommodityDataContext.Commodities.OrderByDesending(e=>e.CommodityNo).FirstOrDefault();   
         }
 
-        public async Task AddAsync(Commodity commodity)
+        public Task<Commodity> GetByIdAsync(int id)
         {
-            _CommodityDataContext.Add(commodity);
-            await _CommodityDataContext.SaveChangesAsync();
-        }
-
-        public void DeleteByEntity(Commodity commodity)
-        {
-            _CommodityDataContext.Commodities.Remove(commodity);
-            _CommodityDataContext.SaveChanges();
-        }
-
-        public void DeleteById(int id)
-        {
-            Commodity commodity = _CommodityDataContext.Commodities.FirstOrDefault(
-                e => e.CommodityNo.Equals(id));
-
-            if (commodity == null) { throw new ArgumentNullException(); }
-
-            DeleteByEntity(commodity);        
-        }
-
-        /// <summary>
-        /// [Key] public int CommodityNo { get; set; }
-        //  public string Name { get; set; }
-        //  public string Category { get; set; }
-        //  public string Url { get; set; }
-        //  public List<Option> Options { get; set; }
-        //  [ForeignKey("CommotityDetail")] public CommodityDetail CommodityDetail { get; set; }
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-
-        public Commodity GetById(int id)
-        {
-            Commodity commodity  = _CommodityDataContext.Commodities.Find(id);
-            commodity.Options = _OptionManager.GetByCommodityToList(commodity);
-            commodity.CommodityDetail = _CommodityDetailManager.GetByCommodity(commodity);
-
-            return _CommodityDataContext.Commodities.Find(id);
-        }
-
-        public Commodity GetByIdWithOption(int id)
-        {
-            Commodity commodity = GetById(id);
-        
-
+            Commodity commodity  = await _CommodityDataContext.Commodities.FindAsync(id);         
             return commodity;
         }
 
+        public Commodity GetById(int id)
+        {
+            return _CommodityDataContext.Commodities.Find(id);
+        }
+
+        public async Task<List<Commodity>> GetToListAsync()
+        {
+            return await _CommodityDataContext.Commodities.ToListAsync();
+        }
+   
         public List<Commodity> GetToList()
         {
             return _CommodityDataContext.Commodities.ToList();
@@ -93,15 +59,19 @@ namespace Import.DataManager
         /// <param name="commodity"></param>
         /// <param name="EntityNo"></param>
         /// 
-        public void Update(int EntityNo, Commodity commodity)
+        public async Task<Commodity> Update(Commodity commodity)
         {
-            Commodity UpdateCommodity = GetById(EntityNo);
-            UpdateCommodity.Category = commodity.Category;
-            UpdateCommodity.Name = commodity.Name;
-            UpdateCommodity.Url = commodity.Url;
+            Task<Commodity> UpdateCommodity = await GetByIdAsync(commodity.CommodityNo);
+            UpdateCommodity.Result.Category = commodity.Category;
+            UpdateCommodity.Result.Name = commodity.Name;
+            UpdateCommodity.Result.Url = commodity.Url;
+            UpdateCommodity.Result.ImageTitle = commodity.ImageTitle;
+            UpdateCommodity.Result.ImageRoute = commodity.ImageRoute;
 
             _CommodityDataContext.Commodities.Update(UpdateCommodity);
-            _CommodityDataContext.SaveChanges();
+            await _CommodityDataContext.SaveChangesAsync();
+
+            return UpdateCommodity;
         }
 
         public Commodity Update(Commodity commodity)
@@ -110,35 +80,45 @@ namespace Import.DataManager
             UpdateCommodity.Category = commodity.Category;
             UpdateCommodity.Name = commodity.Name;
             UpdateCommodity.Url = commodity.Url;
+            UpdateCommodity.ImageTitle = commodity.ImageTitle;
+            UpdateCommodity.ImageRoute = commodity.ImageRoute;
 
             _CommodityDataContext.Commodities.Update(UpdateCommodity);
             _CommodityDataContext.SaveChanges();
 
             return UpdateCommodity;
-        }       
+        }
+        
+        public async Task DeleteByEntityAsync(Commodity commodity)
+        {
+            _CommodityDataContext.Commodities.Remove(commodity);
+            await _CommodityDataContext.SaveChangesAsync();
+        }
 
-        //public void UpdateWithOptions(int EntityNo, Commodity commodity, List<Option> options)
-        //{
-        //    foreach (var option in options)
-        //    {
-        //        if(option.c)   
-        //    }
-        //    commodity.Options = options;
+        public void DeleteByEntity(Commodity commodity)
+        {
+            _CommodityDataContext.Commodities.Remove(commodity);
+            _CommodityDataContext.SaveChanges();
+        }
 
-        //    Commodity UpdateCommodity = GetById(EntityNo);
-        //    UpdateCommodity.Options = commodity.Options;
+        public Task DeleteByIdAsync(int id)
+        {
+             Commodity commodity = await _CommodityDataContext.Commodities.FirstOrDefaultAsync(
+                e => e.CommodityNo.Equals(id));
 
-        //    _CommodityDataContext.SaveChanges();
-        //}
+            if (commodity == null) { throw new ArgumentNullException(); }
 
-        //public void UpdatWithDetail(int EntityNo, Commodity commodity, CommodityDetail detail)
-        //{
-        //    commodity.CommodityDetail = detail;
-        //    Commodity UpdateCommodity = GetById(EntityNo);
-        //    UpdateCommodity.CommodityDetail = commodity.CommodityDetail;
+            await DeleteByEntityAsync(commodity);     
+        }
 
-        //    _CommodityDataContext.SaveChanges();
+        public void DeleteById(int id)
+        {
+            Commodity commodity = _CommodityDataContext.Commodities.FirstOrDefault(
+                e => e.CommodityNo.Equals(id));
 
-        //}
+            if (commodity == null) { throw new ArgumentNullException(); }
+
+            DeleteByEntity(commodity);        
+        }
     }
 }

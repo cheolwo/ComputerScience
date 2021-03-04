@@ -1,5 +1,6 @@
 ﻿@page "/Create/Commodity"
 @using BlazorInputFile
+@using MatBlazor
 
 <h2>상품등록</h2>
 <MatDivider></MatDivider>
@@ -11,12 +12,13 @@
         <p>
             <MatTextField Label="Name" @bind-Value="@commodityModel.Name"></MatTextField>
             <ValidationMessage For="@(() =>commodityModel.Name)" />
+            
         </p>
         <p>
             <MatTextField Label="Category" @bind-Value="@commodityModel.Category"></MatTextField>
             <ValidationMessage For="@(() =>commodityModel.Category)" />
         </p>
-        <p>
+        <p>                                     
             <MatTextField Label="Url" @bind-Value="@commodityModel.Url"></MatTextField>
             <ValidationMessage For="@(() =>commodityModel.Url)" />
         </p>
