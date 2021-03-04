@@ -21,7 +21,7 @@ namespace Import.DataManager
             _commotityDataContext.Options.Add(option);
             _commotityDataContext.SaveChanges();
 
-            return await _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefaultAsync();
+            return await _commotityDataContext.Options.OrderByDesending(e => e.OptionNo).FirstOrDefaultAsync<Option>();
         }
 
         public Option Add(Option option)
@@ -80,16 +80,16 @@ namespace Import.DataManager
         public async Task<Option> Update(Option option)
         {
             Option UpdateOption = await GetByIdAsync(option.OptionNo);
-            UpdateOption.Commodity = option.Commodity;
-            UpdateOption.CommotityBarcode = option.CommotityBarcode;
-            UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
-            UpdateOption.Images = option.Images;
-            UpdateOption.ModelNo = option.ModelNo;
-            UpdateOption.Name = option.Name; // 색상
-            UpdateOption.Value = option.Value; // 빨, 주, 노, 초
-            UpdateOption.NormalPrice = option.NormalPrice;
-            UpdateOption.Quantity = option.Quantity;
-            UpdateOption.SalePrice = option.SalePrice;
+            UpdateOption.Result.Commodity = option.Commodity;
+            UpdateOption.Result.CommotityBarcode = option.CommotityBarcode;
+            UpdateOption.Result.SellerCodeofCommodity = option.SellerCodeofCommodity;
+            UpdateOption.Result.Images = option.Images;
+            UpdateOption.Result.ModelNo = option.ModelNo;
+            UpdateOption.Result.Name = option.Name; // 색상
+            UpdateOption.Result.Value = option.Value; // 빨, 주, 노, 초
+            UpdateOption.Result.NormalPrice = option.NormalPrice;
+            UpdateOption.Result.Quantity = option.Quantity;
+            UpdateOption.Result.SalePrice = option.SalePrice;
 
             _commotityDataContext.Options.Update(UpdateOption);
             await _commotityDataContext.SaveChangesAsync();

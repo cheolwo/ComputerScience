@@ -70,17 +70,19 @@ namespace Import.DataManager
 
         public async Task<CommodityDetail> UpdateAsync(CommodityDetail commodityDetail)
         {
-            UpdateDetail.Authenticate = commodityDetail.Authenticate;
-            UpdateDetail.Brand = commodityDetail.Brand;
-            UpdateDetail.Commodity = commodityDetail.Commodity;
-            UpdateDetail.Docs = commodityDetail.Docs;
-            UpdateDetail.DurationTime = commodityDetail.DurationTime;
-            UpdateDetail.Import = commodityDetail.Import;
-            UpdateDetail.IsVAT = commodityDetail.IsVAT;
-            UpdateDetail.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
-            UpdateDetail.Menufactured = commodityDetail.Menufactured;
-            UpdateDetail.PossibleUnder20 = commodityDetail.PossibleUnder20;
-            UpdateDetail.WarehouseNo = commodityDetail.WarehouseNo;
+            Task<CommodityDetail> UpdateDetail = await GetByIdAsync(commodityDetail.CommodityDetailNo);
+            
+            UpdateDetail.Result.Authenticate = commodityDetail.Authenticate;
+            UpdateDetail.Result.Brand = commodityDetail.Brand;
+            UpdateDetail.Result.Commodity = commodityDetail.Commodity;
+            UpdateDetail.Result.Docs = commodityDetail.Docs;
+            UpdateDetail.Result.DurationTime = commodityDetail.DurationTime;
+            UpdateDetail.Result.Import = commodityDetail.Import;
+            UpdateDetail.Result.IsVAT = commodityDetail.IsVAT;
+            UpdateDetail.Result.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
+            UpdateDetail.Result.Menufactured = commodityDetail.Menufactured;
+            UpdateDetail.Result.PossibleUnder20 = commodityDetail.PossibleUnder20;
+            UpdateDetail.Result.WarehouseNo = commodityDetail.WarehouseNo;
 
             _commotityDataContext.CommodityDetails.Update(UpdateDetail);
             await _commotityDataContext.SaveChangesAsync();
@@ -91,6 +93,8 @@ namespace Import.DataManager
 
         public CommodityDetail Update(CommodityDetail commodityDetail)
         {
+            CommodityDetail UpdateDetail = GetById(commodityDetail.CommodityDetailNo);
+
             UpdateDetail.Authenticate = commodityDetail.Authenticate;
             UpdateDetail.Brand = commodityDetail.Brand;
             UpdateDetail.Commodity = commodityDetail.Commodity;

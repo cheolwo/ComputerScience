@@ -18,48 +18,92 @@ namespace Import.DataManager
             _commotityDataContext = commotityDataContext;
         }
 
-        public void Add(ImageofDetail Image)
+        public async Task<ImageofDetail> AddAsync(ImageofDetail image)
         {
-            _commotityDataContext.Add(Image);
+            _commotityDataContext.Add(image);
+            await _commotityDataContext.SaveChangesAsync();
+
+            return _commotityDataContext.ImageofDetails.OrderByDesending(u=u.ImageNo.Equals(image.ImageNo)).FirstOrDefaultAsync<ImageofDetail>();
+        }
+
+        public ImageofDetail Add(ImageofDetail image)
+        {
+            _commotityDataContext.Add(image);
+            _commotityDataContext.SaveChanges();
+
+            return _commotityDataContext.ImageofDetails.OrderByDesending(u=u.ImageNo.Equals(image.ImageNo)).FirstOrDefault();
+        }
+
+        public async Task DeleteByIdAsync(int imageNo)
+        {
+            await _commotityDataContext.ImageofDetails.Remove(GetByIdAsync(imageNo));
+            await _commotityDataContext.SaveChanges();
+        }
+
+        public void DeleteById(int imageNo)
+        {
+            _commotityDataContext.ImageofDetails.Remove(GetById(imageNo));
             _commotityDataContext.SaveChanges();
         }
 
-        public void DeleteById(int ImageNo)
+        public async Task DeleteByEntity(ImageofDetail imageofDatail)
         {
-            _commotityDataContext.ImageofDetails.Remove(GetById(ImageNo));
+            _commotityDataContext.ImageofDetails.Remove(imageofDatail);
+            await _commotityDataContext.SaveChangesAsync();
         }
 
-        public List<ImageofDetail> GetByCommodityToList(Commodity commodity)
+        public void DeleteByEntity(ImageofDetail imageofDatail)
+        {
+            _commotityDataContext.ImageofDetails.Remove(imageofDatail);
+            _commotityDataContext.SaveChanges();
+        }
+
+        public List<ImageofDetail> GetToListByImageofOption(Commodity commodity)
         {
             return _commotityDataContext.ImageofDetails.Where(
                 e => e.CommodityDetail.Commodity.Equals(commodity)).ToList();
         }
         
-        public async Task<List<ImageofDetail>> GetByEntityToList(CommodityDetail commodityDetail)
+        public async Task<List<ImageofDetail>> GetToListByImageofOptionAsync(CommodityDetail commodityDetail)
         {
             return await _commotityDataContext.ImageofDetails.Where(
                 e => e.CommodityDetail.Equals(commodityDetail)).ToListAsync();
         }
-        
-        public async Task GetByEntity(CommodityDetail commodityDetail)
+
+        public async Task<ImageofDetail> GetById(int imageNo)
         {
-            commodityDetail.Images = await GetByEntityToList(commodityDetail);
+            return await _commotityDataContext.ImageofDetails.FindAsync(imageNo);
+        }
+              
+        public ImageofDetail GetById(int imageNo)
+        {
+            return _commotityDataContext.ImageofDetails.Find(imageNo);
         }
         
-        public ImageofDetail GetById(int ImageNo)
+        public Task<ImageofDetail> Update(ImageofDetail image)
         {
-            return _commotityDataContext.ImageofDetails.Find(ImageNo);
+            Task<ImageofDetail> UpdateImage = await GetByIdAsync(image.ImageNo);
+            UpdateImage.Result.ImageRoute = image.ImageRoute;
+            UpdateImage.Result.ImageTitle = image.ImageTitle;
+            UpdateImage.Result.CommodityDetail = image.CommodityDetail;
+
+            _commotityDataContext.ImageofDetails.Update(UpdateImage);
+            await _commotityDataContext.SaveChangesAsync();
+
+            return UpdateImage;
         }
 
-        public void Update(ImageofDetail Image)
+        public ImageofDetail Update(ImageofDetail image)
         {
-            ImageofDetail UpdateImage = GetById(Image.ImageNo);
-            UpdateImage.ImageRoute = Image.ImageRoute;
-            UpdateImage.ImageTitle = Image.ImageTitle;
-            UpdateImage.CommodityDetail = Image.CommodityDetail;
+            ImageofDetail UpdateImage = GetById(image.ImageNo);
+            UpdateImage.ImageRoute = image.ImageRoute;
+            UpdateImage.ImageTitle = image.ImageTitle;
+            UpdateImage.CommodityDetail = image.CommodityDetail;
 
             _commotityDataContext.ImageofDetails.Update(UpdateImage);
             _commotityDataContext.SaveChanges();
+
+            return ImageofDetail;
         }
     }
 }

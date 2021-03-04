@@ -8,12 +8,18 @@ namespace Import.DataManager
 {
     public interface IImageofDetailManager
     {
-        void Add(ImageofDetail Image);
-        void DeleteById(int ImageNo);
-        ImageofDetail GetById(int ImageNo);
-        List<ImageofDetail> GetByCommodityToList(Commodity commodity);
-        void Update(ImageofDetail Image);
+        ImageofDetail Add(ImageofDetail image);
+        void DeleteByEntity(ImageofDetail imageofDetail);
+        void DeleteById(int imageNo);
+        ImageofDetail GetById(int imageNo);
+        List<ImageofDetail> GetToListByImageofOption(ImageofOption imageofOption);
+        ImageofDetail Update(ImageofDetail image);
 
-        Task GetByEntity(CommodityDetail commodityDetail);
+        Task<ImageofDatail> AddAsync(ImageofDetail image);
+        Task DeleteByEntityAsync(ImageofDetail imageofDetail);
+        Task DeleteByIdAsync(int imageNo);
+        Task<ImageofDetail> GetByIdAsync(int imageNo);
+        Task<List<ImageofDetail>> GetToListByImageofOptionAsync(ImageofOption imageofOption);
+        Task<ImageofDetail> UpdaetAsync(ImageofDetail image);
     }
 }

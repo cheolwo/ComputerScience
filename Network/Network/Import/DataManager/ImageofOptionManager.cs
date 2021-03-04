@@ -84,10 +84,10 @@ namespace Import.DataManager
         public Task<ImageofOption> UpdateAsync(ImageofOption image)
         {
             ImageofOption UpdateOption = await GetByIdAsync(image.ImageNo);
-            UpdateOption.ImageRoute= image.ImageRoute;
-            UpdateOpiion.ImageTitle = image.ImageTitle;
-            UpdateOption.Option = image.Option;
-            UpdateOption.ImagesofDetail = image.ImagesofDetail;
+            UpdateOption.Result.ImageRoute= image.ImageRoute;
+            UpdateOption.Result.ImageTitle = image.ImageTitle;
+            UpdateOption.Result.Option = image.Option;
+            UpdateOption.Result.ImagesofDetail = image.ImagesofDetail;
 
             _commotityDataContext.ImageofOptions.Update(UpdateOption);
             await _commotityDataContext.SaveChanges();
