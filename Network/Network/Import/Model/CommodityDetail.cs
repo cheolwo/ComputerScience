@@ -22,11 +22,9 @@ namespace Import.Model
         public int WarehouseNo { get; set; }
 
         public List<Doc> Docs { get; set; }
+
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
-        
-        public string NameofGuidanceImage {get; set;}
-        public string RouteofGuidanceImage {get; set;}
         
         public void ImportDefaultValue(Commodity Commodity)
         {

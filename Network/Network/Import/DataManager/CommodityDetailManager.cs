@@ -80,7 +80,7 @@ namespace Import.DataManager
             UpdateDetail.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
             UpdateDetail.Menufactured = commodityDetail.Menufactured;
             UpdateDetail.PossibleUnder20 = commodityDetail.PossibleUnder20;
-            UpdateDetail.WarehouseCode = commodityDetail.WarehouseCode;
+            UpdateDetail.WarehouseNo = commodityDetail.WarehouseNo;
 
             _commotityDataContext.CommodityDetails.Update(UpdateDetail);
             await _commotityDataContext.SaveChangesAsync();
@@ -101,7 +101,7 @@ namespace Import.DataManager
             UpdateDetail.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
             UpdateDetail.Menufactured = commodityDetail.Menufactured;
             UpdateDetail.PossibleUnder20 = commodityDetail.PossibleUnder20;
-            UpdateDetail.WarehouseCode = commodityDetail.WarehouseCode;
+            UpdateDetail.WarehouseNo = commodityDetail.WarehouseNo;
 
             _commotityDataContext.CommodityDetails.Update(UpdateDetail);
             _commotityDataContext.SaveChanges();
@@ -109,15 +109,14 @@ namespace Import.DataManager
             return UpdateDetail;
         }
 
-        public List<CommodityDetail> GetToList()
-        {
-            return _CommodityDetailManager.CommodityDetails.ToList();
-        }
-
         public async Task<List<CommodityDetail>> GetToListAsync()
         {
             return await _CommodityDetailManager.CommodityDetails.ToListAsync();
         }
 
+        public List<CommodityDetail> GetToList()
+        {
+            return _CommodityDetailManager.CommodityDetails.ToList();
+        }
     }
 }
