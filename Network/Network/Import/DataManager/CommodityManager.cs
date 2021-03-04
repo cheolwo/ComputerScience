@@ -15,17 +15,18 @@ namespace Import.DataManager
         private readonly IOptionManager _OptionManager;
 
         public CommodityManager(CommotityDataContext CommotityDataContext, 
-            ICommodityDetailManager commodityDetailManager, IOptionManager optionManager)
+            ICommodityDetailManager CommodityDetailManager, IOptionManager OptionManager)
         {
             _CommodityDataContext = CommotityDataContext;
-            _CommodityDetailManager = commodityDetailManager;
-            _OptionManager = optionManager;
+            _CommodityDetailManager = CommodityDetailManager;
+            _OptionManager = OptionManager;
         }
 
-        public void Add(Commodity commodity)
+        public Task<Commodity> Add(Commodity commodity)
         {
             _CommodityDataContext.Add(commodity);
-            _CommodityDataContext.SaveChanges();
+            _CommodityDataContext.SaveChangesAsnyc();
+           
         }
 
         public async Task AddAsync(Commodity commodity)
