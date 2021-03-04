@@ -14,6 +14,7 @@ namespace Logistics.Pages.ofCommodity
 {
     public partial class Update
     {
+        
         [Inject] public ICommodityManager CommodityManager { get; set; }
         [Inject] public ICommodityFileManager FileManager { get; set; }
         [Inject] public IWebHostEnvironment Environment { get; set; }
@@ -29,7 +30,7 @@ namespace Logistics.Pages.ofCommodity
         public Commodity Commodity = new Commodity();
         public string ImgName { get; set; }
         public string Img { get; set; }
-
+ 
         protected override void OnInitialized()
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
@@ -38,6 +39,7 @@ namespace Logistics.Pages.ofCommodity
 
         public void UpdateCommodity()
         {
+            
             try
             {
                 if(MatFile != null)

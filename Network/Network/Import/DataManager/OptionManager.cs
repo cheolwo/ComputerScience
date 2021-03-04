@@ -63,7 +63,7 @@ namespace Import.DataManager
             UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
             UpdateOption.Images = option.Images;
             UpdateOption.ModelNo = option.ModelNo;
-            UpdateOption.Name = option.Name; // 색상
+            UpdateOption.Key = option.Key; // 색상
             UpdateOption.Value = option.Value; // 빨, 주, 노, 초
             UpdateOption.NormalPrice = option.NormalPrice;
             UpdateOption.Quantity = option.Quantity;
@@ -83,7 +83,7 @@ namespace Import.DataManager
             UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
             UpdateOption.Images = option.Images;
             UpdateOption.ModelNo = option.ModelNo;
-            UpdateOption.Name = option.Name; // 색상
+            UpdateOption.Key = option.Key; // 색상
             UpdateOption.Value = option.Value; // 빨, 주, 노, 초
             UpdateOption.NormalPrice = option.NormalPrice;
             UpdateOption.Quantity = option.Quantity;
