@@ -9,17 +9,34 @@ namespace Import.DataManager
 {
     public class CommodityDetailManager : ICommodityDetailManager
     {
-        private readonly CommotityDataContext _commotityDataContext;
+        private readonly CommotityDetailDataContext _commotityDataContext;
   
         public CommodityDetailManager(CommotityDataContext commotityDataContext)
         {
             _commotityDataContext = commotityDataContext;
         }
+
+        public async Task<CommodityDetail> AddAsync(CommodityDetail commodityDetail)
+        {
+            _commotityDataContext.CommodityDetails.Add(commodityDetail);     
+            _commotityDataContext.SaveChangesAsync();
+
+            return await _commotityDataContext.CommodityDetails.ToListAsync().Last();       
+        }
         
-        public void Add(CommodityDetail commodityDetail)
+        public CommodityDetail Add(CommodityDetail commodityDetail)
         {
             _commotityDataContext.CommodityDetails.Add(commodityDetail);
             _commotityDataContext.SaveChanges();
+
+            return _commotityDataContext.CommodityDetails.ToList().Last();
+        }
+
+        public async Task DeleteByIdAsync(int DetailNo)
+        {
+            CommodityDetail commodityDetail = GetById(DetailNo);
+            _commotityDataContext.CommodityDetails.Remove(commodityDetail);
+            await _commotityDataContext.SaveChangesAsync();
         }
 
         public void DeleteById(int DetailNo)
@@ -29,10 +46,21 @@ namespace Import.DataManager
             _commotityDataContext.SaveChanges();
         }
 
+        public async Task<CommodityDetail> GetByCommodityAsync(Commodity commodity)
+        {
+            return await _commotityDataContext.CommodityDetails.FirstOrDefaultAsync(
+                u => u.Commodity.Equals(commodity));
+        }
+
         public CommodityDetail GetByCommodity(Commodity commodity)
         {
             return _commotityDataContext.CommodityDetails.FirstOrDefault(
                 u => u.Commodity.Equals(commodity));
+        }
+
+        public async Task<CommodityDetail> GetByIdAsync(int DetailNo)
+        {
+            return await _commotityDataContext.CommodityDetails.FindAsync(DetailNo);
         }
 
         public CommodityDetail GetById(int DetailNo)
@@ -40,9 +68,29 @@ namespace Import.DataManager
             return _commotityDataContext.CommodityDetails.Find(DetailNo);
         }
 
-        public void Update(int DetailNo, CommodityDetail commodityDetail)
+        public async Task<CommodityDetail> UpdateAsync(CommodityDetail commodityDetail)
         {
-            CommodityDetail UpdateDetail = GetById(DetailNo);
+            UpdateDetail.Authenticate = commodityDetail.Authenticate;
+            UpdateDetail.Brand = commodityDetail.Brand;
+            UpdateDetail.Commodity = commodityDetail.Commodity;
+            UpdateDetail.Docs = commodityDetail.Docs;
+            UpdateDetail.DurationTime = commodityDetail.DurationTime;
+            UpdateDetail.Import = commodityDetail.Import;
+            UpdateDetail.IsVAT = commodityDetail.IsVAT;
+            UpdateDetail.MaximumPossibleQuantity = commodityDetail.MaximumPossibleQuantity;
+            UpdateDetail.Menufactured = commodityDetail.Menufactured;
+            UpdateDetail.PossibleUnder20 = commodityDetail.PossibleUnder20;
+            UpdateDetail.WarehouseCode = commodityDetail.WarehouseCode;
+
+            _commotityDataContext.CommodityDetails.Update(UpdateDetail);
+            await _commotityDataContext.SaveChangesAsync();
+
+            return UpdateDetail;
+        }
+
+
+        public CommodityDetail Update(CommodityDetail commodityDetail)
+        {
             UpdateDetail.Authenticate = commodityDetail.Authenticate;
             UpdateDetail.Brand = commodityDetail.Brand;
             UpdateDetail.Commodity = commodityDetail.Commodity;
@@ -57,6 +105,19 @@ namespace Import.DataManager
 
             _commotityDataContext.CommodityDetails.Update(UpdateDetail);
             _commotityDataContext.SaveChanges();
+
+            return UpdateDetail;
         }
+
+        public List<CommodityDetail> GetToList()
+        {
+            return _CommodityDetailManager.CommodityDetails.ToList();
+        }
+
+        public async Task<List<CommodityDetail>> GetToListAsync()
+        {
+            return await _CommodityDetailManager.CommodityDetails.ToListAsync();
+        }
+
     }
 }
