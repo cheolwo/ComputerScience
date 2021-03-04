@@ -29,7 +29,7 @@ namespace Import.Model
         public void ImportDefaultValue(Commodity Commodity)
         {
             Authenticate = 0;
-            Import = 0;
+            Import = Import.Import;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
             DuraionTime = 3;
@@ -42,7 +42,7 @@ namespace Import.Model
         public void AgencyDefauleValue(Commodity Commodity)
         {
             Authenticate = 2;
-            Import = 1;
+            Import = Import.Agency;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
             DuraionTime = 7;
