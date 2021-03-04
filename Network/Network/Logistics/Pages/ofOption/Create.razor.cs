@@ -20,12 +20,13 @@ namespace Logistics.Pages.ofOption
         [Inject] IOptionManager OptionManager { get; set; }
         [Inject] ICommodityManager CommodityManager { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
+
         [Parameter] public bool AddDialogIsOpen { get; set; }
         [Parameter] public string CommodityNo { get; set; }
-
-        [Parameter] public Option Option { get; set; }
+        [Parameter] public OptionViewModel OptionViewModel {get; set;}
+        
+        public Option Option = new Option();
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
-
         public EditContext EditContext { get; set; }
         public ImageofOption ImageofOption = new ImageofOption();
         
@@ -35,6 +36,7 @@ namespace Logistics.Pages.ofOption
         {
             EditContext = new EditContext(Option);
             Option.Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            
         }
 
         public void FileUpload () { }
