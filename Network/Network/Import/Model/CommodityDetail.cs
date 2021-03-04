@@ -28,7 +28,7 @@ namespace Import.Model
         
         public void ImportDefaultValue(Commodity Commodity)
         {
-            Authenticate = 0;
+            Authenticate = Authenticate.인증대상;
             Import = Import.Import;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
@@ -41,7 +41,7 @@ namespace Import.Model
         
         public void AgencyDefauleValue(Commodity Commodity)
         {
-            Authenticate = 2;
+            Authenticate = Authenticate.인증대상아님;
             Import = Import.Agency;
             PossibleUnder20 = true;
             MaximumPossibleQuantity = 3;
