@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.csprojAssemblyReference.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.AssemblyInfo.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\bin\Debug\netstandard2.0\Market.deps.json
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\bin\Debug\netstandard2.0\Market.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\bin\Debug\netstandard2.0\Market.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Market\obj\Debug\netstandard2.0\Market.pdb

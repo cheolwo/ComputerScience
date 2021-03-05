@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.csprojAssemblyReference.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.AssemblyInfo.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\bin\Debug\netstandard2.0\Warehouse.deps.json
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\bin\Debug\netstandard2.0\Warehouse.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\bin\Debug\netstandard2.0\Warehouse.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Warehouse\obj\Debug\netstandard2.0\Warehouse.pdb

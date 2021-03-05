@@ -31,7 +31,7 @@ namespace Logistics.ViewModel
                 : new ValidationResult($"The {vc.MemberName} field is required.", new[] { vc.MemberName });
         }
     }
-    
+   
    public enum Import { Import = 0, Agency = 1 }
 
 }

@@ -2,6 +2,7 @@
 @using BlazorInputFile
 @using MatBlazor
 
+
 <h2>상품등록</h2>
 <MatDivider></MatDivider>
 <br />
@@ -12,7 +13,7 @@
         <p>
             <MatTextField Label="Name" @bind-Value="@commodityModel.Name"></MatTextField>
             <ValidationMessage For="@(() =>commodityModel.Name)" />
-            
+           
         </p>
         <p>
             <MatTextField Label="Category" @bind-Value="@commodityModel.Category"></MatTextField>

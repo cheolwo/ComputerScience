@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Import.Migrations
 {
     [DbContext(typeof(CommotityDataContext))]
-    [Migration("20210225070233_Init")]
+    [Migration("20210305124550_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,34 @@ namespace Import.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Import.Model.Buying", b =>
+                {
+                    b.Property<int>("SellNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CommodityNo")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CompanyofBuyingSellerNo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Money")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("SellNo");
+
+                    b.HasIndex("CommodityNo");
+
+                    b.HasIndex("CompanyofBuyingSellerNo");
+
+                    b.ToTable("Buyings");
+                });
+
             modelBuilder.Entity("Import.Model.Commodity", b =>
                 {
                     b.Property<int>("CommodityNo")
@@ -29,6 +57,12 @@ namespace Import.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageRoute")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -58,8 +92,8 @@ namespace Import.Migrations
                     b.Property<int>("CommodityNo")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DurationTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("DurationTime")
+                        .HasColumnType("int");
 
                     b.Property<int>("Import")
                         .HasColumnType("int");
@@ -79,12 +113,36 @@ namespace Import.Migrations
                     b.Property<string>("WarehouseCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("WarehouseNo")
+                        .HasColumnType("int");
+
                     b.HasKey("CommodityDetailNo");
 
                     b.HasIndex("CommodityNo")
                         .IsUnique();
 
                     b.ToTable("CommodityDetails");
+                });
+
+            modelBuilder.Entity("Import.Model.CompanyofBuying", b =>
+                {
+                    b.Property<int>("SellerNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SellerNo");
+
+                    b.ToTable("CompanyofBuyings");
                 });
 
             modelBuilder.Entity("Import.Model.Doc", b =>
@@ -97,8 +155,8 @@ namespace Import.Migrations
                     b.Property<int?>("CommodityDetailNo")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Document")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("DocRoute")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameofDoc")
                         .HasColumnType("nvarchar(max)");
@@ -117,18 +175,18 @@ namespace Import.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommodityDetailNo")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ImageRoute")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ImageofOptionImageNo")
+                        .HasColumnType("int");
+
                     b.HasKey("ImageNo");
 
-                    b.HasIndex("CommodityDetailNo");
+                    b.HasIndex("ImageofOptionImageNo");
 
                     b.ToTable("ImageofDetails");
                 });
@@ -140,8 +198,8 @@ namespace Import.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ImageRoute")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
@@ -163,19 +221,21 @@ namespace Import.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommodityNo")
+                    b.Property<int>("CommodityNo")
                         .HasColumnType("int");
 
                     b.Property<string>("CommotityBarcode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModelNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NormalPrice")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
@@ -188,6 +248,7 @@ namespace Import.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Value")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OptionNo");
@@ -195,6 +256,17 @@ namespace Import.Migrations
                     b.HasIndex("CommodityNo");
 
                     b.ToTable("Options");
+                });
+
+            modelBuilder.Entity("Import.Model.Buying", b =>
+                {
+                    b.HasOne("Import.Model.Commodity", "Commodity")
+                        .WithMany()
+                        .HasForeignKey("CommodityNo");
+
+                    b.HasOne("Import.Model.CompanyofBuying", "CompanyofBuying")
+                        .WithMany("Buyings")
+                        .HasForeignKey("CompanyofBuyingSellerNo");
                 });
 
             modelBuilder.Entity("Import.Model.CommodityDetail", b =>
@@ -215,9 +287,9 @@ namespace Import.Migrations
 
             modelBuilder.Entity("Import.Model.ImageofDetail", b =>
                 {
-                    b.HasOne("Import.Model.CommodityDetail", "CommodityDetail")
-                        .WithMany("Images")
-                        .HasForeignKey("CommodityDetailNo");
+                    b.HasOne("Import.Model.ImageofOption", "ImageofOption")
+                        .WithMany("ImagesofDetail")
+                        .HasForeignKey("ImageofOptionImageNo");
                 });
 
             modelBuilder.Entity("Import.Model.ImageofOption", b =>
@@ -231,7 +303,9 @@ namespace Import.Migrations
                 {
                     b.HasOne("Import.Model.Commodity", "Commodity")
                         .WithMany("Options")
-                        .HasForeignKey("CommodityNo");
+                        .HasForeignKey("CommodityNo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

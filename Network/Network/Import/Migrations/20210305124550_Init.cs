@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Import.Migrations
 {
@@ -15,11 +14,28 @@ namespace Import.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    Url = table.Column<string>(nullable: true),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageRoute = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Commodities", x => x.CommodityNo);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyofBuyings",
+                columns: table => new
+                {
+                    SellerNo = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyofBuyings", x => x.SellerNo);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,8 +50,9 @@ namespace Import.Migrations
                     Import = table.Column<int>(nullable: false),
                     PossibleUnder20 = table.Column<bool>(nullable: false),
                     MaximumPossibleQuantity = table.Column<int>(nullable: false),
-                    DurationTime = table.Column<DateTime>(nullable: false),
+                    DurationTime = table.Column<int>(nullable: false),
                     IsVAT = table.Column<bool>(nullable: false),
+                    WarehouseNo = table.Column<int>(nullable: false),
                     WarehouseCode = table.Column<string>(nullable: true),
                     CommodityNo = table.Column<int>(nullable: false)
                 },
@@ -56,12 +73,12 @@ namespace Import.Migrations
                 {
                     OptionNo = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true),
-                    CommodityNo = table.Column<int>(nullable: true),
-                    NormalPrice = table.Column<string>(nullable: true),
-                    SalePrice = table.Column<string>(nullable: true),
+                    Key = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: false),
+                    CommodityNo = table.Column<int>(nullable: false),
+                    NormalPrice = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    SalePrice = table.Column<string>(nullable: true),
                     SellerCodeofCommodity = table.Column<string>(nullable: true),
                     ModelNo = table.Column<string>(nullable: true),
                     CommotityBarcode = table.Column<string>(nullable: true)
@@ -74,6 +91,34 @@ namespace Import.Migrations
                         column: x => x.CommodityNo,
                         principalTable: "Commodities",
                         principalColumn: "CommodityNo",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Buyings",
+                columns: table => new
+                {
+                    SellNo = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(nullable: false),
+                    Money = table.Column<double>(nullable: false),
+                    CompanyofBuyingSellerNo = table.Column<int>(nullable: true),
+                    CommodityNo = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Buyings", x => x.SellNo);
+                    table.ForeignKey(
+                        name: "FK_Buyings_Commodities_CommodityNo",
+                        column: x => x.CommodityNo,
+                        principalTable: "Commodities",
+                        principalColumn: "CommodityNo",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Buyings_CompanyofBuyings_CompanyofBuyingSellerNo",
+                        column: x => x.CompanyofBuyingSellerNo,
+                        principalTable: "CompanyofBuyings",
+                        principalColumn: "SellerNo",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -84,7 +129,7 @@ namespace Import.Migrations
                     DocNo = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameofDoc = table.Column<string>(nullable: true),
-                    Document = table.Column<byte[]>(nullable: true),
+                    DocRoute = table.Column<string>(nullable: true),
                     CommodityDetailNo = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -99,34 +144,13 @@ namespace Import.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImageofDetails",
-                columns: table => new
-                {
-                    ImageNo = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageTitle = table.Column<string>(nullable: true),
-                    ImageData = table.Column<byte[]>(nullable: true),
-                    CommodityDetailNo = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImageofDetails", x => x.ImageNo);
-                    table.ForeignKey(
-                        name: "FK_ImageofDetails_CommodityDetails_CommodityDetailNo",
-                        column: x => x.CommodityDetailNo,
-                        principalTable: "CommodityDetails",
-                        principalColumn: "CommodityDetailNo",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ImageofOptions",
                 columns: table => new
                 {
                     ImageNo = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageTitle = table.Column<string>(nullable: true),
-                    ImageData = table.Column<byte[]>(nullable: true),
+                    ImageRoute = table.Column<string>(nullable: true),
                     OptionNo = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -140,6 +164,37 @@ namespace Import.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ImageofDetails",
+                columns: table => new
+                {
+                    ImageNo = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageRoute = table.Column<string>(nullable: true),
+                    ImageofOptionImageNo = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageofDetails", x => x.ImageNo);
+                    table.ForeignKey(
+                        name: "FK_ImageofDetails_ImageofOptions_ImageofOptionImageNo",
+                        column: x => x.ImageofOptionImageNo,
+                        principalTable: "ImageofOptions",
+                        principalColumn: "ImageNo",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Buyings_CommodityNo",
+                table: "Buyings",
+                column: "CommodityNo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Buyings_CompanyofBuyingSellerNo",
+                table: "Buyings",
+                column: "CompanyofBuyingSellerNo");
+
             migrationBuilder.CreateIndex(
                 name: "IX_CommodityDetails_CommodityNo",
                 table: "CommodityDetails",
@@ -152,9 +207,9 @@ namespace Import.Migrations
                 column: "CommodityDetailNo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImageofDetails_CommodityDetailNo",
+                name: "IX_ImageofDetails_ImageofOptionImageNo",
                 table: "ImageofDetails",
-                column: "CommodityDetailNo");
+                column: "ImageofOptionImageNo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ImageofOptions_OptionNo",
@@ -170,16 +225,22 @@ namespace Import.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Buyings");
+
+            migrationBuilder.DropTable(
                 name: "Docs");
 
             migrationBuilder.DropTable(
                 name: "ImageofDetails");
 
             migrationBuilder.DropTable(
-                name: "ImageofOptions");
+                name: "CompanyofBuyings");
 
             migrationBuilder.DropTable(
                 name: "CommodityDetails");
+
+            migrationBuilder.DropTable(
+                name: "ImageofOptions");
 
             migrationBuilder.DropTable(
                 name: "Options");

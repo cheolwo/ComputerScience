@@ -23,7 +23,7 @@ namespace Logistics.Pages.ofOption
         public List<Option> Options = new List<Option>();
         public Commodity Commodity = new Commodity();
         public Option Option = new Option();
-        public OptionViewModel OptionViewModel = new OptionViewModel();
+       //public OptionViewModel OptionViewModel = new OptionViewModel();
         
         public string OptionNo {get; set;} 
         public bool AddDialogIsOpen {get; set;}
@@ -33,28 +33,14 @@ namespace Logistics.Pages.ofOption
         public string Key {get; set;}
         public string Values {get; set;}
         public List<OptionViewModel> OptionViewModels {get; set;}
-    //     public class Option
-    // {
-    //     [Key] public int OptionNo { get; set; }
-    //     [Required] public string Name { get; set; } // Key
-    //     [Required] public string Value { get; set; }
-    //     [Required] public Commodity Commodity { get; set; }
-    //     [Required] public string NormalPrice { get; set; }
-    //     [Required] public string SalePrice { get; set; }
-    //     [Required] public int Quantity { get; set; }
-    //     public string SellerCodeofCommodity { get; set; }
-    //     public string ModelNo { get; set; }
-    //     public string CommotityBarcode { get; set; }
 
-    //     public List<ImageofOption> Images { get; set; }
-    // }
         protected override void OnInitialized()
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = Commodity;
             Options = OptionManager.GetToListByCommodity(Commodity);
 
-            OptionViewModel.Name = Commodity.Name;
+            
             
             AddDialogIsOpen = false;
             DeleteDialogIsOpen = false;
@@ -67,25 +53,25 @@ namespace Logistics.Pages.ofOption
             public string Value {get; set;}
         }
 
-        public void SetKeyAndValue(string Key, string Values)
-        {
-            char[] delimeterChars = {',','/',' '}
+        //public void SetKeyAndValue(string Key, string Values)
+        //{
+        //    char[] delimeterChars = { ',', '/', ' ' };
 
-            if(Values != null)
-            {
-                string[] Words = Values.Split(delimeterChars);
-                foreach (var Word in Words)
-                {
-                    OptionViewModel.Key = Key;
-                    OptionViewModel.Value = Word;
-                    OptionViewModels.Add(OptionViewModel);
-                }
-            }
-            else
-            {
-                OptionViewModels.Clear();
-            }            
-        }
+        //    if(Values != null)
+        //    {
+        //        string[] Words = Values.Split(delimeterChars);
+        //        foreach (var Word in Words)
+        //        {
+        //            OptionViewModel.Key = Key;
+        //            OptionViewModel.Value = Word;
+        //            OptionViewModels.Add(OptionViewModel);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        OptionViewModels.Clear();
+        //    }            
+        //}
 
         public void AddDialogSwitch()
         {

@@ -5,8 +5,8 @@
             <MatDialogContent>
                 <DataAnnotationsValidator></DataAnnotationsValidator>
                 <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
-                    <p><MatTextField @bind-Value="@Option.Name">Name</MatTextField></p>
-                    <ValidationMessage For="@(() =>Option.Name)" />
+                    <p><MatTextField @bind-Value="@Option.Key">Key</MatTextField></p>
+                    <ValidationMessage For="@(() =>Option.Key)" />
                     <p><MatTextField @bind-Value="@Option.Value">Value </MatTextField></p>
                     <ValidationMessage For="@(() =>Option.Value)" />
                     <p><MatTextField @bind-Value="@Option.NormalPrice">NormalPrice</MatTextField></p>

@@ -23,7 +23,7 @@ namespace Logistics.Pages.ofOption
 
         [Parameter] public bool AddDialogIsOpen { get; set; }
         [Parameter] public string CommodityNo { get; set; }
-        [Parameter] public OptionViewModel OptionViewModel {get; set;}
+       // [Parameter] public OptionViewModel OptionViewModel {get; set;}
         
         public Option Option = new Option();
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
@@ -50,7 +50,7 @@ namespace Logistics.Pages.ofOption
             Option.CommotityBarcode = null;
             Option.Images = null;
             Option.ModelNo = null;
-            Option.Name = null;
+            Option.Key = null;
             Option.NormalPrice = null;
             Option.OptionNo = 0;
             Option.Quantity = 0;

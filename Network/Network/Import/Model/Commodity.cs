@@ -13,7 +13,7 @@ namespace Import.Model
         public string ImageTitle { get; set; }
         public string ImageRoute { get; set; }
       
-        public List<Buying> Buyings { get; set; }
+        // public List<Buying> Buyings { get; set; }
         public List<Option> Options { get; set; }
         public CommodityDetail CommodityDetail { get; set; }
     }

@@ -105,7 +105,7 @@ using MatBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
+#line 46 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
       
     [Inject]
     IJSRuntime JS { get; set; }
