@@ -22,28 +22,73 @@ namespace Logistics.Pages.ofOption
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
         [Inject] ICommodityFileManager FileManager {get; set;}
 
-        [Parameter] public bool AddDialogIsOpen { get; set; }
         [Parameter] public string CommodityNo { get; set; }
-        public Option Option = new Option();
 
-        public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
+        public Option Option = new Option();
         public ImageofOption ImageofOption = new ImageofOption();
-        
-        public EditContext EditContext { get; set; }
-        
+        public List<Option> ViewOptions = new List<Option>();
+
+        public string InputKey {get; set;}
+        public string InputValues {get; set;}
+        public List<string> Values {get; set;}
+
         protected override void OnInitialized()
         {
-            EditContext = new EditContext(Option);
             Option.Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));         
         }
 
-        public void FileUpload (IMatFileUploadEntry[] Entryies)
+        public void SetKeyAndValue(string InputKey, string InputValues)
         {
-            if(Entryies != null)
+           if(InputValues != null)
+           {
+               char[] delimeterChars = { ',', '/', ' ' };
+               string[] Words = InputValues.Split(delimeterChars);
+               foreach (var Word in Words)
+               {
+                   Values.Add(Word.Trim());
+               }
+           }        
+        }
+
+        public void AddBasedofValues(List<string> Values)
+        {
+            if(ViewOptions != null)
             {
-                foreach (var Entry in Entryies)
+                ViewOptions.Clear();
+            }
+
+            Option.Key = InputKey;
+            foreach(var Value in Values)
+            {
+               Option.Value = Value;
+               ViewOptions.Add(Option);
+            }
+        }
+
+        public void OptionImageUpload(string Key, IMatFileUploadEntry[] Files)
+        {
+            if(Files != null)
+            {
+                foreach (var File in Files)
                 {
-                    Files.Add(Entry);
+                    ViewOptions.Where(e=>e.Key.Equals(Key)).FirstOrDefault().Images.Add(File);
+                }
+            }
+        }
+
+
+        public void AddAsList()
+        {
+            if(ViewOptions.Count > 0)
+            {
+                try
+                {
+                    
+                }
+                catch (System.Exception)
+                {
+                    
+                    throw;
                 }
             }
         }
@@ -58,10 +103,10 @@ namespace Logistics.Pages.ofOption
                 try
                 {
                     var AddOption = await OptionManager.AddAsync(Option);
-                    if(Files != null)
+                    if(OptionFiles != null)
                     {
                         ImageofOption.Option = AddOption;
-                        foreach (var File in Files)
+                        foreach (var File in OptionFiles)
                         {
                             Route = await FileManager.UploadOptionImage(File);
                             ImageofOption.Name = File.Name;
@@ -77,14 +122,13 @@ namespace Logistics.Pages.ofOption
                 finally
                 {
                     Reset();
-                    AddDialogIsOpen = false;
                 }
             }
         }
 
         public void Reset()
         {
-            Files.Clear();
+            OptionFiles.Clear();
             Option.Commodity = null;
             Option.CommotityBarcode = null;
             Option.Images = null;
