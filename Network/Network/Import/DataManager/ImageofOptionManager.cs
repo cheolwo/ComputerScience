@@ -58,6 +58,15 @@ namespace Import.DataManager
             _commotityDataContext.ImageofOptions.Remove(ImageofOption);
             _commotityDataContext.SaveChanges();
         }
+
+        public async Task DeleteByOption(Option option)
+        {
+            foreach(var Image in option.Images)
+            {
+                _commotityDataContext.ImageofOptions.Remove(Image);
+                await _commotityDataContext.SaveChangesAsync();
+            }
+        }
                 
         public async Task<List<ImageofOption>> GetToListByOptionAsync(Option option)
         {

@@ -18,25 +18,93 @@ namespace Logistics.Pages.ofOption
         [Inject] ICommodityFileManager FileManager {get; set;}
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
         [Inject] IWebHostEnvironment WebHostEnvironment {get; set;}
-        
+        [Inject] IImageofDeatilManager ImageofDetailManager {get; set;}
+
         [Parameter] public string OptionNo {get; set;}
-        
-        public Dictionary<int, IMatFileUploadEntry> Images = new Dictionary<int, IMatFileUploadEntry>();
-        public List<int> ImageofOptionNos = new List<int>();
+        public List<IMatFileUploadEntry> ImageofOptionFiles = new List<IMatFileUploadEntry>();
+        public List<IMatFileUploadEntry> ImageofDetailFiles = new List<IMatFileUploadEntry>();
         public Option UpdateOption = new Option();
+
+        public EditContext EditContext {get; set;}
             
         protected override void OnInitialized()
         {
             UpdateOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
             UpdateOption.Images = ImageofOptionManager.GetToListByOption(UpdateOption);
-        }
-        
-        public void FileUpload(int ImageofOptionNo, IMatFileUploadEntry File)
-        {
-            if (File != null)
+
+            foreach(var Image in UploadOptionImage.Images)
             {
-                Images.Add(ImageofOptionNo, File);
-                ImageofOptionNos.Add(ImageofOptionNo);
+                Image.ImagesofDetail = ImageofDetailManager.GetToListByImageofOption(Image);
+            }
+            
+            EditContext = new EditContext(UpdateOption);
+        }
+
+       /// Clear() 중복 업로드 방지 
+        public void FileUploadofImageofOption(IMatFileUploadEntry[] Files)
+        {
+            ImageofOptionFiles.Clear();  
+            if (Files != null)
+            {
+                foreach(var File in Files)
+                {
+                    ImageofOptionFiles.Add(File);
+                }
+            }
+        }
+
+        /// Clear() 중복 업로드 방지
+        public void FileUploadofImageofDeatil(IMatFileUploadEntry[] Files)
+        {
+            ImageofDetailFiles.Clear(); 
+            if (Files != null)
+            {
+                foreach (var File in Files)
+                {
+                    ImageofDetailFiles.Add(File);
+                }
+            }
+        }
+
+        // 기존 파일 삭제 후 추가 및 데이터 수정
+        // Option 데이터 OnInitialized 할 때 채움.
+        public async void UploadDataAndImageofOptionInDialog()
+        {
+            bool Validate = EditContext.IsValidate();
+            ImageofOption imageofOption;
+            string route;
+            
+            if(Validate)
+            {
+                try
+                {
+                    if(ImageofOptionFiles != null)
+                    {
+                        FileManager.DeleteOptionImageByOption(UpdateOption);         // 파일 하위삭제
+                        await ImageofOptionManager.DeleteByOption(UpdateOption);     // 데이터 하위삭제
+
+                        UpdateOption.Images = null;                                  // 기존 데이터와 관계단절
+                        var option = OptionManager.Update(UpdateOption);             // 데이터 수정
+
+                        foreach(var File in ImageofOptionFiles)                      
+                        {
+                            route = await FileManager.UploadOptionImage(File);             // 이미지 업로드
+                            imageofOption.ImageTitle = File.Name;
+                            imageofOption.ImageRoute = route;
+                            imageofOption.Option = option;
+                            await ImageofOptionManager.AddAsync(imageofOption);      // 이미지 경로 저장   
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {                
+                    throw;
+                }
+                finally
+                {
+                    ReSet();
+                    UpdateDialogIsOpen = false;
+                }
             }
         }
         
@@ -65,20 +133,20 @@ namespace Logistics.Pages.ofOption
             Reset();                      
         }
         
-        //public void Update(Dictionary<int, IMatFileUploadEntry> Images, List<int> ImageofOptionNos)
-        //{            
-        //    OptionManager.Update(UpdateOption);
-        //    FileUpldate(Images, ImageofOptionNos);
-        //    UpdateOption.Images = ImageofOptionManager.GetByOption(UpdateOption);
-        //}
-        
         public void Reset()
         {
-            // UpdateOption.... null
-            
-            Images.Clear();
-            ImageofOptionNos.Clear();
-            
+            Files.Clear();
+            Option.Commodity = null;
+            Option.CommotityBarcode = null;
+            Option.Images = null;
+            Option.ModelNo = null;
+            Option.Key = null;
+            Option.NormalPrice = null;
+            Option.OptionNo = 0;
+            Option.Quantity = 0;
+            Option.SalePrice = null;
+            Option.SellerCodeofCommodity = null;
+            Option.Value = null;
         }
         
     }

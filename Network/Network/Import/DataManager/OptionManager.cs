@@ -34,7 +34,6 @@ namespace Import.DataManager
             return _commotityDataContext.Options.OrderByDescending(e => e.OptionNo).FirstOrDefault();
         }
 
-
         public async Task<List<Option>> GetToListByCommodityAsync(Commodity commodity)
         {
             return await _commotityDataContext.Options.ToListAsync();

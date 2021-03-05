@@ -19,9 +19,9 @@ namespace Logistics.Service
         private readonly IImageofOptionManager _imageofOptionManager;
 
         public MemoryStream ms { get; set; }
-        //public string ExamplePath { get; set; }
-        //public string DetailPath { get; set; }
-        //public string OptionPath { get; set; }
+        public string CommodityPath { get; set; }
+        public string DetailPath { get; set; }
+        public string OptionPath { get; set; }
 
         public CommodityFileManager(IWebHostEnvironment environment, ICommodityManager commodityManager,
             IOptionManager optionManager, ICommodityDetailManager commodityDetailManager,
@@ -37,68 +37,83 @@ namespace Logistics.Service
             ms = new MemoryStream();          
         }
 
-        //public void DeleteDeatilImageById(int DetailNo)
-        //{
-        //    var Entity = _commodityManager.GetById(DetailNo);
-            
-        //    if(Entity == null) { throw new ArgumentNullException("ENTITY_IS_NULL"); }
-        //    List<ImageofDetail> ImageofDetails = _imageofDetailManager.GetByCommodityToList(Entity);
-
-        //    if (ImageofDetails.Count == 0) { throw new ArgumentNullException("LIST_IS_EMPTY"); }
-
-        //    foreach(var Image in ImageofDetails)
-        //    {
-        //        File.Delete(Image.ImageRoute);
-        //    }
-        //}
-
-        public Task DeleteDetailImage(Commodity commodity)
+        public Task DeleteDetailImageByCommodity(Commodity commodity)
         {
-            throw new NotImplementedException();
+            List<Option> Options = await _optionManager.GetToListByCommodityAsync(commodity);
+
+            foreach(var Option in Options)
+            {
+                Option.Images = _imageofOptionManager.GetToListByOption(Option);
+                foreach(var Image in Option.Images)
+                {
+                    Image.ImagesofDetail = _imageofDetailManager.GetToListByImageofOption(Image);
+                    foreach(var Deatil in Image.ImagesofDetail)
+                    {
+                        File.Delete(Detail.ImageRoute);
+                    }
+                }
+            }
         }
 
-        public Task DeleteDetailImageByEntity(CommodityDetail commodityDetail)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteExampleImage(Commodity commodity)
+        public void DeleteCommodityImageByCommodity(Commodity commodity)
         {
             string path = commodity.ImageRoute;
             File.Delete(path);
         }
 
-        public Task DeleteOptionImage(Commodity commodity)
+        public Task DeleteOptionImageByCommodity(Commodity commodity)
         {
-            throw new NotImplementedException();
+            List<Option> Options = optionManager.GetToListByCommodity(commodity);
+            foreach(Option option in Options)
+            {
+                Option.Images = _imageofOptionManager.GetToListByOption(Option);
+                foreach (var Image in Option.Images)
+                {
+                    File.Delete(Image.ImageRoute);
+                    foreach(var Detail in Image.ImagesofDetail)
+                    {
+                        File.Delete(Detail.ImageRoute);
+                    }
+                }
+            }
+        }
+        
+        // 하위삭제
+        public Task DeleteOptionImageByOption(Option option)
+        {
+            foreach (var Image in option.Images)
+            {
+                File.Delete(Image.ImageRoute);
+                foreach(var Detail in Image.ImagesofDetail)
+                {
+                    File.Delete(Detail.ImageRoute);
+                }
+            }
         }
 
-        public Task DeleteOptionImageByEntity(Option option)
+        public Task DeleteOptionImageByOptionNo(int OptionNo)
         {
-            throw new NotImplementedException();
+            Option option =  optionManager.GetById(OptionNo);
+            DeleteOptionImageByOption(option);
         }
 
-        public Task DeleteOptionImageById(int OptionNo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task UploadExampleImage(IMatFileUploadEntry ImageFile)
+        public async Task<string> UploadCommodityImage(IMatFileUploadEntry ImageFile)
         {
             if(ImageFile == null)
             {
                 throw new ArgumentNullException("FILE_NULL");
             }
 
-            var path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Example", ImageFile.Name);
+            var path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images\\Commodity", ImageFile.Name);
         
             await ImageFile.WriteToStreamAsync(ms);
 
             using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
             ms.WriteTo(file);
+            return path;
         }
 
-        public async Task UploadExampleImage(IMatFileUploadEntry ImageFile, string path)
+        public async Task UploadCommodityImage(IMatFileUploadEntry ImageFile, string path)
         {
             await ImageFile.WriteToStreamAsync(ms);
 
@@ -109,6 +124,7 @@ namespace Logistics.Service
         public async Task UploadOptionImage(IMatFileUploadEntry[] entries)
         {
             string path;
+            List<string> Paths;
             if (entries.Length > 0)
             {
                 foreach (var entry in entries)
@@ -129,13 +145,16 @@ namespace Logistics.Service
                     await entry.WriteToStreamAsync(ms);
                     using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
                     ms.WriteTo(file);
+                    Paths.Add(path);
                 }
+                return Paths;
             }
         }
 
-        public async Task UploadDetailImage(IMatFileUploadEntry[] entries)
+        public async Task<List<string>> UploadDetailImage(IMatFileUploadEntry[] entries)
         {
             string path;
+            List<string> Paths;
             if (entries.Length > 0)
             {
                 foreach (var entry in entries)
@@ -144,16 +163,13 @@ namespace Logistics.Service
                     await entry.WriteToStreamAsync(ms);
                     using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
                     ms.WriteTo(file);
+                    Paths.Add(path);
                 }
+                return Paths;
             }
         }
 
-        Task ICommodityFileManager.DeleteDeatilImageById(int DetailNo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task UploadOptionImage(IMatFileUploadEntry entry)
+        public async Task<string> UploadOptionImage(IMatFileUploadEntry entry)
         {
             if (entry == null)
             {
@@ -165,6 +181,8 @@ namespace Logistics.Service
             await entry.WriteToStreamAsync(ms);
             using FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
             ms.WriteTo(file);
+
+            return path;
         }
 
         public async Task UploadOptionImage(IMatFileUploadEntry entry, string path)

@@ -17,13 +17,15 @@ namespace Logistics.Pages.ofOption
     public partial class Get
     {        
         [Inject] IOptionManager OptionManager { get; set; }   
-        [Inject] ICommodityManager CommodityManager {get; set;}       
+        [Inject] IImageofOptionManager ImageofOptionManager { get; set;} 
+        [Inject] IImageofDetailManager ImageofDetailManager {get; set;}
+        [Inject] ICommodityFileManager FileManager {get; set;}
         [Parameter] public string CommodityNo { get; set; }
               
         public List<Option> Options = new List<Option>();
         public Commodity Commodity = new Commodity();
         public Option Option = new Option();
-       //public OptionViewModel OptionViewModel = new OptionViewModel();
+        
         
         public string OptionNo {get; set;} 
         public bool AddDialogIsOpen {get; set;}
@@ -32,46 +34,34 @@ namespace Logistics.Pages.ofOption
         
         public string Key {get; set;}
         public string Values {get; set;}
-        public List<OptionViewModel> OptionViewModels {get; set;}
 
         protected override void OnInitialized()
         {
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = Commodity;
-            Options = OptionManager.GetToListByCommodity(Commodity);
-
-            
-            
+            Options = OptionManager.GetToListByCommodity(Commodity);       
             AddDialogIsOpen = false;
             DeleteDialogIsOpen = false;
+            UpdateDialogIsOpen = false;
         }
 
-        public class OptionViewModel
+        public void SetKeyAndValue(string Key, string Values)
         {
-            public string Name {get; set;}
-            public string Key {get; set;}
-            public string Value {get; set;}
+           char[] delimeterChars = { ',', '/', ' ' };
+
+           if(Values != null)
+           {
+               string[] Words = Values.Split(delimeterChars);
+               foreach (var Word in Words)
+               {
+                  
+               }
+           }
+           else
+           {
+               OptionViewModels.Clear();
+           }            
         }
-
-        //public void SetKeyAndValue(string Key, string Values)
-        //{
-        //    char[] delimeterChars = { ',', '/', ' ' };
-
-        //    if(Values != null)
-        //    {
-        //        string[] Words = Values.Split(delimeterChars);
-        //        foreach (var Word in Words)
-        //        {
-        //            OptionViewModel.Key = Key;
-        //            OptionViewModel.Value = Word;
-        //            OptionViewModels.Add(OptionViewModel);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        OptionViewModels.Clear();
-        //    }            
-        //}
 
         public void AddDialogSwitch()
         {

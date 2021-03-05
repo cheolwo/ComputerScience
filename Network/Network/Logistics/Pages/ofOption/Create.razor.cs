@@ -19,29 +19,68 @@ namespace Logistics.Pages.ofOption
     {
         [Inject] IOptionManager OptionManager { get; set; }
         [Inject] ICommodityManager CommodityManager { get; set; }
-        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
+        [Inject] ICommodityFileManager FileManager {get; set;}
 
         [Parameter] public bool AddDialogIsOpen { get; set; }
         [Parameter] public string CommodityNo { get; set; }
-       // [Parameter] public OptionViewModel OptionViewModel {get; set;}
-        
         public Option Option = new Option();
+
         public List<IMatFileUploadEntry> Files = new List<IMatFileUploadEntry>();
-        public EditContext EditContext { get; set; }
         public ImageofOption ImageofOption = new ImageofOption();
         
-        public string ErrorMessage { get; set; }
+        public EditContext EditContext { get; set; }
         
         protected override void OnInitialized()
         {
             EditContext = new EditContext(Option);
-            Option.Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
-            
+            Option.Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));         
         }
 
-        public void FileUpload () { }
-        [Parameter] public EventCallback DialogSwitch { get; set; }
-        [Parameter] public EventCallback Add { get; set; }
+        public void FileUpload (IMatFileUploadEntry[] Entryies)
+        {
+            if(Entryies != null)
+            {
+                foreach (var Entry in Entryies)
+                {
+                    Files.Add(Entry);
+                }
+            }
+        }
+
+        public async void Add()
+        {
+            bool Validate = EditContext.IsValidate();
+            string Route;
+
+            if(Validate)
+            {
+                try
+                {
+                    var AddOption = await OptionManager.AddAsync(Option);
+                    if(Files != null)
+                    {
+                        ImageofOption.Option = AddOption;
+                        foreach (var File in Files)
+                        {
+                            Route = await FileManager.UploadOptionImage(File);
+                            ImageofOption.Name = File.Name;
+                            ImageofOption.ImageRoute = Route;
+                            await ImageofOptionManager.Add(ImageofOption);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {     
+                    throw;
+                }
+                finally
+                {
+                    Reset();
+                    AddDialogIsOpen = false;
+                }
+            }
+        }
 
         public void Reset()
         {
@@ -57,9 +96,6 @@ namespace Logistics.Pages.ofOption
             Option.SalePrice = null;
             Option.SellerCodeofCommodity = null;
             Option.Value = null;
-
-            NavigationManager.NavigateTo(string.Format("/Get/Commodity/Option/{0}", CommodityNo));
-
         }
     }
 }

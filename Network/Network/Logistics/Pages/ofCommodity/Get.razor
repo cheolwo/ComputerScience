@@ -1,46 +1,47 @@
 ﻿
 @page "/Get/Commodity"
 
-<a href="/Create/Commodity"><MatButton Raised="true">생성</MatButton></a>
+@* Commodity Get의 경우 ViewModel 따로 필요 없다. *@
+<MatButton Raised="true" @onclick="AddDialogSwitch">생성</MatButton>
 
 <MatDivider></MatDivider>
-
-
 
 <MatTable Items="@Commodities" class="mat-elevation-z5">
     <MatTableHeader>
         <th>No</th>
         <th>Name</th>
         <th>Category</th>
-        <th>DataManager</th>
+        <th>Manager</th>
     </MatTableHeader>
     <MatTableRow>
         <td>@context.CommodityNo</td>
         <td>@context.Name</td>
         <td>@context.Category</td>
         <td>
-            <a href="/Update/Commodity/@context.CommodityNo"><MatButton Raised="true">수정</MatButton></a>
-            @*<MatButton Raised="true" @onclick="() => DeleteDialogSwitch(context.CommodityNo)">삭제</MatButton>*@
+            <MatButton Raised="true" @onclick="UpdateDialogSwitch">수정</MatButton>
+            <MatButton Raised="true" @onclick="DeleteDialogSwitch">삭제</MatButton>
+            <a href="/Get/Commodity/CommodityDetail/@context.CommodityNo"><MatButton Raised="true">디테일</MatButton></a>
             <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">옵션</MatButton></a>
-            <a href="/Get/Commodity/Detail/@context.CommodityNo"><MatButton Raised="true">배송</MatButton></a>
-            @*<a href="/Detail/Commodity/@context.CommodityNo"><MatButton Raised="true">Detail</MatButton></a>*@
         </td>
     </MatTableRow>
 </MatTable>
 
 @if (DeleteDialogIsOpen)
 {
-    <MatDialog @bind-IsOpen="@DeleteDialogIsOpen">
-        <MatDialogTitle>Hi</MatDialogTitle>
-        <MatDialogContent>
-            <p>Really Delete of Commodity?</p>
-        </MatDialogContent>
-        <MatDialogActions>
-            <MatButton OnClick="@(e => { DeleteDialogIsOpen = false; })">NO</MatButton>
-            <MatButton OnClick="() =>DeleteCommodity(CommodityNo)">OK</MatButton>
-        </MatDialogActions>
-    </MatDialog>
+    <Delete></Delete>
 }
 
+@if (CreateDialogIsOpen)
+{
+    <Create></Create>
+}
+
+@if (UpldateDialogIsOpen)
+{
+    <Update></Update>
+}
+
+
 @code{
+    
 }
