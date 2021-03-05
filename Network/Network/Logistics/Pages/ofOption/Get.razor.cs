@@ -35,8 +35,12 @@ namespace Logistics.Pages.ofOption
         public string Key {get; set;}
         public string Values {get; set;}
 
+        public bool IsUpdateKey {get; set;}
+        public bool IsUpdateValues {get; set;}
+    
         protected override void OnInitialized()
         {
+            // 상품명, 카테고리, 매입경로 보이는데 사용
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = Commodity;
             Options = OptionManager.GetToListByCommodity(Commodity);       
