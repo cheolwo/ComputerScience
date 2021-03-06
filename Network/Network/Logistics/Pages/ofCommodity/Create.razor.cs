@@ -79,7 +79,7 @@ namespace Logistics.Pages.ofCommodity
         {
             if(commodityModel.MatFile != null )
             {
-                await CommodityFileManager.UploadExampleImage(commodityModel.MatFile, path);
+                await CommodityFileManager.UploadCommodityImage(commodityModel.MatFile, path);
             }         
         }
 

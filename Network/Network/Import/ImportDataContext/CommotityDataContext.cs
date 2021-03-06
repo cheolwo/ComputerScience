@@ -30,5 +30,6 @@ namespace Import.ImportDataContext
         public DbSet<Option> Options { get; set; }
         public DbSet<CompanyofBuying> CompanyofBuyings { get; set; }
         public DbSet<Buying> Buyings { get; set; }
+        public DbSet<DetailImage> DetailImages { get; set; }
     }
 }

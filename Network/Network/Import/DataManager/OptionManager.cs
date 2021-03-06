@@ -58,15 +58,15 @@ namespace Import.DataManager
         {
             Option UpdateOption = await GetByIdAsync(option.OptionNo);
             UpdateOption.Commodity = option.Commodity;
-            UpdateOption.CommotityBarcode = option.CommotityBarcode;
-            UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
+           // UpdateOption.CommotityBarcode = option.CommotityBarcode;
+            //UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
             UpdateOption.Images = option.Images;
-            UpdateOption.ModelNo = option.ModelNo;
+           // UpdateOption.ModelNo = option.ModelNo;
             UpdateOption.Key = option.Key; // 색상
             UpdateOption.Value = option.Value; // 빨, 주, 노, 초
-            UpdateOption.NormalPrice = option.NormalPrice;
-            UpdateOption.Quantity = option.Quantity;
-            UpdateOption.SalePrice = option.SalePrice;
+           // UpdateOption.NormalPrice = option.NormalPrice;
+           // UpdateOption.Quantity = option.Quantity;
+           // UpdateOption.SalePrice = option.SalePrice;
 
             _commotityDataContext.Options.Update(UpdateOption);
             await _commotityDataContext.SaveChangesAsync();
@@ -78,15 +78,15 @@ namespace Import.DataManager
         {
             Option UpdateOption = GetById(option.OptionNo);
             UpdateOption.Commodity = option.Commodity;
-            UpdateOption.CommotityBarcode = option.CommotityBarcode;
-            UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
+          //  UpdateOption.CommotityBarcode = option.CommotityBarcode;
+          //  UpdateOption.SellerCodeofCommodity = option.SellerCodeofCommodity;
             UpdateOption.Images = option.Images;
-            UpdateOption.ModelNo = option.ModelNo;
+           // UpdateOption.ModelNo = option.ModelNo;
             UpdateOption.Key = option.Key; // 색상
             UpdateOption.Value = option.Value; // 빨, 주, 노, 초
-            UpdateOption.NormalPrice = option.NormalPrice;
-            UpdateOption.Quantity = option.Quantity;
-            UpdateOption.SalePrice = option.SalePrice;
+           // UpdateOption.NormalPrice = option.NormalPrice;
+           // UpdateOption.Quantity = option.Quantity;
+           // UpdateOption.SalePrice = option.SalePrice;
 
             _commotityDataContext.Options.Update(UpdateOption);
             _commotityDataContext.SaveChanges();

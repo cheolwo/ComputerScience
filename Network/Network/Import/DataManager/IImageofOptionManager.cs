@@ -20,5 +20,6 @@ namespace Import.DataManager
         Task<List<ImageofOption>> GetToListByOptionAsync(Option option);
         Task DeleteByIdAsync(int imgaeNo);
         Task DeleteByEntityAsync(ImageofOption imageofOption);
+        Task DeleteByOption(Option updateOption);
     }
 }

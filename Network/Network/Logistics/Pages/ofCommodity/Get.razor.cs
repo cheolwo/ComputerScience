@@ -35,7 +35,7 @@ namespace Logistics.Pages.ofCommodity
             if (Commodity != null)
             {
                 CommodityManager.DeleteByEntity(Commodity);
-                CommodityFileManager.DeleteExampleImage(Commodity);
+                CommodityFileManager.DeleteCommodityImageByCommodity(Commodity);
             }
 
             DeleteDialogIsOpen = false;

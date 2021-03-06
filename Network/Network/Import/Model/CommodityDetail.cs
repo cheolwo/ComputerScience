@@ -14,11 +14,14 @@ namespace Import.Model
         
         [Required] public Authenticate Authenticate { get; set; }
         [Required] public Import Import { get; set; }
-
         [Required] public bool PossibleUnder20 { get; set; }
         [Required] public int MaximumPossibleQuantity { get; set; } // per Individual
         [Required] public int DurationTime { get; set; } // 단위 : 일
         [Required] public bool IsVAT { get; set; }
+
+        public List<DetailImage> DetailImages { get; set; }
+        public string ImageName { get; set; }
+        public string ImageRoute { get; set; }
         public int WarehouseNo { get; set; }
         public string WarehouseCode { get; set; }
 

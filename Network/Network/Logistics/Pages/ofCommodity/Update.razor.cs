@@ -48,7 +48,7 @@ namespace Logistics.Pages.ofCommodity
                     File.Delete(Commodity.ImageRoute);
                     Commodity.ImageRoute = path;
                     Commodity.ImageTitle = MatFile.Name;
-                    FileManager.UploadExampleImage(MatFile, path);
+                    FileManager.UploadCommodityImage(MatFile, path);
                 }    
                Commodity = CommodityManager.Update(Commodity);
             }

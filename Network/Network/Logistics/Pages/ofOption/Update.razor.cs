@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace Logistics.Pages.ofOption
 {
@@ -18,7 +19,7 @@ namespace Logistics.Pages.ofOption
         [Inject] ICommodityFileManager FileManager {get; set;}
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
         [Inject] IWebHostEnvironment WebHostEnvironment {get; set;}
-        [Inject] IImageofDeatilManager ImageofDetailManager {get; set;}
+        [Inject] IImageofDetailManager ImageofDetailManager {get; set;}
 
         [Parameter] public string OptionNo {get; set;}
         public List<IMatFileUploadEntry> ImageofOptionFiles = new List<IMatFileUploadEntry>();
@@ -26,13 +27,14 @@ namespace Logistics.Pages.ofOption
         public Option UpdateOption = new Option();
 
         public EditContext EditContext {get; set;}
+        public bool UpdateDialogIsOpen { get; set; }
             
         protected override void OnInitialized()
         {
             UpdateOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
             UpdateOption.Images = ImageofOptionManager.GetToListByOption(UpdateOption);
 
-            foreach(var Image in UploadOptionImage.Images)
+            foreach(var Image in UpdateOption.Images)
             {
                 Image.ImagesofDetail = ImageofDetailManager.GetToListByImageofOption(Image);
             }
@@ -70,8 +72,8 @@ namespace Logistics.Pages.ofOption
         // Option 데이터 OnInitialized 할 때 채움.
         public async void UploadDataAndImageofOptionInDialog()
         {
-            bool Validate = EditContext.IsValidate();
-            ImageofOption imageofOption;
+            bool Validate = EditContext.Validate();
+            ImageofOption imageofOption = new ImageofOption();
             string route;
             
             if(Validate)
@@ -102,7 +104,7 @@ namespace Logistics.Pages.ofOption
                 }
                 finally
                 {
-                    ReSet();
+                    Reset();
                     UpdateDialogIsOpen = false;
                 }
             }
@@ -135,18 +137,18 @@ namespace Logistics.Pages.ofOption
         
         public void Reset()
         {
-            Files.Clear();
-            Option.Commodity = null;
-            Option.CommotityBarcode = null;
-            Option.Images = null;
-            Option.ModelNo = null;
-            Option.Key = null;
-            Option.NormalPrice = null;
-            Option.OptionNo = 0;
-            Option.Quantity = 0;
-            Option.SalePrice = null;
-            Option.SellerCodeofCommodity = null;
-            Option.Value = null;
+            ImageofOptionFiles.Clear();
+            UpdateOption.Commodity = null;
+           /// UpdateOption.CommotityBarcode = null;
+            UpdateOption.Images = null;
+           // UpdateOption.ModelNo = null;
+            UpdateOption.Key = null;
+          //  UpdateOption.NormalPrice = null;
+            UpdateOption.OptionNo = 0;
+           // UpdateOption.Quantity = 0;
+           // UpdateOption.SalePrice = null;
+           // UpdateOption.SellerCodeofCommodity = null;
+            UpdateOption.Value = null;
         }
         
     }

@@ -19,6 +19,7 @@ namespace Logistics.Pages.ofOption
     {        
         [Inject] IOptionManager OptionManager { get; set; }   
         [Inject] NavigationManager NavigationManager {get; set;}
+        [Inject] ICommodityManager CommodityManager { get; set; }
         [Parameter] public string CommodityNo { get; set; }
               
         public List<Option> Options = new List<Option>();
