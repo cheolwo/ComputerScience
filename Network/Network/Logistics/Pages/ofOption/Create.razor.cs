@@ -28,19 +28,21 @@ namespace Logistics.Pages.ofOption
 
         public CommodityDetail CommodityDetail = new CommodityDetail();
         public DetailImage DetailImage = new DetailImage();
+        public List<IMatFileUploadEntry> ImagesofDetailBuffer = new List<IMatFileUploadEntry>();
+
         public Option Option = new Option();
         public ImageofOption ImageofOption = new ImageofOption();
         public List<Option> ViewOptions = new List<Option>();
         public Dictionary<string, List<IMatFileUploadEntry>> ImagesofOptionBuffer = new Dictionary<string, List<IMatFileUploadEntry>>();
-        public List<IMatFileUploadEntry> ImagesofDetailBuffer = new List<IMatFileUploadEntry>();
 
         public string InputKey {get; set;}
         public string InputValues {get; set;}
         public string CurrentValue { get; set; }
+        public bool IsImages { get; set; }
+        public List<string> Values = new List<string>();
 
         public bool ImagesofOptionDialogIsOpen { get; set; }
         public bool ImagesofDetailDialogIsOpen { get; set; }
-        public List<string> Values {get; set;}
         public EditContext EditContext { get; set; }
 
         protected override void OnInitialized()
@@ -52,7 +54,6 @@ namespace Logistics.Pages.ofOption
 
             EditContext = new EditContext(Option);
 
-            Reset();
         }
 
         public void SetKeyAndValue(string InputKey, string InputValues)
@@ -217,14 +218,14 @@ namespace Logistics.Pages.ofOption
 
         public void Reset()
         {
-          // Option.CommotityBarcode = null;
+            // Option.CommotityBarcode = null;
             Option.Images = null;
-          // Option.ModelNo = null;
+            // Option.ModelNo = null;
             Option.Key = null;
-          //  Option.NormalPrice = null;
-          //  Option.Quantity = 0;
-          //   Option.SalePrice = null;
-          //   Option.SellerCodeofCommodity = null;
+            //  Option.NormalPrice = null;
+            //  Option.Quantity = 0;
+            //   Option.SalePrice = null;
+            //   Option.SellerCodeofCommodity = null;
             Option.Value = null;
 
             InputKey = null;

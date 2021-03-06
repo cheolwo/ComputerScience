@@ -42,18 +42,29 @@ namespace Logistics.Pages.ofCommodity
             Commodities = CommodityManager.GetToList();
         }
         
-        public void CreateDialogSwith()
+        public void CreateDialogSwitch()
         {
             CreateDialogIsOpen = !CreateDialogIsOpen;
         }
-                
+
+        public void UpdateDialogSwitch(int commodityNo)
+        {
+            CommodityNo = commodityNo;
+            UpdateDialogIsOpen = !UpdateDialogIsOpen;
+        }
+
         public void UpdateDialogSwitch()
         {
             UpdateDialogIsOpen = !UpdateDialogIsOpen;
         }
                
-        public void DeleteDialogSwitch()
+        public void DeleteDialogSwitch(int commodityNo)
         {
+            CommodityNo = commodityNo;
+            DeleteDialogIsOpen = !DeleteDialogIsOpen;
+        }
+        public void DeleteDialogSwitch()
+        {          
             DeleteDialogIsOpen = !DeleteDialogIsOpen;
         }
 

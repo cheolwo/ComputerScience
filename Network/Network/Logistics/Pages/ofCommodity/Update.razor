@@ -1,27 +1,27 @@
-﻿@page "/Update/Commodity/{CommodityNo}"
-
-<center><h3>수정</h3></center>
-<center>
+﻿
+<MatDialog IsOpen="UpdateDialogIsOpen">
+    <MatDialogTitle>
+    <center>상품수정</center>
     <img src="@Img" asp-append-version="true" style="width:400px; height:400px;" />
-</center>
-<br />
-<MatDivider></MatDivider>
-<br />
-<center>
-    <p>
-        <MatTextField Label="Name" @bind-Value="@Commodity.Name"></MatTextField>
-    </p>
-    <p>
-        <MatTextField Label="Category" @bind-Value="@Commodity.Category"></MatTextField>
-    </p>
-    <p>
-        <MatTextField Label="Url" @bind-Value="@Commodity.Url"></MatTextField>
-    </p>
-    <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
+    </MatDialogTitle>
+    <MatDialogContent>
+        <center>
+            <p>
+                <MatTextField Label="Name" @bind-Value="@Commodity.Name"></MatTextField>
+            </p>
+            <p>
+                <MatTextField Label="Category" @bind-Value="@Commodity.Category"></MatTextField>
+            </p>
+            <p>
+                <MatTextField Label="Url" @bind-Value="@Commodity.Url"></MatTextField>
+            </p>
+            <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
 
-    <MatButton Type="submit" OnClick="UpdateCommodity" Raised="true">수정</MatButton>
-</center>
-
+            <MatButton Type="submit" OnClick="UpdateCommodity" Raised="true">수정</MatButton>
+            <MatButton OnClick="DialogSwitch.InvokeAsync" Raised="true">취소</MatButton>
+        </center>
+    </MatDialogContent>
+</MatDialog>
 
 @code {
 

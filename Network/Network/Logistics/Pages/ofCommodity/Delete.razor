@@ -1,4 +1,25 @@
-﻿<h3>Delete</h3>
+﻿
+
+<MatDialog IsOpen="DeleteDialogIsOpen">
+    <MatDialogTitle>
+        <center>
+            <p>관리상품 삭제</p>
+            <p>정말로 삭제하시겠습니까?</p>
+            <p>상품옵션과 디테일정보 또한 삭제됩니다.</p>
+        </center>
+    </MatDialogTitle>
+    <MatDialogContent>
+        <div>
+            <MatCheckbox @bind-Value="@IsDetached" Label="파일과 데이터 분리 삭제"></MatCheckbox>
+        </div>
+        <MatButton OnClick="DeleteDataAndFile">삭제</MatButton>
+        <MatButton OnClick="DialogSwitch.InvokeAsync">취소</MatButton>
+    </MatDialogContent>
+</MatDialog>
+
+
+
+
 
 @code {
 

@@ -20,13 +20,10 @@ namespace Import.Model
         [Required] public bool IsVAT { get; set; }
 
         public List<DetailImage> DetailImages { get; set; }
-        public string ImageName { get; set; }
-        public string ImageRoute { get; set; }
         public int WarehouseNo { get; set; }
         public string WarehouseCode { get; set; }
 
         public List<Doc> Docs { get; set; }
-
         public int CommodityNo { get; set; }
         public Commodity Commodity { get; set; }
         

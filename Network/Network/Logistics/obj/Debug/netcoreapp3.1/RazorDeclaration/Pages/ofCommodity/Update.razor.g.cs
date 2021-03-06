@@ -96,7 +96,6 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Update/Commodity/{CommodityNo}")]
     public partial class Update : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

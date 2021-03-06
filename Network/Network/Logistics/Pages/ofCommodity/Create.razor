@@ -1,38 +1,33 @@
-﻿@page "/Create/Commodity"
-@using BlazorInputFile
-@using MatBlazor
+﻿
 
 
-<h2>상품등록</h2>
-<MatDivider></MatDivider>
-<br />
 
-<EditForm EditContext="EditContext" OnValidSubmit="Success">
-    <DataAnnotationsValidator />
-    <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
-        <p>
-            <MatTextField Label="Name" @bind-Value="@commodityModel.Name"></MatTextField>
-            <ValidationMessage For="@(() =>commodityModel.Name)" />
-           
-        </p>
-        <p>
-            <MatTextField Label="Category" @bind-Value="@commodityModel.Category"></MatTextField>
-            <ValidationMessage For="@(() =>commodityModel.Category)" />
-        </p>
-        <p>                                     
-            <MatTextField Label="Url" @bind-Value="@commodityModel.Url"></MatTextField>
-            <ValidationMessage For="@(() =>commodityModel.Url)" />
-        </p>
 
-        <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
-        <ValidationMessage For="@(() =>commodityModel.MatFile)" />
-    </div>
-    <MatButton Type="submit" OnClick="Add" Raised="true">등록</MatButton>
-</EditForm>
 
-<MatDivider></MatDivider>
-<br /><br />
-<a href="/Get/Commodity"><MatButton Raised="true">뒤로</MatButton></a>
+<MatDialog IsOpen="CreateDialogIsOpen">
+    <MatDialogContent>
+        <MatDialogTitle>상품등록</MatDialogTitle>
+        <MatDivider></MatDivider>
+        <EditForm EditContext="EditContext" OnValidSubmit="Success">
+            <DataAnnotationsValidator />
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+                <p>
+                    <MatTextField Label="Name" @bind-Value="@commodity.Name"></MatTextField>
+                    <ValidationMessage For="@(() =>commodity.Name)" />
+                </p>
+                <p>
+                    <MatTextField Label="Category" @bind-Value="@commodity.Category"></MatTextField>
+                </p>
+                <p>
+                    <MatTextField Label="Url" @bind-Value="@commodity.Url"></MatTextField>
+                </p>     
+                <p><MatFileUpload OnChange="UploadToBuffer"></MatFileUpload></p>
+            </div>
+            <MatButton Type="submit" OnClick="Add" Raised="true">등록</MatButton>
+            <MatButton OnClick="DialogSwitch" Raised="true">취소</MatButton>
+        </EditForm>
+    </MatDialogContent>
+</MatDialog>
 
 <p>@ErrorMessage</p>
 

@@ -21,8 +21,8 @@ namespace Logistics.Pages.ofCommodity
     {
         [Inject] ICommodityManager CommodityManager { get; set; }
         [Inject] ICommodityDetailManager CommodityDetailManager {get; set;}
-        [Inject] ICommodityFileManager CommodityFileManager { get; set; }
-        [Inject] IWebHostEnvironment _environment { get; set; }
+        [Inject] ICommodityFileManager FileManager { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }
 
         public CommodityModel commodityModel = new CommodityModel();
         public Commodity commodity = new Commodity();
@@ -32,22 +32,13 @@ namespace Logistics.Pages.ofCommodity
         public EditContext EditContext { get; set; }
 
         [Parameter] public bool CreateDialogIsOpen {get; set;}
-        [Parameter] public string CommodityNo { get; set; }
-        [Parameter] public List<Commodity> Commodities {get; set;}
+        [Parameter] public string CommodityNo { get; set; }  
         [Parameter] public EventCallback DialogSwitch {get; set;}
+        [Parameter] public List<Commodity> Commodities { get; set; }
 
         protected override void OnInitialized()
         {
-            EditContext = new EditContext(commodityModel);
-        }
-
-        public void Reset(CommodityModel commodityModel)
-        {
-            commodityModel.Name = null;           
-            commodityModel.Category = null;
-            commodityModel.Url = null;
-            commodityModel.MatFile = null;
-            commodityModel.Import = ViewModel.Import.Import;     
+            EditContext = new EditContext(commodity);
         }
 
         public IMatFileUploadEntry MatFile { get; set; }
@@ -61,49 +52,26 @@ namespace Logistics.Pages.ofCommodity
                 commodityModel.MatFile = MatFile;
             }
         }
-
-        public void ViewModelToModel(CommodityModel commodityModel, Commodity commodity, string path)
-        {
-            commodity.Category = commodityModel.Category;
-            commodity.Name = commodityModel.Name;
-            commodity.Url = commodityModel.Url;
-            commodity.ImageRoute = path;
-            
-            if(commodityModel.MatFile != null)
-            {
-                commodity.ImageTitle = commodityModel.MatFile.Name;
-            }        
-        }
-    
-        public async Task MatFileUpload(CommodityModel commodityModel, string path)
-        {
-            if(commodityModel.MatFile != null )
-            {
-                await CommodityFileManager.UploadCommodityImage(commodityModel.MatFile, path);
-            }         
-        }
+   
 
         public async Task Add()
         {
+            string Route;
             var isValid = EditContext.Validate();
             if (isValid)
-            {
-                path = Path.Combine(_environment.ContentRootPath, "wwwroot\\Images", commodityModel.MatFile.Name);
-
+            {              
                 try
                 {
                     // 상품등록
-                    await MatFileUpload(commodityModel, path);
-                    ViewModelToModel(commodityModel, commodity, path);
+                    Route = await FileManager.UploadCommodityImage(MatFile);
+                    commodity.ImageTitle = MatFile.Name;
+                    commodity.ImageRoute = Route;
                     commodity = CommodityManager.Add(commodity);
-                    
-                    // 상품등록 목적확인
-                    if(commodityModel.Import.Equals(ViewModel.Import.Import)) { commodityDetail.ImportDefaultValue(commodity); }
-                    else { commodityDetail.AgencyDefaultValue(commodity); }
-                    
-                    // 상품디테일 기본값 생성
+                         
+                    // 상품디테일 생성
                     commodityDetail.Commodity = commodity;
                     CommodityDetailManager.Add(commodityDetail);
+                    NavigationManager.NavigateTo("/Get/Commodity", true);
                 }
                 catch (Exception e)
                 {
@@ -112,9 +80,7 @@ namespace Logistics.Pages.ofCommodity
                     // Awesome....
                 }
                 finally
-                {
-                    Commodities.Add(commodity);
-                    Reset(commodityModel);
+                {                  
                     CreateDialogIsOpen = false;
                 }
             }
@@ -123,5 +89,6 @@ namespace Logistics.Pages.ofCommodity
 
             }
         }
+        
     }
 }

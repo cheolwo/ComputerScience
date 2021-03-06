@@ -1,8 +1,8 @@
 ﻿
 @page "/Get/Commodity"
-
 @* Commodity Get의 경우 ViewModel 따로 필요 없다. *@
-<MatButton Raised="true" @onclick="AddDialogSwitch">생성</MatButton>
+
+<MatButton Raised="true" @onclick="CreateDialogSwitch">생성</MatButton>
 
 <MatDivider></MatDivider>
 
@@ -18,8 +18,8 @@
         <td>@context.Name</td>
         <td>@context.Category</td>
         <td>
-            <MatButton Raised="true" @onclick="UpdateDialogSwitch">수정</MatButton>
-            <MatButton Raised="true" @onclick="DeleteDialogSwitch">삭제</MatButton>
+            <MatButton Raised="true" @onclick="() => UpdateDialogSwitch(context.CommodityNo)">수정</MatButton>
+            <MatButton Raised="true" @onclick="() => DeleteDialogSwitch(context.CommodityNo)">삭제</MatButton>
             <a href="/Get/Commodity/CommodityDetail/@context.CommodityNo"><MatButton Raised="true">디테일</MatButton></a>
             <a href="/Get/Commodity/Option/@context.CommodityNo"><MatButton Raised="true">옵션</MatButton></a>
         </td>
@@ -28,20 +28,20 @@
 
 @if (DeleteDialogIsOpen)
 {
-    <Delete></Delete>
+    <Delete CommodityNo="@CommodityNo" DialogSwitch="DeleteDialogSwitch" DeleteDialogIsOpen="DeleteDialogIsOpen"></Delete>
 }
 
 @if (CreateDialogIsOpen)
 {
-    <Create></Create>
+    <Create DialogSwitch="@CreateDialogSwitch" CreateDialogIsOpen="CreateDialogIsOpen"></Create>
 }
 
-@if (UpldateDialogIsOpen)
+@if (UpdateDialogIsOpen)
 {
-    <Update></Update>
+    <Update CommodityNo="@CommodityNo" DialogSwitch="UpdateDialogSwitch" UpdateDialogIsOpen="UpdateDialogIsOpen"></Update>
 }
 
 
 @code{
-    
+
 }

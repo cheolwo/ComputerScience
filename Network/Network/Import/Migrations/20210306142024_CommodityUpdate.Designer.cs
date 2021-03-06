@@ -4,14 +4,16 @@ using Import.ImportDataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Import.Migrations
 {
     [DbContext(typeof(CommotityDataContext))]
-    partial class CommotityDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210306142024_CommodityUpdate")]
+    partial class CommodityUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

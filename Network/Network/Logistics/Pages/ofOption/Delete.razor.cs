@@ -27,10 +27,10 @@ namespace Logistics.Pages.ofOption
         {
             DeleteOption = OptionManager.GetById(Convert.ToInt32(OptionNo));
             DeleteOption.Images = ImageofOptionManager.GetToListByOption(DeleteOption);
-            foreach(var Image in DeleteOption.Images)
-            {
-                Image.ImagesofDetail = ImageofDetailManager.GetToListByImageofOption(Image);
-            }
+            //foreach(var Image in DeleteOption.Images)
+            //{
+            //    Image.ImagesofDetail = ImageofDetailManager.GetToListByImageofOption(Image);
+            //}
         }
         
         public void OptionDelete()

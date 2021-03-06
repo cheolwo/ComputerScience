@@ -7,7 +7,7 @@ namespace Import.Model
     public class Commodity
     {
         [Key] public int CommodityNo { get; set; }
-        public string Name { get; set; }
+        [Required] public string Name { get; set; }
         public string Category { get; set; }
         public string Url { get; set; }
         public string ImageTitle { get; set; }

@@ -76,6 +76,13 @@ using Logistics.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
+using MatBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 11 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
 using System.IO;
 
@@ -83,20 +90,12 @@ using System.IO;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
+#line 12 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
-using MatBlazor;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Create/Commodity")]
     public partial class Create : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,7 +104,7 @@ using MatBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
+#line 41 "C:\Users\user\Desktop\ComputerScience\Network\Network\Logistics\Pages\ofCommodity\Create.razor"
       
     [Inject]
     IJSRuntime JS { get; set; }

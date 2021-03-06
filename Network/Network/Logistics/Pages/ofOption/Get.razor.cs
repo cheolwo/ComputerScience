@@ -34,10 +34,11 @@ namespace Logistics.Pages.ofOption
         {
             // 상품명, 카테고리, 매입경로 보이는데 사용
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+
             Option.Commodity = Commodity;
             Options = OptionManager.GetToListByCommodity(Commodity);   
 
-            if(Options == null)
+            if(Options.Count.Equals(0))
             {
                 NavigationManager.NavigateTo(string.Format("/Create/Commodity/Option/{0}", CommodityNo));
             }    
@@ -47,34 +48,7 @@ namespace Logistics.Pages.ofOption
             UpdateDialogIsOpen = false;
         }
 
-        // public void SetKeyAndValue(string InputKey, string InputValues)
-        // {
-        //    if(InputValues != null)
-        //    {
-        //        char[] delimeterChars = { ',', '/', ' ' };
-        //        string[] Words = InputValues.Split(delimeterChars);
-        //        foreach (var Word in Words)
-        //        {
-        //            Values.Add(Word.Trim());
-        //        }
-        //    }        
-        // }
-
-        // public void AddBasedofValues(List<string> Values)
-        // {
-        //     if(ViewOptions != null)
-        //     {
-        //         ViewOptions.Clear();
-        //     }
-
-        //     Option.Key = InputKey;
-        //     foreach(var Value in Values)
-        //     {
-        //        Option.Value = Value;
-        //        ViewOptions.Add(Option);
-        //     }
-        // }
-
+        
         public void AddDialogSwitch()
         {
             AddDialogIsOpen = !AddDialogIsOpen;

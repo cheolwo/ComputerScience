@@ -202,9 +202,9 @@ namespace Logistics.Service
         {
             CommodityDetail commodityDetail = _commodityDetailManager.GetByCommodity(commodity);
             
-            if(commodityDetail != null)
+            foreach(var image in commodityDetail.DetailImages)
             {
-                File.Delete(commodityDetail.ImageRoute);
+                File.Delete(image.ImageRoute);
             }
         }
 

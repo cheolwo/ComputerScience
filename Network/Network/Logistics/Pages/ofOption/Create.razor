@@ -1,40 +1,58 @@
-﻿
-    <MatDialog @bind-IsOpen=AddDialogIsOpen>
-        <MatDialogTitle>Add_Option</MatDialogTitle>
-        <EditForm EditContext="EditContext">
-            <MatDialogContent>
-                <DataAnnotationsValidator></DataAnnotationsValidator>
-                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
-                    <p><MatTextField @bind-Value="@Option.Key">Key</MatTextField></p>
-                    <ValidationMessage For="@(() =>Option.Key)" />
-                    <p><MatTextField @bind-Value="@Option.Value">Value </MatTextField></p>
-                    <ValidationMessage For="@(() =>Option.Value)" />
-                    <p><MatTextField @bind-Value="@Option.NormalPrice">NormalPrice</MatTextField></p>
-                    <ValidationMessage For="@(() =>Option.NormalPrice)" />
-                    <p><MatTextField @bind-Value="@Option.SalePrice">SalePrice</MatTextField></p>
-                    <ValidationMessage For="@(() =>Option.SalePrice)" />
+﻿@page "/Create/Commodity/Option/{CommodityNo}"
 
-                    <p><MatTextField @bind-Value="@Option.SellerCodeofCommodity">SellerCode</MatTextField></p>
-                    <p><MatTextField @bind-Value="@Option.ModelNo">ModelNo</MatTextField></p>
-                    <p><MatTextField @bind-Value="@Option.CommotityBarcode">Barcode</MatTextField></p>
-                    <p><MatNumericUpDownField @bind-Value="@Option.Quantity">Quantity</MatNumericUpDownField></p>
-                    <p><MatFileUpload OnChange="FileUpload" Label="Drop files here or Browse">옵션 이미지</MatFileUpload></p>
-                    @if (Files.Count > 0)
-                    { 
-                        foreach (var File in Files)
-                        {
-                            <p>@File.Name</p>    
-                        } 
-                    }
-                </div>
-            </MatDialogContent>
-            <MatDialogActions>
-                <MatButton OnClick="DialogSwitch.InvokeAsync">No Thanks</MatButton>
-                <MatButton Type="submit" OnClick="Add.InvokeAsync" Raised="true">등록</MatButton>
-            </MatDialogActions>
-        </EditForm>
-    </MatDialog>
+<p>Create Option</p>
 
+<div class="row">
+    <center>
+        <div class="float-left font-weight-bold">
+            <MatH5>옵션Key</MatH5>
+            <MatTextField @bind-Value="InputKey"></MatTextField>
+        </div>
+
+        <div class="float-left">
+            &nbsp;&nbsp;&nbsp;
+        </div>
+
+        <div class="float-left font-weight-bold">
+            <MatH5>옵션 Values</MatH5>
+            <MatTextField @bind-Value="InputValues"></MatTextField>
+        </div>
+    </center>
+    <div class="float-left">
+        &nbsp;&nbsp;&nbsp;
+    </div>
+
+    <div class="float-left font-weight-bold">
+        <p> </p>
+        <br /> <br />
+        <MatButton Raised="true">SET</MatButton>
+        ------
+        <MatButton Raised="true">UPDATE</MatButton>
+    </div>
+</div>
+
+<br /><br /><br />
+<div class="row font-weight-bold">
+    <MatH5>&nbsp;&nbsp;옵션 이미지 설정</MatH5>
+</div>
+    <MatTable Items="ViewOptions">
+        <MatTableHeader>
+            <th>옵션 Key</th>
+            <th>옵션 Value</th>
+            <th>이미지 여부</th>
+        </MatTableHeader>
+        <MatTableRow>
+            <td>@context.Key</td>
+            <td>@context.Value</td>
+            <td>@if (context.Images != null) { IsImages = true; } else { IsImages = false; }@IsImages</td>
+            <td><MatButton Raised="true">IMAGE</MatButton></td>
+        </MatTableRow>
+    </MatTable>
+
+  
+        <MatH5>상세 페이지 이미지 설정</MatH5>
+        <MatFileUpload>ImagesofDetail Upload</MatFileUpload>
+ 
 @code {
 
 }

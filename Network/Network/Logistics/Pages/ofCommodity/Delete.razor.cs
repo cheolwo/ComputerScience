@@ -13,19 +13,19 @@ namespace Logistics.Pages.ofCommodity
         [Inject] ICommodityManager CommodityManager { get; set; }
         [Inject] ICommodityDetailManager CommodityDetailManager { get; set; }
         [Inject] IOptionManager CommodityOptionManager { get; set; }
-        [Inject] ICommodityFileManager CommodityFileManager { get; set; }
+        [Inject] ICommodityFileManager FileManager { get; set; }
         [Inject] IImageofOptionManager ImageofOptionManager { get; set; }
         [Inject] IImageofDetailManager ImageofDetailManager { get; set; }
         [Inject] ICommodityDocManager CommodityDocManager { get; set; }
+        [Inject] IDetailImageManager DetailImageManager { get; set; }
         [Inject] CommotityDataContext CommodityDataContext { get; set; }
 
-        [Parameter] public string CommodityNo { get; set; }
-        [Parameter] public List<Commodity> Commodities { get; set; }
+        [Parameter] public int CommodityNo { get; set; }
         [Parameter] public bool DeleteDialogIsOpen { get; set; }
+        public bool IsDetached { get; set; }
 
         [Parameter] public EventCallback DialogSwitch { get; set; }
 
-        public bool IsDetached { get; set; }
         public Commodity Commodity = new Commodity();
 
         /// Commodity, Option, Detail, Doc, OptionImage, DetailImage
@@ -34,7 +34,7 @@ namespace Logistics.Pages.ofCommodity
         protected override void OnInitialized()
         {
             DataLoad();
-            ImageLoad(Commodity.Options);
+            OptionImageLoad(Commodity.Options);
             DocLoad(Commodity.CommodityDetail);
 
             IsDetached = false;
@@ -43,13 +43,14 @@ namespace Logistics.Pages.ofCommodity
         // 데이터 로드
         public void DataLoad()
         {
-            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Commodity = CommodityManager.GetById(CommodityNo);
             Commodity.Options = CommodityOptionManager.GetToListByCommodity(Commodity);
             Commodity.CommodityDetail = CommodityDetailManager.GetByCommodity(Commodity);
+            Commodity.CommodityDetail.DetailImages = DetailImageManager.GetToListByCommmodityDetail(Commodity.CommodityDetail);
         }
 
-        // 이미지 로드
-        public void ImageLoad(List<Option> Options)
+        // 옵션이미지 로드
+        public void OptionImageLoad(List<Option> Options)
         {
             if (Commodity.Options.Count > 0)
             {
@@ -90,6 +91,9 @@ namespace Logistics.Pages.ofCommodity
                 }
                 else
                 {
+                    FileManager.DeleteCommodityImageByCommodity(Commodity);
+                    FileManager.DeleteOptionImageByCommodity(Commodity);
+                    FileManager.DeleteDetailImageByCommodity(Commodity);
                     CommodityDataContext.Remove(Commodity);
                     CommodityDataContext.SaveChanges();
                 }

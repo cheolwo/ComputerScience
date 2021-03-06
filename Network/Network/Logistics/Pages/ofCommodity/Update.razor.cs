@@ -20,7 +20,7 @@ namespace Logistics.Pages.ofCommodity
         [Inject] public IWebHostEnvironment Environment { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
         
-        [Parameter] public string CommodityNo { get; set; }
+        [Parameter] public int CommodityNo { get; set; }
         [Parameter] public bool UpdateDialogIsOpen {get; set;}
         [Parameter] public List<Commodity> Commodities {get; set;}
         [Parameter] public EventCallback DialogSwitch {get; set;}
@@ -33,22 +33,22 @@ namespace Logistics.Pages.ofCommodity
  
         protected override void OnInitialized()
         {
-            Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            Commodity = CommodityManager.GetById(CommodityNo);
             ReadFile(Commodity);
         }
 
-        public void UpdateCommodity()
+        public async void UpdateCommodity()
         {
-            
+            string path;
             try
             {
                 if(MatFile != null)
                 {
-                    string path = Path.Combine(Environment.ContentRootPath, "wwwroot\\Images", MatFile.Name);
-                    File.Delete(Commodity.ImageRoute);
+                    FileManager.DeleteCommodityImageByCommodity(Commodity);
+                    path = await FileManager.UploadCommodityImage(MatFile);
                     Commodity.ImageRoute = path;
                     Commodity.ImageTitle = MatFile.Name;
-                    FileManager.UploadCommodityImage(MatFile, path);
+                    await FileManager.UploadCommodityImage(MatFile);
                 }    
                Commodity = CommodityManager.Update(Commodity);
             }
@@ -58,9 +58,13 @@ namespace Logistics.Pages.ofCommodity
             }
             finally
             {
-                var UpdateCommodity = Commodities.FirstOrDefault(e => e.Equals(Commodity));
-                UpdateCommodity = Commodity;
                 UpdateDialogIsOpen = false;
+                Commodity.Category = null;
+                Commodity.ImageRoute = null;
+                Commodity.ImageTitle = null;
+                Commodity.Name = null;
+                Commodity.Url = null;
+                NavigationManager.NavigateTo("/Get/Commodity", true);
             }         
         }
 
@@ -77,7 +81,7 @@ namespace Logistics.Pages.ofCommodity
         public void ReadFile(Commodity commodity)
         {
             ImgName = commodity.ImageTitle;
-            Img = "/images/" + ImgName;
+            Img = "/images/Commodity/" + ImgName;
         }
     }
 }
