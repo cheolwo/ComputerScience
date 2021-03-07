@@ -1,6 +1,7 @@
 ﻿using Import.DataManager;
 using Import.Model;
 using Logistics.Service;
+using Logistics.ViewModel;
 using MatBlazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -26,13 +27,15 @@ namespace Logistics.Pages.ofOption
 
         [Parameter] public string CommodityNo { get; set; }
 
+        public Commodity commodity = new Commodity();
         public CommodityDetail CommodityDetail = new CommodityDetail();
         public DetailImage DetailImage = new DetailImage();
         public List<IMatFileUploadEntry> ImagesofDetailBuffer = new List<IMatFileUploadEntry>();
 
         public Option Option = new Option();
         public ImageofOption ImageofOption = new ImageofOption();
-        public List<Option> ViewOptions = new List<Option>();
+        public List<ViewModelofOption> ViewOptions = new List<ViewModelofOption>();
+        
         public Dictionary<string, List<IMatFileUploadEntry>> ImagesofOptionBuffer = new Dictionary<string, List<IMatFileUploadEntry>>();
 
         public string InputKey {get; set;}
@@ -47,7 +50,7 @@ namespace Logistics.Pages.ofOption
 
         protected override void OnInitialized()
         {
-            Commodity commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
+            commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
             Option.Commodity = commodity;
             CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
             DetailImage.CommodityDetail = CommodityDetail;
@@ -56,15 +59,16 @@ namespace Logistics.Pages.ofOption
 
         }
 
-        public void SetKeyAndValue(string InputKey, string InputValues)
+        public void SetKeyAndValue()
         {
            if(InputValues != null)
            {
-               char[] delimeterChars = { ',', '/', ' ' };
+               InputValues = string.Concat(InputValues.Where(c => !char.IsWhiteSpace(c)));
+               char[] delimeterChars = { ',', '/'};
                string[] Words = InputValues.Split(delimeterChars);
                foreach (var Word in Words)
                {
-                   Values.Add(Word.Trim());
+                   Values.Add(Word);
                }
                 AddBasedofValues(InputKey, Values);
            }                  
@@ -72,16 +76,19 @@ namespace Logistics.Pages.ofOption
 
         public void AddBasedofValues(string InputKey, List<string> Values)
         {
-            if(ViewOptions != null)
+            if(ViewOptions.Count > 0)
             {
                 ViewOptions.Clear();
             }
 
-            Option.Key = InputKey;
+            
             foreach(var Value in Values)
             {
-               Option.Value = Value;
-               ViewOptions.Add(Option);
+               ViewModelofOption viewModelofOption = new ViewModelofOption { ViewModelNo = ViewOptions.Count + 1, 
+                                                                            Key = InputKey, 
+                                                                            Value = Value,
+                                                                            Name = commodity.Name, IsImages = false };
+               ViewOptions.Add(viewModelofOption);
             }
         }
 

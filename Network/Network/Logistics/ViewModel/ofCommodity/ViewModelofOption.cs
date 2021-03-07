@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 
 namespace Logistics.ViewModel
 {
-    public class RequiredModel
+    public class ViewModelofOption
     {
-        [Required] public string Key {get; set;}
-        [Required] public string Value {get; set;}
-        
+        [Key] public int ViewModelNo { get; set; }
+        public string Key {get; set;}
+        public string Value {get; set;}
+        public string Name { get; set; }
+        public bool IsImages { get; set; }
     }
 }

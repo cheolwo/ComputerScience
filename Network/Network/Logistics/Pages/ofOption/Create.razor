@@ -25,7 +25,7 @@
     <div class="float-left font-weight-bold">
         <p> </p>
         <br /> <br />
-        <MatButton Raised="true">SET</MatButton>
+        <MatButton OnClick="SetKeyAndValue" Raised="true">SET</MatButton>
         ------
         <MatButton Raised="true">UPDATE</MatButton>
     </div>
@@ -35,24 +35,38 @@
 <div class="row font-weight-bold">
     <MatH5>&nbsp;&nbsp;옵션 이미지 설정</MatH5>
 </div>
-    <MatTable Items="ViewOptions">
+    <MatTable Items="@ViewOptions">
         <MatTableHeader>
-            <th>옵션 Key</th>
-            <th>옵션 Value</th>
-            <th>이미지 여부</th>
+            <th>Name</th>
+            <th>Key</th>
+            <th>Value</th>
+            <th>Is Image</th>
+            <th>Managed</th>
         </MatTableHeader>
         <MatTableRow>
+            <td>@commodity.Name</td>
             <td>@context.Key</td>
             <td>@context.Value</td>
-            <td>@if (context.Images != null) { IsImages = true; } else { IsImages = false; }@IsImages</td>
-            <td><MatButton Raised="true">IMAGE</MatButton></td>
+            <td>@context.IsImages</td>          
+            <td>
+            <MatButton OnClick="@(() => ImagesofOtpionDialogSwitch(context.Value))" Icon="" Raised="true">IMAGE</MatButton>
+            </td>
         </MatTableRow>
     </MatTable>
-
-  
-        <MatH5>상세 페이지 이미지 설정</MatH5>
-        <MatFileUpload>ImagesofDetail Upload</MatFileUpload>
  
-@code {
+    <MatH5>상세 페이지 이미지 설정</MatH5>
+    <MatFileUpload>ImagesofDetail Upload</MatFileUpload>
 
+@* Temp 파일도 있어야 되네.... *@
+
+@if(ImagesofOptionDialogIsOpen)
+{
+   <MatDialog IsOpen="ImagesofOptionDialogIsOpen">
+       <MatDialogTitle>
+           <center>
+               <p>옵션 이미지 추가</p>
+               <img />
+           </center>
+       </MatDialogTitle>
+   </MatDialog>
 }
