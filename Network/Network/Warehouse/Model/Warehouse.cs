@@ -42,10 +42,9 @@ namespace Warehouse.Model
        public int OutgoingQuantity {get; set;}
        public string TagfCommodity { get; set; }
 
-       public List<ImageofCommodity> ImagesofCommodity { get; set; }
-       public List<ImageofLoading> ImagesofLoading { get; set; }
+       public List<ImageofWCommodity> ImagesofWCommodity { get; set; }
        public List<ImageofIncoming> ImagesofIncoming { get; set; }
-       
+           
        public Warehouse Warehouse { get; set; }
        public List<DividedCommodity> DividedCommodities { get; set; }
        public List<OutgoingCommodity> OutgoingCommodities {get; set;}
@@ -136,7 +135,7 @@ namespace Warehouse.Model
        public List<DividedCommodity> DividedCommodities { get; set; }
    }
 
-   public class ImageofCommodity
+   public class ImageofWCommodity
    {
        [Key] public int ImageNo { get; set; }
        public string Route { get; set; }
@@ -184,8 +183,4 @@ namespace Warehouse.Model
     
        public OutgoingCommodity OutgoingCommodity {get; set;}
    }
-
-
-
-   
 }

@@ -7,7 +7,7 @@ namespace Warehouse.IDataManager
    void DeleteByWarehouse(Warehouse Warehouse);
    Warehouse GetById(int WarehouseNo);
    Warehouse Update(Warehouse Warehouse);
-   List<Warehouses> GetToList();
+   List<Warehouse> GetToList();
  }
   
  public interface IWCommodityDataManager
