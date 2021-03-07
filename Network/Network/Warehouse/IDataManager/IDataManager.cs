@@ -2,29 +2,29 @@ namespace Warehouse.IDataManager
 {
  public interface IWarehouseDataManager
  {
-   Warehouse Add(Warehouse warehouse);
-   void DeleteById(int warehouseNo);
-   void DeleteByWarehouse(Warehouse warehouse);
-   Warehouse GetById(int warehouseNo);
-   Warehouse Update(Warehouse warehouse);
+   Warehouse Add(Warehouse Warehouse);
+   void DeleteById(int WarehouseNo);
+   void DeleteByWarehouse(Warehouse Warehouse);
+   Warehouse GetById(int WarehouseNo);
+   Warehouse Update(Warehouse Warehouse);
    List<Warehouses> GetToList();
  }
   
  public interface IWCommodityDataManager
  {
-     WCommodity Add(WCommodity wcommodity);
-     void DeleteById(int wcommodityNo);
-     void DeleteByWCommodity(WCommodity wcommodity);
-     WCommodity GetById(int wcommodityNo);
-     WCommodity Update(WCommodity warehouse);
+     WCommodity Add(WCommodity WCommodity);
+     void DeleteById(int WCommodityNo);
+     void DeleteByWCommodity(WCommodity WCommodity);
+     WCommodity GetById(int WCommodityNo);
+     WCommodity Update(WCommodity WCommodity);
      List<WCommodity> GetToList();
  }
   
  public interface DividedCommodityDataManager
  {
-     DividedCommodity Add(DividedCommodity wcommodity);
+     DividedCommodity Add(DividedCommodity DividedCommodity);
      void DeleteById(int dividedCommodityNo);
-     void DeleteByWCommodity(DividedCommodity dividedCommodity);
+     void DeleteByDividedCommodity(DividedCommodity dividedCommodity);
      DividedCommodity GetById(int dividedCommodityNo);
      DividedCommodity Update(DividedCommodity dividedCommodity);
      List<DividedCommodity> GetToList();
