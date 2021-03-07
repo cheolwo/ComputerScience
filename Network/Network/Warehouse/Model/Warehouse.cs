@@ -23,7 +23,7 @@ namespace Warehouse.Model
    public class WCommodity
    {
        [Key] public int WCommodityNo { get; set; }
-       public string UserNo {get; set;} // 물건 주인
+       public string OwnUser {get; set;} // 물건 주인
        public string Name { get; set; }
        public float? Width {get; set;}
        public float? height {get; set;}
@@ -33,6 +33,10 @@ namespace Warehouse.Model
        public DateTime? IncomingTime { get; set; }
        public DateTime? InspectingTime { get; set; }
        public DateTime? LoadingTime { get; set; }
+
+       // 책임 사람
+       public string IncomingUser {get; set;}
+       public string InspectingUser {get; set;}
 
        public int IncomingQuantity { get; set; }
        public int OutgoingQuantity {get; set;}
@@ -68,10 +72,25 @@ namespace Warehouse.Model
        [Key] public int OutgoingCommodityNo {get; set;}
        public int OrderNo {get; set;}
        public int Quantity {get; set;}
-       StateofOutgoing StateofOutgoing {get; set;}
+       public StateofOutgoing StateofOutgoing {get; set;}
 
-       Pack Pack {get; set;}
-       WCommodity WCommodity {get; set;}
+       // 책임사람
+        public DateTime? WaitingTime {get; set;}
+        public DateTime? PickingTime {get; set;}
+        public DateTime? PackingTime {get; set;}
+        public DateTime? OutgoingTime {get; set;}
+        public DateTime? DeliveringTime {get; set;}
+
+       public string PickingUser {get; set;}
+       public string PackingUser {get; set;}
+       public string OutgoingUser {get; set;}
+       public string DeliveringUser {get; set;}
+
+       public Pack Pack {get; set;}
+       public List<ImageofPacking> ImagesofPacking {get; set;}
+       public List<ImageofOutgoing> ImagesofOutgoing {get; set;}
+       public List<ImageofDelivering> ImagesofDelivering {get; set;}
+       public WCommodity WCommodity {get; set;}
    }
 
    public class Pack
@@ -83,8 +102,6 @@ namespace Warehouse.Model
        public float? length {get set;}
 
        public List<ImageofPack> ImagesofPack {get; set;}
-
-
    }
 
    public class ImageofPack
@@ -93,11 +110,6 @@ namespace Warehouse.Model
        public string ImageTitie {get; set;}
        public string ImageRoute {get; set;}
    }
-
-
-
-   
-
     
    public enum StateofOutgoing { Waiting = 1, Picking = 2, Packing = 3, Outgoing = 4, Delivering = 5 }
 
