@@ -11,8 +11,8 @@ namespace Warehouse.Model
        public string Address { get; set; }
        public Country Country { get; set; }
 
-       pub lic List<WCommodity> WCommodities { get; set; }
-       public List<LoadFrmae> LoadFrmaes { get; set; }
+       public List<WCommodity> WCommodities { get; set; }
+       public List<LoadFrame> LoadFrmaes { get; set; }
    }
 
    public enum Country { Korea = 1, China = 2, Japan = 3, Russia = 4, America = 5 }
@@ -27,7 +27,7 @@ namespace Warehouse.Model
        public string Name { get; set; }
        public float? Width {get; set;}
        public float? height {get; set;}
-       public float? length {get set;}
+       public float? length { get; set; }
        
        public StateofIncoming StateofIncoming { get; set; }
        public DateTime? IncomingTime { get; set; }
@@ -98,7 +98,7 @@ namespace Warehouse.Model
        public string Material {get; set;}
        public float? Width {get; set;}
        public float? height {get; set;}
-       public float? length {get set;}
+       public float? length { get; set; }
 
        public List<ImageofPack> ImagesofPack {get; set;}
    }

@@ -1,3 +1,6 @@
+using MatBlazor;
+using System.Threading.Tasks;
+
 public interface IWarehouseFileManager
 {
     Task<string> UploadImageofWCommodity(IMatFileUploadEntry Image);

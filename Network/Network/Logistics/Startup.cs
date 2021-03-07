@@ -48,8 +48,6 @@ namespace Logistics
             services.AddTransient<ICommodityDocManager, CommodityDocManager>();
             services.AddTransient<IDetailImageManager, DetailImageManager>();
 
-            services.AddScoped<IFileManager, FileManager>();
-            services.AddScoped<IMatFileManager, MatFileManager>();
             services.AddScoped<ICommodityFileManager, CommodityFileManager>();
 
             services.AddMatBlazor();
