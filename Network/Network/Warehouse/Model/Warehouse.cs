@@ -106,7 +106,7 @@ namespace Warehouse.Model
 
    public class ImageofPack
    {
-       [Key] public int ImageofPaceNo {get; set;}
+       [Key] public int ImageofPackNo {get; set;}
        public string ImageTitie {get; set;}
        public string ImageRoute {get; set;}
    }
@@ -164,6 +164,28 @@ namespace Warehouse.Model
     
        public DividedCommodity DividedCommodity {get; set;}
    }
+
+   public class ImageofOutgoing
+   {
+       [Key] public int ImageNo { get; set; }
+       public string Route { get; set; }
+       public string Name { get; set; }
+       public DateTime DateTime { get; set; }
+    
+       public OutgoingCommodity OutgoingCommodity {get; set;}
+   }
+
+   public class ImageofDelivering
+   {
+       [Key] public int ImageNo { get; set; }
+       public string Route { get; set; }
+       public string Name { get; set; }
+       public DateTime DateTime { get; set; }
+    
+       public OutgoingCommodity OutgoingCommodity {get; set;}
+   }
+
+
 
    
 }
