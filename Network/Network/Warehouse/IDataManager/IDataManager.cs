@@ -1,6 +1,5 @@
 namespace Warehouse.IDataManager
 {
-  
  public interface IWarehouseDataManager
  {
    Warehouse Add(Warehouse warehouse);
@@ -140,5 +139,4 @@ namespace Warehouse.IDataManager
      ImageofDelivering Update(ImageofDelivering ImageofDelivering);
      List<ImageofDelivering> GetToList();
  }
-
 }
