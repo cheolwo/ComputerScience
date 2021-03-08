@@ -11,8 +11,18 @@ namespace Warehouse.Model
        public string Address { get; set; }
        public Country Country { get; set; }
 
+       public List<ImageofWarehouse> ImagesofWarehouse {get; set;}
        public List<WCommodity> WCommodities { get; set; }
        public List<LoadFrame> LoadFrmaes { get; set; }
+   }
+
+   public class ImageofWarehouse
+   {
+       [Key] public int Id {get; set;}
+       public string ImageTitle {get; set;}
+       public string ImageRoute {get; set;}
+
+       public Warehouse Warehouse {get; set;}
    }
 
    public enum Country { Korea = 1, China = 2, Japan = 3, Russia = 4, America = 5 }
@@ -131,7 +141,7 @@ namespace Warehouse.Model
    public class LoadFrame
    {
        [Key] public int Id { get; set; }
-       public string Code { get; set; }
+       public string Code { get; set; }     
        public List<DividedCommodity> DividedCommodities { get; set; }
    }
 
