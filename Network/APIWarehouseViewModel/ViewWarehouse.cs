@@ -91,8 +91,8 @@ namespace APIWarehouse.ViewModel
 
    public class LoadingCommodityViewModel
    {
-        public string LoadFrameCode {get; set;}    
-        public string DividedTagCodeName {get; set;}
+        public string LoadFrameCode {get; set;}    // Input
+        public string DividedTagCodeName {get; set;}    // Input
         public List<DividedCommodity> DividedCommodities { get; set; }
    }
 }
