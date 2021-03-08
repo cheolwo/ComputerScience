@@ -9,6 +9,7 @@ namespace Warehouse.Model
        [Key] public int Id { get; set; }
        public string UserId {get; set;}  // 배송 및 물류대행업체
        public string Address { get; set; }
+       public string Code {get; set;}
        public Country Country { get; set; }
 
        public List<ImageofWarehouse> ImagesofWarehouse {get; set;}
@@ -30,14 +31,38 @@ namespace Warehouse.Model
    // Load 기획 필요
    // 입고신청 기능 필요
 
+   public class Transaction
+   {
+       [key] public int Id {get; set;}
+       public string Buyer {get; set;} 
+       public string Seller {get; set;}
+       public string Incorterms {get; set;}
+
+       public bool WarehouseApprove {get; set;}
+       public bool SellerApprove {get; set;}  
+       public bool BuyerAppreve {get; set;}
+
+       public double Width {get; set;}
+       public double height {get; set;}
+       public double length { get; set; }
+
+       public double Weight {get; set;}     // 개당 무게
+       public double PriceperPiece {get; set;} // 개당 가격 
+
+       public string NameofCommodity {get; set;}
+       public string Barcode {get; set;}
+       public int Quantity {get; set;}
+       public DateTime DateTime {get; set;}
+       public Warehouse Warehouse {get; set;}   // 도착지
+   }
+
    public class WCommodity
    {
        [Key] public int Id { get; set; }
-       public string OwnUser {get; set;} // 물건 주인
-       public string Name { get; set; }
-       public float? Width {get; set;}
-       public float? height {get; set;}
-       public float? length { get; set; }
+       public string Name { get; set; }     // 상품 관리명
+       public double Width {get; set;}
+       public double height {get; set;}
+       public double length { get; set; }
        
        public StateofIncoming StateofIncoming { get; set; }
        public DateTime? IncomingTime { get; set; }
@@ -50,17 +75,18 @@ namespace Warehouse.Model
 
        public int IncomingQuantity { get; set; }
        public int OutgoingQuantity {get; set;}
-       public string TagfCommodity { get; set; }
+       public string IncomingTag { get; set; }
 
        public List<ImageofWCommodity> ImagesofWCommodity { get; set; }
        public List<ImageofIncoming> ImagesofIncoming { get; set; }
            
        public Warehouse Warehouse { get; set; }
+       public Transaction Transaction {get; set;}
        public List<DividedCommodity> DividedCommodities { get; set; }
        public List<OutgoingCommodity> OutgoingCommodities {get; set;}
    }
 
-   public enum StateofIncoming { Waiting = 1, Inspecting = 2, Returing = 3, Loading = 4 }
+   public enum StateofIncoming { Anticipating = 1, Inspecting = 2, Returing = 3, Loading = 4 }
 
    public class DividedCommodity           
    {
@@ -106,9 +132,9 @@ namespace Warehouse.Model
    {
        [Key] public string PackName {get; set;}
        public string Material {get; set;}
-       public float? Width {get; set;}
-       public float? height {get; set;}
-       public float? length { get; set; }
+       public double Width {get; set;}
+       public double height {get; set;}
+       public double length { get; set; }
 
        public List<ImageofPack> ImagesofPack {get; set;}
    }
@@ -126,6 +152,7 @@ namespace Warehouse.Model
    {
        [Key] public int Id { get; set; }
        public string CodeName { get; set; }
+       public bool Attached {get; set;}
 
        public List<DividedTag> DividedTags {get; set;}
    }
@@ -134,6 +161,7 @@ namespace Warehouse.Model
    {
        [Key] public int Id {get; set;}
        public string CodeName {get; set;}
+       public bool Attached {get; set;}
 
        public IncomingTag IncomingTag {get; set;}
    }
