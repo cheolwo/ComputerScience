@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnIdtations;
 
 namespace Warehouse.Model
 {
    public class Warehouse
    {
-       [Key] public int WarehouseNo { get; set; }
-       public string UserNo {get; set;}  // 배송 및 물류대행업체
+       [Key] public int Id { get; set; }
+       public string UserId {get; set;}  // 배송 및 물류대행업체
        public string Address { get; set; }
        public Country Country { get; set; }
 
@@ -22,7 +22,7 @@ namespace Warehouse.Model
 
    public class WCommodity
    {
-       [Key] public int WCommodityNo { get; set; }
+       [Key] public int Id { get; set; }
        public string OwnUser {get; set;} // 물건 주인
        public string Name { get; set; }
        public float? Width {get; set;}
@@ -54,7 +54,7 @@ namespace Warehouse.Model
 
    public class DividedCommodity           
    {
-       [Key] public int DivideCommodityNo { get; set; }
+       [Key] public int Id { get; set; }
        public string TagfDividing { get; set; }
        public int Quantity { get; set; }
 
@@ -64,12 +64,12 @@ namespace Warehouse.Model
    }
 
    // 주문이 들어오면 창고에서 출고할 수 있도록 데이터 구조를 만들어두어야돼.
-   // 판매상품을 들고하기 전에 WCommodityNo가 저장되도록 만들 필요가 있어.
+   // 판매상품을 들고하기 전에 WCommodityId가 저장되도록 만들 필요가 있어.
 
    public class OutgoingCommodity
    {
-       [Key] public int OutgoingCommodityNo {get; set;}
-       public int OrderNo {get; set;}
+       [Key] public int Id {get; set;}
+       public int OrderId {get; set;}
        public int Quantity {get; set;}
        public StateofOutgoing StateofOutgoing {get; set;}
 
@@ -105,7 +105,7 @@ namespace Warehouse.Model
 
    public class ImageofPack
    {
-       [Key] public int ImageofPackNo {get; set;}
+       [Key] public int Id {get; set;}
        public string ImageTitie {get; set;}
        public string ImageRoute {get; set;}
    }
@@ -114,7 +114,7 @@ namespace Warehouse.Model
 
    public class IncomingTag
    {
-       [Key] public int IncomingTagNo { get; set; }
+       [Key] public int Id { get; set; }
        public string CodeName { get; set; }
 
        public List<DividedTag> DividedTags {get; set;}
@@ -122,7 +122,7 @@ namespace Warehouse.Model
 
    public class DividedTag
    {
-       [Key] public int DividedTagNo {get; set;}
+       [Key] public int Id {get; set;}
        public string CodeName {get; set;}
 
        public IncomingTag IncomingTag {get; set;}
@@ -130,14 +130,14 @@ namespace Warehouse.Model
 
    public class LoadFrame
    {
-       [Key] public int LoadFrameNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Code { get; set; }
        public List<DividedCommodity> DividedCommodities { get; set; }
    }
 
    public class ImageofWCommodity
    {
-       [Key] public int ImageNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Route { get; set; }
        public string Name { get; set; }
 
@@ -146,7 +146,7 @@ namespace Warehouse.Model
 
    public class ImageofIncoming
    {
-       [Key] public int ImageNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Route { get; set; }
        public string Name { get; set; }
        public DateTime DateTime { get; set; }
@@ -156,7 +156,7 @@ namespace Warehouse.Model
 
    public class ImageofLoading
    {
-       [Key] public int ImageNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Route { get; set; }
        public string Name { get; set; }
        public DateTime DateTime { get; set; }
@@ -166,7 +166,7 @@ namespace Warehouse.Model
 
    public class ImageofOutgoing
    {
-       [Key] public int ImageNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Route { get; set; }
        public string Name { get; set; }
        public DateTime DateTime { get; set; }
@@ -176,7 +176,7 @@ namespace Warehouse.Model
 
    public class ImageofDelivering
    {
-       [Key] public int ImageNo { get; set; }
+       [Key] public int Id { get; set; }
        public string Route { get; set; }
        public string Name { get; set; }
        public DateTime DateTime { get; set; }

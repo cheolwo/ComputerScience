@@ -60,11 +60,10 @@ namespace Logistics
             services.AddTransient<IImageofIncomingManager, ImageofIncomingManager>();
             services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
             services.AddTransient<IImageofOutgoingManager, ImageofOutgoingManager>();
-            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();                  
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();    
+                  
             services.AddScoped<ICommodityFileManager, CommodityFileManager>();
             services.AddTransient<IWarehouseFileManager, WarehouseFileManager>();
-            
-
             services.AddMatBlazor();
             services.AddRazorPages();
             services.AddServerSideBlazor();
