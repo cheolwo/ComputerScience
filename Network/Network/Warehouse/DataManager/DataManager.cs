@@ -1,8 +1,8 @@
-public class WarehouseDataManager : IWarehouseDataManager
+public class WarehouseManager : IWarehouseManager
 {
    private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public WarehouseDataManager(WarehouseDataContext WarehouseDataContext)
+    public WarehouseManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -42,11 +42,11 @@ public class WarehouseDataManager : IWarehouseDataManager
    }
 }
 
-public class WCommodityDataManager : IWCommodityDataManager
+public class WCommodityManager : IWCommodityManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public WCommodityDataManager(WarehouseDataContext WarehouseDataContext)
+    public WCommodityManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -91,11 +91,11 @@ public class WCommodityDataManager : IWCommodityDataManager
 
 }
 
-public class DividedCommodityDataManager : IDividedCommodityDataManager
+public class DividedCommodityManager : IDividedCommodityManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public DividedCommodityDataManager(WarehouseDataContext WarehouseDataContext)
+    public DividedCommodityManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -139,11 +139,11 @@ public class DividedCommodityDataManager : IDividedCommodityDataManager
    }
 }
 
-public class OutgoingCommodityDataManager : IOutgoingCommodityDataManager
+public class OutgoingCommodityManager : IOutgoingCommodityManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public OutgoingCommodityDataManager(WarehouseDataContext WarehouseDataContext)
+    public OutgoingCommodityManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -187,11 +187,11 @@ public class OutgoingCommodityDataManager : IOutgoingCommodityDataManager
    }
 }
 
-public class PackDataManager : IPackDataManager
+public class PackManager : IPackManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public PackDataManager(WarehouseDataContext WarehouseDataContext)
+    public PackManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -235,11 +235,11 @@ public class PackDataManager : IPackDataManager
    }
 }
 
-public class ImageofPackDataManager : IImageofPackDataManager
+public class ImageofPackManager : IImageofPackManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public ImageofPackDataManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofPackManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -283,11 +283,11 @@ public class ImageofPackDataManager : IImageofPackDataManager
    }
 }
 
-public class IncomingTagDataManager : IIncomingTagDataManager
+public class IncomingTagManager : IIncomingTagManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public IncomingTagDataManager(WarehouseDataContext WarehouseDataContext)
+    public IncomingTagManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -331,11 +331,11 @@ public class IncomingTagDataManager : IIncomingTagDataManager
    }
 }
 
-public class DividedTagDataManager : IDividedTagDataManager
+public class DividedTagManager : IDividedTagManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public DividedTagDataManager(WarehouseDataContext WarehouseDataContext)
+    public DividedTagManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -379,11 +379,11 @@ public class DividedTagDataManager : IDividedTagDataManager
    }
 }
 
-public class LoadFrameDataManager : ILoadFrameDataManager
+public class LoadFrameManager : ILoadFrameManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public LoadFrameDataManager(WarehouseDataContext WarehouseDataContext)
+    public LoadFrameManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -427,11 +427,11 @@ public class LoadFrameDataManager : ILoadFrameDataManager
    }
 }
 
-public class ImageofCommodityDataManager : IImageofCommodityDataManager
+public class ImageofCommodityManager : IImageofCommodityManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public ImageofCommodityDataManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofCommodityManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -474,11 +474,11 @@ public class ImageofCommodityDataManager : IImageofCommodityDataManager
        return _WarehouseDataContext.IncomingTags.ToList();
    }
 }
-public class ImageofIncomingDataManager : IImageofIncomingDataManager
+public class ImageofIncomingManager : IImageofIncomingManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public ImageofIncomingDataManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofIncomingManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -522,11 +522,11 @@ public class ImageofIncomingDataManager : IImageofIncomingDataManager
    }
 }
 
-public class ImageofLoadingDataManager : IImageofLoadingDataManager
+public class ImageofLoadingManager : IImageofLoadingManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public ImageofLoadingDataManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofLoadingManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -570,11 +570,11 @@ public class ImageofLoadingDataManager : IImageofLoadingDataManager
    }
 }
 
-public class ImageofOutgoingDataManager : IImageofOutgoingDataManager
+public class ImageofOutgoingManager : IImageofOutgoingManager
 {
     private readonly WarehouseDataContext _WarehouseDataContext;
 
-    public ImageofOutgoingDataManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofOutgoingManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }
@@ -618,12 +618,12 @@ public class ImageofOutgoingDataManager : IImageofOutgoingDataManager
    }
 }
 
-public class ImageofDeliveringDataManager : IImageofDeliveringDataManager
+public class ImageofDeliveringManager : IImageofDeliveringManager
 {
 
    private readonly WarehouseDataContext _WarehouseDataContext;
 
-   public ImageofDeliveringDataManager(WarehouseDataContext WarehouseDataContext)
+   public ImageofDeliveringManager(WarehouseDataContext WarehouseDataContext)
     {
         _WarehouseDataContext = WarehouseDataContext;
     }

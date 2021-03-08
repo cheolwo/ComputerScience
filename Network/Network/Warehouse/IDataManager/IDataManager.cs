@@ -1,6 +1,6 @@
 namespace Warehouse.IDataManager
 {
- public interface IWarehouseDataManager
+ public interface IWarehouseManager
  {
    Warehouse Add(Warehouse Warehouse);
    void DeleteById(int WarehouseNo);
@@ -10,7 +10,7 @@ namespace Warehouse.IDataManager
    List<Warehouse> GetToList();
  }
   
- public interface IWCommodityDataManager
+ public interface IWCommodityManager
  {
      WCommodity Add(WCommodity WCommodity);
      void DeleteById(int WCommodityNo);
@@ -20,7 +20,7 @@ namespace Warehouse.IDataManager
      List<WCommodity> GetToList();
  }
   
- public interface DividedCommodityDataManager
+ public interface DividedCommodityManager
  {
      DividedCommodity Add(DividedCommodity DividedCommodity);
      void DeleteById(int dividedCommodityNo);
@@ -30,7 +30,7 @@ namespace Warehouse.IDataManager
      List<DividedCommodity> GetToList();
  }
   
- public interface ILoadFrameDataManager
+ public interface ILoadFrameManager
  {
      LoadFrame Add(LoadFrame LoadFrame);
      void DeleteById(int LoadFrameNo);
@@ -40,7 +40,7 @@ namespace Warehouse.IDataManager
      List<LoadFrame> GetToList();
  }
   
- public interface IImageofCommodityDataManager
+ public interface IImageofCommodityManager
  {
      ImageofCommodity Add(ImageofCommodity ImageofCommodity);
      void DeleteById(int ImageofCommodityNo);
@@ -50,7 +50,7 @@ namespace Warehouse.IDataManager
      List<ImageofCommodity> GetToList();
  }
 
- public interface IImageofIncomingDataManager
+ public interface IImageofIncomingManager
  {
      ImageofIncoming Add(ImageofIncoming ImageofIncoming);
      void DeleteById(int ImageofIncomingNo);
@@ -60,7 +60,7 @@ namespace Warehouse.IDataManager
      List<ImageofIncoming> GetToList();
  }
   
- public interface IImageofLoadingDataManager
+ public interface IImageofLoadingManager
  {
      ImageofLoading Add(ImageofLoading ImageofLoading);
      void DeleteById(int ImageofLoadingNo);
@@ -70,7 +70,7 @@ namespace Warehouse.IDataManager
      List<ImageofLoading> GetToList();
  }
 
- public interface IOutgoingCommodityDataManager
+ public interface IOutgoingCommodityManager
  {
      OutgoingCommodity Add(OutgoingCommodity OutgoingCommodity);
      void DeleteById(int OutgoingCommodityNo);
@@ -80,7 +80,7 @@ namespace Warehouse.IDataManager
      List<OutgoingCommodity> GetToList();
  }
 
- public interface IPackDataManager
+ public interface IPackManager
  {
      Pack Add(Pack Pack);
      void DeleteById(int PackNo);
@@ -90,7 +90,7 @@ namespace Warehouse.IDataManager
      List<Pack> GetToList();
  }
 
- public interface IImageofPackDataManager
+ public interface IImageofPackManager
  {
      ImageofPack Add(ImageofPack ImageofPack);
      void DeleteById(int ImageofPackNo);
@@ -100,7 +100,7 @@ namespace Warehouse.IDataManager
      List<ImageofPack> GetToList();
  }
 
- public interface IDividedTagDataManager
+ public interface IDividedTagManager
  {
      DividedTag Add(DividedTag DividedTag);
      void DeleteById(int DividedTagNo);
@@ -110,7 +110,7 @@ namespace Warehouse.IDataManager
      List<DividedTag> GetToList();
  }
 
- public interface IIncomingTagDataManager
+ public interface IIncomingTagManager
  {
      IncomingTag Add(IncomingTag IncomingTag);
      void DeleteById(int IncomingTagNo);
@@ -120,7 +120,7 @@ namespace Warehouse.IDataManager
      List<IncomingTag> GetToList();
  }
 
- public interface IImageofOutgoingDataManager
+ public interface IImageofOutgoingManager
  {
      ImageofOutgoing Add(ImageofOutgoing ImageofOutgoing);
      void DeleteById(int ImageofOutgoingNo);
@@ -130,7 +130,7 @@ namespace Warehouse.IDataManager
      List<ImageofOutgoing> GetToList();
  }
 
- public interface IImageofDeliveringDataManager
+ public interface IImageofDeliveringManager
  {
      ImageofDelivering Add(ImageofDelivering ImageofDelivering);
      void DeleteById(int ImageofDeliveringNo);

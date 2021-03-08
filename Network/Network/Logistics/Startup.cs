@@ -47,8 +47,23 @@ namespace Logistics
             services.AddTransient<IImageofOptionManager, ImageofOptionManager>();
             services.AddTransient<ICommodityDocManager, CommodityDocManager>();
             services.AddTransient<IDetailImageManager, DetailImageManager>();
-
+            services.AddTransient<IWarehouseManager, WarehouseManager>();
+            services.AddTransient<IWCommodityManager, WCommodityManager>();
+            services.AddTransient<IDividedCommodityManager, DividedCommodityManager>();
+            services.AddTransient<IOutgoingCommodityManager, OutgoingCommodityManager>();
+            services.AddTransient<IPackManager, PackManager>();
+            services.AddTransient<IImageofPackManager, ImageofPackManager>();
+            services.AddTransient<IIncomingTagManager, IncomingTagManager>();
+            services.AddTransient<IDividedTagManager, DividedTagManager>();
+            services.AddTransient<ILoadFrameManager, LoadFrameManager>();
+            services.AddTransient<IImageofWCommodityManager, ImageofWCommodityManager>();
+            services.AddTransient<IImageofIncomingManager, ImageofIncomingManager>();
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
+            services.AddTransient<IImageofOutgoingManager, ImageofOutgoingManager>();
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();                  
             services.AddScoped<ICommodityFileManager, CommodityFileManager>();
+            services.AddTransient<IWarehouseFileManager, WarehouseFileManager>();
+            
 
             services.AddMatBlazor();
             services.AddRazorPages();
