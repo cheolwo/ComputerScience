@@ -2,12 +2,12 @@
 
 namespace Warehouse.Model
 {
-    public class ImageofWarehouse
+    public class ImageofBase
    {
        [Key] public int Id {get; set;}
        public string ImageTitle {get; set;}
        public string ImageRoute {get; set;}
 
-       public Warehouse Warehouse {get; set;}
+       public Base Base {get; set;}
    }
 }

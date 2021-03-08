@@ -9,7 +9,7 @@ namespace Warehouse
          : base(option)
         { }
 
-        public DbSet<WarehouseCenter> Warehouses { get; set; }
+        public DbSet<Base> LogisticsCenters { get; set; }
         public DbSet<WCommodity> WCommodities { get; set; }
         public DbSet<DividedCommodity> DividedCommodities { get; set; }
         public DbSet<OutgoingCommodity> OutgoingCommodities { get; set; }

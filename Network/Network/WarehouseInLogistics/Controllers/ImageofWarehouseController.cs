@@ -1,38 +1,38 @@
 [Route("api/[controller]")]
 [ApiController]
-public class ImageofWarehouseController : ControllerBase
+public class ImageofBaseController : ControllerBase
 {
     private readonly WarehouseDataContext _context;
 
-    public ImageofWarehouseController(WarehouseDataContext context)
+    public ImageofBaseController(WarehouseDataContext context)
     {
         _context = context;
     }
 
-// GET: api/ImagesofWarehouse/5
+// GET: api/ImageofBases/5
 [HttpGet("{id}")]
-public async Task<ActionResult<ImageofWarehouse>> GetImageofWarehouse(int id)
+public async Task<ActionResult<ImageofBase>> GetImageofBase(int id)
 {
-    var ImageofWarehouse = await _context.ImagesofWarehouse.FindAsync(id);
+    var ImageofBase = await _context.ImageofBases.FindAsync(id);
 
-    if (ImageofWarehouse == null)
+    if (ImageofBase == null)
     {
         return NotFound();
     }
 
-    return ImageofWarehouse;
+    return ImageofBase;
 }
 
-// PUT: api/ImagesofWarehouse/5
+// PUT: api/ImageofBases/5
 [HttpPut("{id}")]
-public async Task<IActionResult> PutImageofWarehouse(int id, ImageofWarehouse ImageofWarehouse)
+public async Task<IActionResult> PutImageofBase(int id, ImageofBase ImageofBase)
 {
-    if (id != ImageofWarehouse.Id)
+    if (id != ImageofBase.Id)
     {
         return BadRequest();
     }
 
-    _context.Entry(ImageofWarehouse).State = EntityState.Modified;
+    _context.Entry(ImageofBase).State = EntityState.Modified;
 
     try
     {
@@ -40,7 +40,7 @@ public async Task<IActionResult> PutImageofWarehouse(int id, ImageofWarehouse Im
     }
     catch (DbUpdateConcurrencyException)
     {
-        if (!ImageofWarehouseExists(id))
+        if (!ImageofBaseExists(id))
         {
             return NotFound();
         }
@@ -53,28 +53,28 @@ public async Task<IActionResult> PutImageofWarehouse(int id, ImageofWarehouse Im
     return NoContent();
 }
 
-// POST: api/ImagesofWarehouse
+// POST: api/ImageofBases
 [HttpPost]
-public async Task<ActionResult<ImageofWarehouse>> PostImageofWarehouse(ImageofWarehouse ImageofWarehouse)
+public async Task<ActionResult<ImageofBase>> PostImageofBase(ImageofBase ImageofBase)
 {
-    _context.ImagesofWarehouse.Add(ImageofWarehouse);
+    _context.ImageofBases.Add(ImageofBase);
     await _context.SaveChangesAsync();
 
-    //return CreatedAtAction("GetImageofWarehouse", new { id = ImageofWarehouse.Id }, ImageofWarehouse);
-    return CreatedAtAction(nameof(GetImageofWarehouse), new { id = ImageofWarehouse.Id }, ImageofWarehouse);
+    //return CreatedAtAction("GetImageofBase", new { id = ImageofBase.Id }, ImageofBase);
+    return CreatedAtAction(nameof(GetImageofBase), new { id = ImageofBase.Id }, ImageofBase);
 }
 
-// DELETE: api/ImagesofWarehouse/5
+// DELETE: api/ImageofBases/5
 [HttpDelete("{id}")]
-public async Task<IActionResult> DeleteImageofWarehouse(int id)
+public async Task<IActionResult> DeleteImageofBase(int id)
 {
-    var ImageofWarehouse = await _context.ImagesofWarehouse.FindAsync(id);
-    if (ImageofWarehouse == null)
+    var ImageofBase = await _context.ImageofBases.FindAsync(id);
+    if (ImageofBase == null)
     {
         return NotFound();
     }
 
-    _context.ImagesofWarehouse.Remove(ImageofWarehouse);
+    _context.ImageofBases.Remove(ImageofBase);
     await _context.SaveChangesAsync();
 
     return NoContent();

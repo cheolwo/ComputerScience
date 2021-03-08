@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse.Model
 {
-    public class WarehouseCenter
+    public class Base
    {
        [Key] public int Id { get; set; }
        public string UserId {get; set;}  // 배송 및 물류대행업체
@@ -11,7 +11,7 @@ namespace Warehouse.Model
        public string Code {get; set;}
        public Country Country { get; set; }
 
-       public List<ImageofWarehouse> ImagesofWarehouse {get; set;}
+       public List<ImageofBase> ImagesofBase {get; set;}
        public List<WCommodity> WCommodities { get; set; }
        public List<LoadFrame> LoadFrmaes { get; set; }
    }
