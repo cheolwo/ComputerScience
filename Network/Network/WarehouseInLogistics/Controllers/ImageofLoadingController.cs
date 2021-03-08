@@ -1,82 +1,92 @@
-[Route("api/[controller]")]
-[ApiController]
-public class ImageofLoadingController : ControllerBase
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+using Warehouse;
+using Warehouse.Model;
+
+namespace WarehouseInLogistics.Controllers
 {
-    private readonly WarehouseDataContext _context;
-
-    public ImageofLoadingController(WarehouseDataContext context)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ImageofLoadingController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly WarehouseDataContext _context;
 
-// GET: api/ImagesofLoading/5
-[HttpGet("{id}")]
-public async Task<ActionResult<ImageofLoading>> GetImageofLoading(int id)
-{
-    var ImageofLoading = await _context.ImagesofLoading.FindAsync(id);
-
-    if (ImageofLoading == null)
-    {
-        return NotFound();
-    }
-
-    return ImageofLoading;
-}
-
-// PUT: api/ImagesofLoading/5
-[HttpPut("{id}")]
-public async Task<IActionResult> PutImageofLoading(int id, ImageofLoading ImageofLoading)
-{
-    if (id != ImageofLoading.Id)
-    {
-        return BadRequest();
-    }
-
-    _context.Entry(ImageofLoading).State = EntityState.Modified;
-
-    try
-    {
-        await _context.SaveChangesAsync();
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!ImageofLoadingExists(id))
+        public ImageofLoadingController(WarehouseDataContext context)
         {
-            return NotFound();
+            _context = context;
         }
-        else
+
+        // GET: api/ImagesofLoading/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ImageofLoading>> GetImageofLoading(int id)
         {
-            throw;
+            var ImageofLoading = await _context.ImagesofLoading.FindAsync(id);
+
+            if (ImageofLoading == null)
+            {
+                return NotFound();
+            }
+
+            return ImageofLoading;
+        }
+
+        // PUT: api/ImagesofLoading/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutImageofLoading(int id, ImageofLoading ImageofLoading)
+        {
+            if (id != ImageofLoading.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(ImageofLoading).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ImageofLoadingExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/ImagesofLoading
+        [HttpPost]
+        public async Task<ActionResult<ImageofLoading>> PostImageofLoading(ImageofLoading ImageofLoading)
+        {
+            _context.ImagesofLoading.Add(ImageofLoading);
+            await _context.SaveChangesAsync();
+
+            //return CreatedAtAction("GetImageofLoading", new { id = ImageofLoading.Id }, ImageofLoading);
+            return CreatedAtAction(nameof(GetImageofLoading), new { id = ImageofLoading.Id }, ImageofLoading);
+        }
+
+        // DELETE: api/ImagesofLoading/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteImageofLoading(int id)
+        {
+            var ImageofLoading = await _context.ImagesofLoading.FindAsync(id);
+            if (ImageofLoading == null)
+            {
+                return NotFound();
+            }
+
+            _context.ImagesofLoading.Remove(ImageofLoading);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
-
-    return NoContent();
-}
-
-// POST: api/ImagesofLoading
-[HttpPost]
-public async Task<ActionResult<ImageofLoading>> PostImageofLoading(ImageofLoading ImageofLoading)
-{
-    _context.ImagesofLoading.Add(ImageofLoading);
-    await _context.SaveChangesAsync();
-
-    //return CreatedAtAction("GetImageofLoading", new { id = ImageofLoading.Id }, ImageofLoading);
-    return CreatedAtAction(nameof(GetImageofLoading), new { id = ImageofLoading.Id }, ImageofLoading);
-}
-
-// DELETE: api/ImagesofLoading/5
-[HttpDelete("{id}")]
-public async Task<IActionResult> DeleteImageofLoading(int id)
-{
-    var ImageofLoading = await _context.ImagesofLoading.FindAsync(id);
-    if (ImageofLoading == null)
-    {
-        return NotFound();
-    }
-
-    _context.ImagesofLoading.Remove(ImageofLoading);
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
 }

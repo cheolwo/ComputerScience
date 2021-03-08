@@ -1,82 +1,92 @@
-[Route("api/[controller]")]
-[ApiController]
-public class PackController : ControllerBase
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+using Warehouse;
+using Warehouse.Model;
+
+namespace WarehouseInLogistics.Controllers
 {
-    private readonly WarehouseDataContext _context;
-
-    public PackController(WarehouseDataContext context)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PackController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly WarehouseDataContext _context;
 
-// GET: api/Packs/5
-[HttpGet("{id}")]
-public async Task<ActionResult<Pack>> GetPack(int id)
-{
-    var Pack = await _context.Packs.FindAsync(id);
-
-    if (Pack == null)
-    {
-        return NotFound();
-    }
-
-    return Pack;
-}
-
-// PUT: api/Packs/5
-[HttpPut("{id}")]
-public async Task<IActionResult> PutPack(int id, Pack Pack)
-{
-    if (id != Pack.Id)
-    {
-        return BadRequest();
-    }
-
-    _context.Entry(Pack).State = EntityState.Modified;
-
-    try
-    {
-        await _context.SaveChangesAsync();
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!PackExists(id))
+        public PackController(WarehouseDataContext context)
         {
-            return NotFound();
+            _context = context;
         }
-        else
+
+        // GET: api/Packs/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Pack>> GetPack(int id)
         {
-            throw;
+            var Pack = await _context.Packs.FindAsync(id);
+
+            if (Pack == null)
+            {
+                return NotFound();
+            }
+
+            return Pack;
+        }
+
+        // PUT: api/Packs/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPack(int id, Pack Pack)
+        {
+            if (id != Pack.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(Pack).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PackExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Packs
+        [HttpPost]
+        public async Task<ActionResult<Pack>> PostPack(Pack Pack)
+        {
+            _context.Packs.Add(Pack);
+            await _context.SaveChangesAsync();
+
+            //return CreatedAtAction("GetPack", new { id = Pack.Id }, Pack);
+            return CreatedAtAction(nameof(GetPack), new { id = Pack.Id }, Pack);
+        }
+
+        // DELETE: api/Packs/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePack(int id)
+        {
+            var Pack = await _context.Packs.FindAsync(id);
+            if (Pack == null)
+            {
+                return NotFound();
+            }
+
+            _context.Packs.Remove(Pack);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
-
-    return NoContent();
-}
-
-// POST: api/Packs
-[HttpPost]
-public async Task<ActionResult<Pack>> PostPack(Pack Pack)
-{
-    _context.Packs.Add(Pack);
-    await _context.SaveChangesAsync();
-
-    //return CreatedAtAction("GetPack", new { id = Pack.Id }, Pack);
-    return CreatedAtAction(nameof(GetPack), new { id = Pack.Id }, Pack);
-}
-
-// DELETE: api/Packs/5
-[HttpDelete("{id}")]
-public async Task<IActionResult> DeletePack(int id)
-{
-    var Pack = await _context.Packs.FindAsync(id);
-    if (Pack == null)
-    {
-        return NotFound();
-    }
-
-    _context.Packs.Remove(Pack);
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
 }

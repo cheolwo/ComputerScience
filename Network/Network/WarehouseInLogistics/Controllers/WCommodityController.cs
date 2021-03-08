@@ -1,82 +1,92 @@
-[Route("api/[controller]")]
-[ApiController]
-public class WCommodityController : ControllerBase
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+using Warehouse;
+using Warehouse.Model;
+
+namespace WarehouseInLogistics.Controllers
 {
-    private readonly WarehouseDataContext _context;
-
-    public WCommodityController(WCommodityDataContext context)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class WCommodityController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly WarehouseDataContext _context;
 
-// GET: api/WCommodities/5
-[HttpGet("{id}")]
-public async Task<ActionResult<WCommodity>> GetWCommodity(int id)
-{
-    var WCommodity = await _context.WCommodities.FindAsync(id);
-
-    if (WCommodity == null)
-    {
-        return NotFound();
-    }
-
-    return WCommodity;
-}
-
-// PUT: api/WCommodities/5
-[HttpPut("{id}")]
-public async Task<IActionResult> PutWCommodity(int id, WCommodity WCommodity)
-{
-    if (id != WCommodity.Id)
-    {
-        return BadRequest();
-    }
-
-    _context.Entry(WCommodity).State = EntityState.Modified;
-
-    try
-    {
-        await _context.SaveChangesAsync();
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!WCommodityExists(id))
+        public WCommodityController(WarehouseDataContext context)
         {
-            return NotFound();
+            _context = context;
         }
-        else
+
+        // GET: api/WCommodities/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WCommodity>> GetWCommodity(int id)
         {
-            throw;
+            var WCommodity = await _context.WCommodities.FindAsync(id);
+
+            if (WCommodity == null)
+            {
+                return NotFound();
+            }
+
+            return WCommodity;
+        }
+
+        // PUT: api/WCommodities/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutWCommodity(int id, WCommodity WCommodity)
+        {
+            if (id != WCommodity.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(WCommodity).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!WCommodityExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/WCommodities
+        [HttpPost]
+        public async Task<ActionResult<WCommodity>> PostWCommodity(WCommodity WCommodity)
+        {
+            _context.WCommodities.Add(WCommodity);
+            await _context.SaveChangesAsync();
+
+            //return CreatedAtAction("GetWCommodity", new { id = WCommodity.Id }, WCommodity);
+            return CreatedAtAction(nameof(GetWCommodity), new { id = WCommodity.Id }, WCommodity);
+        }
+
+        // DELETE: api/WCommodities/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteWCommodity(int id)
+        {
+            var WCommodity = await _context.WCommodities.FindAsync(id);
+            if (WCommodity == null)
+            {
+                return NotFound();
+            }
+
+            _context.WCommodities.Remove(WCommodity);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
-
-    return NoContent();
-}
-
-// POST: api/WCommodities
-[HttpPost]
-public async Task<ActionResult<WCommodity>> PostWCommodity(WCommodity WCommodity)
-{
-    _context.WCommodities.Add(WCommodity);
-    await _context.SaveChangesAsync();
-
-    //return CreatedAtAction("GetWCommodity", new { id = WCommodity.Id }, WCommodity);
-    return CreatedAtAction(nameof(GetWCommodity), new { id = WCommodity.Id }, WCommodity);
-}
-
-// DELETE: api/WCommodities/5
-[HttpDelete("{id}")]
-public async Task<IActionResult> DeleteWCommodity(int id)
-{
-    var WCommodity = await _context.WCommodities.FindAsync(id);
-    if (WCommodity == null)
-    {
-        return NotFound();
-    }
-
-    _context.WCommodities.Remove(WCommodity);
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
 }
