@@ -1,7 +1,7 @@
 ﻿using Market.Model;
 using System.Collections.Generic;
 
-namespace Market.IDataManager
+namespace Market.IDataManager.ofSCommodity
 {
     public interface ICommodityDocManager
     {

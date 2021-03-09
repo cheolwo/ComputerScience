@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Market.IDataManager
+namespace Market.IDataManager.ofSCommodity
 {
     public interface IImageofDetailManager
     {

@@ -3,7 +3,7 @@ using Market.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Market.DataManager
+namespace Market.DataManager.ofSCommodity
 {
     public class CommodityDocManager : ICommodityDocManager
     {
