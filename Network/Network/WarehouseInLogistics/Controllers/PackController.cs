@@ -62,6 +62,11 @@ namespace WarehouseInLogistics.Controllers
             return NoContent();
         }
 
+        private bool PackExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // POST: api/Packs
         [HttpPost]
         public async Task<ActionResult<Pack>> PostPack(Pack Pack)

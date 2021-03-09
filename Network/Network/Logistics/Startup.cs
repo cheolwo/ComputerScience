@@ -40,6 +40,12 @@ namespace Logistics
                    Configuration.GetConnectionString("CommodityConnection")));
 
             services.AddSingleton<HttpClient>();
+            services.AddHttpClient();
+            // services.AddHttpClient("Coupang", c =>
+            // {
+            //     c.BaseAddress = new Uri("https://api-gateway.coupang.com/");
+            // });
+
             services.AddTransient<ICommodityManager, CommodityManager>();
             services.AddTransient<ICommodityDetailManager, CommodityDetailManager>();
             services.AddTransient<IOptionManager, OptionManager>();
@@ -47,6 +53,7 @@ namespace Logistics
             services.AddTransient<IImageofOptionManager, ImageofOptionManager>();
             services.AddTransient<ICommodityDocManager, CommodityDocManager>();
             services.AddTransient<IDetailImageManager, DetailImageManager>();
+            
             services.AddTransient<IWarehouseManager, WarehouseManager>();
             services.AddTransient<IWCommodityManager, WCommodityManager>();
             services.AddTransient<IDividedCommodityManager, DividedCommodityManager>();
@@ -60,10 +67,12 @@ namespace Logistics
             services.AddTransient<IImageofIncomingManager, ImageofIncomingManager>();
             services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
             services.AddTransient<IImageofOutgoingManager, ImageofOutgoingManager>();
-            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();    
-                  
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
+                          
             services.AddScoped<ICommodityFileManager, CommodityFileManager>();
             services.AddTransient<IWarehouseFileManager, WarehouseFileManager>();
+            services.AddTransient<ICoupangManager, CoupangManager>();
+
             services.AddMatBlazor();
             services.AddRazorPages();
             services.AddServerSideBlazor();

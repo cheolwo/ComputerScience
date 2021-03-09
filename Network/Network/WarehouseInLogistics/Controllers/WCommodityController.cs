@@ -62,6 +62,11 @@ namespace WarehouseInLogistics.Controllers
             return NoContent();
         }
 
+        private bool WCommodityExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // POST: api/WCommodities
         [HttpPost]
         public async Task<ActionResult<WCommodity>> PostWCommodity(WCommodity WCommodity)

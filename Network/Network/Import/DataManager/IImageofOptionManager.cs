@@ -11,7 +11,7 @@ namespace Import.DataManager
         ImageofOption GetById(int imageNo);
         ImageofOption Update(ImageofOption image);
         List<ImageofOption> GetToListByOption(Option option);
-        void DeleteById(int imageNo);
+        void DeleteById(int imageNo); 
         void DeleteByEntity(ImageofOption imageofOption);
         
         Task<ImageofOption> AddAsync(ImageofOption image);

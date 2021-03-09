@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Manager\ofSettlement\" />
+    <Folder Include="Manager\ofCs\" />
+    <Folder Include="Manager\ofChange\" />
+    <Folder Include="Manager\ofReturn\" />
+    <Folder Include="Manager\ofCategory\" />
+    <Folder Include="Manager\ofDeliveryAndRefund\" />
+    <Folder Include="Manager\ofLogisticsCenter\" />
+    <Folder Include="Manager\ofCommodity\" />
+  </ItemGroup>
+
+</Project>

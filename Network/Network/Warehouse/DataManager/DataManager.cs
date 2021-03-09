@@ -1,4 +1,10 @@
-public class WarehouseManager : IWarehouseManager
+using System.Collections.Generic;
+using System.Linq;
+using Warehouse;
+using Warehouse.IDataManager;
+using Warehouse.Model;
+
+public class WarehouseManager : IBaseManager
 {
    private readonly WarehouseDataContext _WarehouseDataContext;
 
@@ -7,38 +13,38 @@ public class WarehouseManager : IWarehouseManager
         _WarehouseDataContext = WarehouseDataContext;
     }
 
-   public Warehouse Add(Warehouse Warehouse)
+   public Base Add(Base Base)
    {
-       _WarehouseDataContext.Warehouses.Add(Warehouse);
+       _WarehouseDataContext.Bases.Add(Base);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.Warehouses.OrderByDescending(e=>e.WarehouseNo).FirstOrDefault();
+       return _WarehouseDataContext.Bases.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int WarehouseNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.Warehouses.Remove(GetById(WarehouseNo));
+       _WarehouseDataContext.Bases.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
-   public void DeleteByWarehouse(Warehouse Warehouse)
+   public void DeleteByWarehouse(Base Base)
    {
-        _WarehouseDataContext.Remove(Warehouse);
+        _WarehouseDataContext.Remove(Base);
         _WarehouseDataContext.SaveChanges();
    }
-   public Warehouse GetById(int WarehouseNo)
+   public Base GetById(int Id)
    {
-       return _WarehouseDataContext.Warehouses.Find(WarehouseNo);
+       return _WarehouseDataContext.Bases.Find(Id);
    }
-   public Warehouse Update(Warehouse Warehouse)
+   public Base Update(Base Base)
    {
-       _WarehouseDataContext.Warehouses.Update(Warehouse);
+       _WarehouseDataContext.Bases.Update(Base);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(Warehouse.WarehouseNo);
+       return GetById(Base.Id);
    }
-   public List<Warehouse> GetToList()
+   public List<Base> GetToList()
    {
-      return _WarehouseDataContext.Warehouses.ToList();
+      return _WarehouseDataContext.Bases.ToList();
    }
 }
 
@@ -53,15 +59,15 @@ public class WCommodityManager : IWCommodityManager
 
    public WCommodity Add(WCommodity WCommodity)
    {
-       WarehouseDataContext.WCommodities.Add(WCommodit);
+       _WarehouseDataContext.WCommodities.Add(WCommodity));
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.WCommodities.OrderByDescending(e=>e.WCommodityNo).FirstOrDefault();
+       return _WarehouseDataContext.WCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int WCommodityNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.WCommodities.Remove(GetById(WCommodityNo));
+       _WarehouseDataContext.WCommodities.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -71,9 +77,9 @@ public class WCommodityManager : IWCommodityManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public WCommodity GetById(int WCommodityNo)
+   public WCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.WCommodities.Find(WCommodityNo);
+        return _WarehouseDataContext.WCommodities.Find(Id);
    }
 
    public WCommodity Update(WCommodity WCommodity)
@@ -81,7 +87,7 @@ public class WCommodityManager : IWCommodityManager
        _WarehouseDataContext.WCommodities.Update(WCommodit);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(WCommodity.WCommodityNo);
+       return GetById(WCommodity.Id);
    }
 
    public List<WCommodity> GetToList()
@@ -105,12 +111,12 @@ public class DividedCommodityManager : IDividedCommodityManager
        WarehouseDataContext.DividedCommodities.Add(DividedCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.DividedCommodities.OrderByDescending(e=>e.DividedCommodityNo).FirstOrDefault();
+       return _WarehouseDataContext.DividedCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int DividedCommodityNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.DividedCommodities.Remove(GetById(DividedCommodityNo));
+       _WarehouseDataContext.DividedCommodities.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -120,9 +126,9 @@ public class DividedCommodityManager : IDividedCommodityManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public DividedCommodity GetById(int DividedCommodityNo)
+   public DividedCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.DividedCommodities.Find(DividedCommodityNo);
+        return _WarehouseDataContext.DividedCommodities.Find(Id);
    }
 
    public DividedCommodity Update(DividedCommodity DividedCommodity)
@@ -130,7 +136,7 @@ public class DividedCommodityManager : IDividedCommodityManager
        _WarehouseDataContext.DividedCommodities.Update(DividedCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(DividedCommodity.DividedCommodityNo);
+       return GetById(DividedCommodity.Id);
    }
 
    public List<DividedCommodity> GetToList()
@@ -153,12 +159,12 @@ public class OutgoingCommodityManager : IOutgoingCommodityManager
        WarehouseDataContext.OutgoingCommodities.Add(OutgoingCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.OutgoingCommodities.OrderByDescending(e=>e.OutgoingCommodityNo).FirstOrDefault();
+       return _WarehouseDataContext.OutgoingCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int OutgoingCommodityNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.OutgoingCommodities.Remove(GetById(OutgoingCommodityNo));
+       _WarehouseDataContext.OutgoingCommodities.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -168,9 +174,9 @@ public class OutgoingCommodityManager : IOutgoingCommodityManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public OutgoingCommodity GetById(int OutgoingCommodityNo)
+   public OutgoingCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.OutgoingCommodities.Find(OutgoingCommodityNo);
+        return _WarehouseDataContext.OutgoingCommodities.Find(Id);
    }
 
    public OutgoingCommodity Update(OutgoingCommodity OutgoingCommodity)
@@ -178,7 +184,7 @@ public class OutgoingCommodityManager : IOutgoingCommodityManager
        _WarehouseDataContext.OutgoingCommodities.Update(OutgoingCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(OutgoingCommodity.OutgoingCommodityNo);
+       return GetById(OutgoingCommodity.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -201,12 +207,12 @@ public class PackManager : IPackManager
        WarehouseDataContext.Packs.Add(Pack);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.Packs.OrderByDescending(e=>e.PackNo).FirstOrDefault();
+       return _WarehouseDataContext.Packs.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int PackNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.Packs.Remove(GetById(PackNo));
+       _WarehouseDataContext.Packs.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -216,9 +222,9 @@ public class PackManager : IPackManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public Pack GetById(int PackNo)
+   public Pack GetById(int Id)
    {
-        return _WarehouseDataContext.Packs.Find(PackNo);
+        return _WarehouseDataContext.Packs.Find(Id);
    }
 
    public Pack Update(Pack Pack)
@@ -226,7 +232,7 @@ public class PackManager : IPackManager
        _WarehouseDataContext.Packs.Update(Pack);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(Pack.PackNo);
+       return GetById(Pack.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -249,12 +255,12 @@ public class ImageofPackManager : IImageofPackManager
        WarehouseDataContext.ImageofPacks.Add(ImageofPack);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImageofPacks.OrderByDescending(e=>e.ImageofPackNo).FirstOrDefault();
+       return _WarehouseDataContext.ImageofPacks.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofPackNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImageofPacks.Remove(GetById(ImageofPackNo));
+       _WarehouseDataContext.ImageofPacks.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -264,9 +270,9 @@ public class ImageofPackManager : IImageofPackManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofPack GetById(int ImageofPackNo)
+   public ImageofPack GetById(int Id)
    {
-        return _WarehouseDataContext.ImageofPacks.Find(ImageofPackNo);
+        return _WarehouseDataContext.ImageofPacks.Find(Id);
    }
 
    public ImageofPack Update(ImageofPack ImageofPack)
@@ -274,7 +280,7 @@ public class ImageofPackManager : IImageofPackManager
        _WarehouseDataContext.ImageofPacks.Update(ImageofPack);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofPack.ImageofPackNo);
+       return GetById(ImageofPack.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -297,12 +303,12 @@ public class IncomingTagManager : IIncomingTagManager
        WarehouseDataContext.IncomingTags.Add(IncomingTag);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.IncomingTags.OrderByDescending(e=>e.IncomingTagNo).FirstOrDefault();
+       return _WarehouseDataContext.IncomingTags.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int IncomingTagNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.IncomingTags.Remove(GetById(IncomingTagNo));
+       _WarehouseDataContext.IncomingTags.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -312,9 +318,9 @@ public class IncomingTagManager : IIncomingTagManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public IncomingTag GetById(int IncomingTagNo)
+   public IncomingTag GetById(int Id)
    {
-        return _WarehouseDataContext.IncomingTags.Find(IncomingTagNo);
+        return _WarehouseDataContext.IncomingTags.Find(Id);
    }
 
    public IncomingTag Update(IncomingTag IncomingTag)
@@ -322,7 +328,7 @@ public class IncomingTagManager : IIncomingTagManager
        _WarehouseDataContext.IncomingTags.Update(IncomingTag);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(IncomingTag.IncomingTagNo);
+       return GetById(IncomingTag.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -345,12 +351,12 @@ public class DividedTagManager : IDividedTagManager
        WarehouseDataContext.DividedTags.Add(DividedTag);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.DividedTags.OrderByDescending(e=>e.DividedTagNo).FirstOrDefault();
+       return _WarehouseDataContext.DividedTags.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int DividedTagNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.DividedTags.Remove(GetById(DividedTagNo));
+       _WarehouseDataContext.DividedTags.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -360,9 +366,9 @@ public class DividedTagManager : IDividedTagManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public DividedTag GetById(int DividedTagNo)
+   public DividedTag GetById(int Id)
    {
-        return _WarehouseDataContext.DividedTags.Find(DividedTagNo);
+        return _WarehouseDataContext.DividedTags.Find(Id);
    }
 
    public DividedTag Update(DividedTag DividedTag)
@@ -370,7 +376,7 @@ public class DividedTagManager : IDividedTagManager
        _WarehouseDataContext.DividedTags.Update(DividedTag);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(DividedTag.DividedTagNo);
+       return GetById(DividedTag.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -393,12 +399,12 @@ public class LoadFrameManager : ILoadFrameManager
        WarehouseDataContext.LoadFrames.Add(LoadFrame);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.LoadFrames.OrderByDescending(e=>e.LoadFrameNo).FirstOrDefault();
+       return _WarehouseDataContext.LoadFrames.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int LoadFrameNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.LoadFrames.Remove(GetById(LoadFrameNo));
+       _WarehouseDataContext.LoadFrames.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -408,9 +414,9 @@ public class LoadFrameManager : ILoadFrameManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public LoadFrame GetById(int LoadFrameNo)
+   public LoadFrame GetById(int Id)
    {
-        return _WarehouseDataContext.LoadFrames.Find(LoadFrameNo);
+        return _WarehouseDataContext.LoadFrames.Find(Id);
    }
 
    public LoadFrame Update(LoadFrame LoadFrame)
@@ -418,7 +424,7 @@ public class LoadFrameManager : ILoadFrameManager
        _WarehouseDataContext.LoadFrames.Update(LoadFrame);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(LoadFrame.LoadFrameNo);
+       return GetById(LoadFrame.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -441,12 +447,12 @@ public class ImageofCommodityManager : IImageofCommodityManager
        WarehouseDataContext.ImagesofCommodity.Add(ImageofCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofCommodity.OrderByDescending(e=>e.ImageofCommodityNo).FirstOrDefault();
+       return _WarehouseDataContext.ImagesofCommodity.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofCommodityNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofCommodity.Remove(GetById(ImageofCommodityNo));
+       _WarehouseDataContext.ImagesofCommodity.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -456,9 +462,9 @@ public class ImageofCommodityManager : IImageofCommodityManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofCommodity GetById(int ImageofCommodityNo)
+   public ImageofCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofCommodity.Find(ImageofCommodityNo);
+        return _WarehouseDataContext.ImagesofCommodity.Find(Id);
    }
 
    public ImageofCommodity Update(ImageofCommodity ImageofCommodity)
@@ -466,7 +472,7 @@ public class ImageofCommodityManager : IImageofCommodityManager
        _WarehouseDataContext.ImagesofCommodity.Update(ImageofCommodity);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofCommodity.ImageofCommodityNo);
+       return GetById(ImageofCommodity.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -488,12 +494,12 @@ public class ImageofIncomingManager : IImageofIncomingManager
        WarehouseDataContext.ImagesofIncoming.Add(ImageofIncoming);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofIncoming.OrderByDescending(e=>e.ImageofIncomingNo).FirstOrDefault();
+       return _WarehouseDataContext.ImagesofIncoming.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofIncomingNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofIncoming.Remove(GetById(ImageofIncomingNo));
+       _WarehouseDataContext.ImagesofIncoming.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -503,9 +509,9 @@ public class ImageofIncomingManager : IImageofIncomingManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofIncoming GetById(int ImageofIncomingNo)
+   public ImageofIncoming GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofIncoming.Find(ImageofIncomingNo);
+        return _WarehouseDataContext.ImagesofIncoming.Find(Id);
    }
 
    public ImageofIncoming Update(ImageofIncoming ImageofIncoming)
@@ -513,7 +519,7 @@ public class ImageofIncomingManager : IImageofIncomingManager
        _WarehouseDataContext.ImagesofIncoming.Update(ImageofIncoming);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofIncoming.ImageofIncomingNo);
+       return GetById(ImageofIncoming.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -536,12 +542,12 @@ public class ImageofLoadingManager : IImageofLoadingManager
        WarehouseDataContext.ImageofLoadings.Add(ImageofLoading);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofLoading.OrderByDescending(e=>e.ImageofLoadingNo).FirstOrDefault();
+       return _WarehouseDataContext.ImagesofLoading.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofLoadingNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofLoading.Remove(GetById(ImageofLoadingNo));
+       _WarehouseDataContext.ImagesofLoading.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -551,9 +557,9 @@ public class ImageofLoadingManager : IImageofLoadingManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofLoading GetById(int ImageofLoadingNo)
+   public ImageofLoading GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofLoading.Find(ImageofLoadingNo);
+        return _WarehouseDataContext.ImagesofLoading.Find(Id);
    }
 
    public ImageofLoading Update(ImageofLoading ImageofLoading)
@@ -561,7 +567,7 @@ public class ImageofLoadingManager : IImageofLoadingManager
        _WarehouseDataContext.ImagesofLoading.Update(ImageofLoading);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofLoading.ImageofLoadingNo);
+       return GetById(ImageofLoading.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -584,12 +590,12 @@ public class ImageofOutgoingManager : IImageofOutgoingManager
        WarehouseDataContext.ImagesofOutgoing.Add(ImageofOutgoing);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofOutgoing.OrderByDescending(e=>e.ImageofOutgoingNo).FirstOrDefault();
+       return _WarehouseDataContext.ImagesofOutgoing.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofOutgoingNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofOutgoing.Remove(GetById(ImageofOutgoingNo));
+       _WarehouseDataContext.ImagesofOutgoing.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -599,9 +605,9 @@ public class ImageofOutgoingManager : IImageofOutgoingManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofOutgoing GetById(int ImageofOutgoingNo)
+   public ImageofOutgoing GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofOutgoing.Find(ImageofOutgoingNo);
+        return _WarehouseDataContext.ImagesofOutgoing.Find(Id);
    }
 
    public ImageofOutgoing Update(ImageofOutgoing ImageofOutgoing)
@@ -609,7 +615,7 @@ public class ImageofOutgoingManager : IImageofOutgoingManager
        _WarehouseDataContext.ImagesofOutgoing.Update(ImageofOutgoing);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofOutgoing.ImageofOutgoingNo);
+       return GetById(ImageofOutgoing.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
@@ -633,12 +639,12 @@ public class ImageofDeliveringManager : IImageofDeliveringManager
        WarehouseDataContext.ImagesofDelivering.Add(ImageofDelivering);
        _WarehouseDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofDelivering.OrderByDescending(e=>e.ImageofDeliveringNo).FirstOrDefault();
+       return _WarehouseDataContext.ImagesofDelivering.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
-   public void DeleteById(int ImageofDeliveringNo)
+   public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofDelivering.Remove(GetById(ImageofDeliveringNo));
+       _WarehouseDataContext.ImagesofDelivering.Remove(GetById(Id));
        _WarehouseDataContext.SaveChanges();
    }
 
@@ -648,9 +654,9 @@ public class ImageofDeliveringManager : IImageofDeliveringManager
         _WarehouseDataContext.SaveChanges();
    }
 
-   public ImageofDelivering GetById(int ImageofDeliveringNo)
+   public ImageofDelivering GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofDelivering.Find(ImageofDeliveringNo);
+        return _WarehouseDataContext.ImagesofDelivering.Find(Id);
    }
 
    public ImageofDelivering Update(ImageofDelivering ImageofDelivering)
@@ -658,7 +664,7 @@ public class ImageofDeliveringManager : IImageofDeliveringManager
        _WarehouseDataContext.ImagesofDelivering.Update(ImageofDelivering);
        _WarehouseDataContext.SaveChanges();
 
-       return GetById(ImageofDelivering.ImageofDeliveringNo);
+       return GetById(ImageofDelivering.Id);
    }
 
    public List<OutgoingCommodity> GetToList()

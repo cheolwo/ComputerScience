@@ -1,9 +1,0 @@
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.csprojAssemblyReference.cache
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.AssemblyInfoInputs.cache
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.AssemblyInfo.cs
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\bin\Debug\netstandard2.0\NetworkModule.deps.json
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\bin\Debug\netstandard2.0\NetworkModule.dll
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\bin\Debug\netstandard2.0\NetworkModule.pdb
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.dll
-C:\Users\user\Desktop\ComputerScience\Network\Network\NetworkModule\obj\Debug\netstandard2.0\NetworkModule.pdb

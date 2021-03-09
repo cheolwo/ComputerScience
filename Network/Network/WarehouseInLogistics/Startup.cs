@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Warehouse.IDataManager;
 
 namespace WarehouseInLogistics
 {
@@ -24,6 +20,21 @@ namespace WarehouseInLogistics
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddTransient<IWarehouseManager, WarehouseManager>();
+            services.AddTransient<IWCommodityManager, WCommodityManager>();
+            services.AddTransient<IDividedCommodityManager, DividedCommodityManager>();
+            services.AddTransient<IOutgoingCommodityManager, OutgoingCommodityManager>();
+            services.AddTransient<IPackManager, PackManager>();
+            services.AddTransient<IImageofPackManager, ImageofPackManager>();
+            services.AddTransient<IIncomingTagManager, IncomingTagManager>();
+            services.AddTransient<IDividedTagManager, DividedTagManager>();
+            services.AddTransient<ILoadFrameManager, LoadFrameManager>();
+            services.AddTransient<IImageofWCommodityManager, ImageofWCommodityManager>();
+            services.AddTransient<IImageofIncomingManager, ImageofIncomingManager>();
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
+            services.AddTransient<IImageofOutgoingManager, ImageofOutgoingManager>();
+            services.AddTransient<IImageofLoadingManager, ImageofLoadingManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

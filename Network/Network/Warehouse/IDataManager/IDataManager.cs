@@ -1,13 +1,16 @@
+using System.Collections.Generic;
+using Warehouse.Model;
+
 namespace Warehouse.IDataManager
 {
- public interface IWarehouseManager
- {
-   Warehouse Add(Warehouse Warehouse);
+ public interface IBaseManager
+    {
+   Base Add(Base Warehouse);
    void DeleteById(int WarehouseNo);
-   void DeleteByWarehouse(Warehouse Warehouse);
-   Warehouse GetById(int WarehouseNo);
-   Warehouse Update(Warehouse Warehouse);
-   List<Warehouse> GetToList();
+   void DeleteByWarehouse(Base Warehouse);
+        Base GetById(int WarehouseNo);
+        Base Update(Base Warehouse);
+   List<Base> GetToList();
  }
   
  public interface IWCommodityManager
@@ -42,12 +45,12 @@ namespace Warehouse.IDataManager
   
  public interface IImageofCommodityManager
  {
-     ImageofCommodity Add(ImageofCommodity ImageofCommodity);
+     ImageofWCommodity Add(ImageofWCommodity ImageofCommodity);
      void DeleteById(int ImageofCommodityNo);
-     void DeleteByImageofCommodity(ImageofCommodity ImageofCommodity);
-     ImageofCommodity GetById(int ImageofCommodityNo);
-     ImageofCommodity Update(ImageofCommodity ImageofCommodity);
-     List<ImageofCommodity> GetToList();
+     void DeleteByImageofCommodity(ImageofWCommodity ImageofCommodity);
+     ImageofWCommodity GetById(int ImageofCommodityNo);
+     ImageofWCommodity Update(ImageofWCommodity ImageofCommodity);
+     List<ImageofWCommodity> GetToList();
  }
 
  public interface IImageofIncomingManager

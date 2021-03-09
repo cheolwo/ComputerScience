@@ -5,7 +5,8 @@ namespace Warehouse.Model
 {
     public class Pack
    {
-       [Key] public string PackName {get; set;}
+       [Key] public int Id {get; set;}
+       public string Name { get; set; }
        public string Material {get; set;}
        public double Width {get; set;}
        public double height {get; set;}
