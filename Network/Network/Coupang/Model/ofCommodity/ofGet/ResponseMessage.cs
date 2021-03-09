@@ -60,7 +60,6 @@ namespace Coupang.Model.ofCommodity.ofGet
 
         public List<requiredDocument> requiredDocuments { get; set; }
         public List<item> items { get; set; }
-
     }
 
 

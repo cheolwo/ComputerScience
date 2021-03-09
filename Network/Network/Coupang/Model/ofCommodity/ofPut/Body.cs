@@ -15,7 +15,6 @@ namespace Coupang.Model.ofCommodity.ofPut
         public int returnCharge { get; set; }
         public int outboundShippingPlaceCode { get; set; }
 
-
         public string statusName { get; set; }
         public string sellerProductName { get; set; }
         public string vendorId { get; set; }
