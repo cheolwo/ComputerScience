@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Coupang.Model.ofLogisticsCenter.ForOutgoing.ofGet
+﻿namespace Coupang.Model.ofLogisticsCenter.ForOutgoing.ofGet
 {
     public class Query
     {

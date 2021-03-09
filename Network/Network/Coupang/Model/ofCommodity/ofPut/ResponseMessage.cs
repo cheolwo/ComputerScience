@@ -8,12 +8,7 @@ namespace Coupang.Model.ofCommodity.ofPut
     {
         public int code { get; set; }
         public string message { get; set; }
-        public data data { get; set; }
+        public long data { get; set; }  // 업체상품아이디 생성된 업체상품아이디
     }
 
-    public class data
-    {
-        public string resultCode { get; set; }
-        public string resultMessage { get; set; }
-    }
 }

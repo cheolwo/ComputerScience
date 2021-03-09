@@ -13,7 +13,9 @@ namespace Coupang.Model.ofCategory.ofGet
 
     public class data
     {
-        public string resultCode { get; set; }
-        public string resultMessage { get; set; }
+        public string displayCategoryCode { get; set; }
+        public string name{ get; set; }
+        public string status {get; set;}
+        public string chile {get; set;}
     }
 }

@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Coupang.Model.ofCommodity.ofGet
 {
-    class Query
+    // /v2/providers/seller_api/apis/api/v1/marketplace/seller-products/{sellerProductId}
+    public class Query
     {
+        
     }
 }
