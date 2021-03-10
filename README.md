@@ -18,12 +18,10 @@ MVC는 View로 주고.
     입고인지 과정은 총 3부분으로 나누어짐,.
     TCommodity의 CrossDockingCommodityofSeller
                  CrossDockingCommodityofBuyer
-                 DeliveringCommodityofBuyer - 도착지
+                 LogisticsAgencyCommodityofBuyer 
     를 확인해서 목적에 맞게 입고인지를 나눔.
-    
-    도착지가 아닌 Agency인 경우 목적이 크로스 도킹.
-    
 
+3) Wcommodity에 등록.
 
 
 

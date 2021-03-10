@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class WCommodityController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public WCommodityController(WarehouseDataContext context)
+        public WCommodityController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -30,6 +30,20 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return WCommodity;
+        }
+
+        // GET: api/WCommodities/5
+        [HttpGet("{barcode}")]
+        public async Task<ActionResult<List<WCommodity>>> GetWCommodity(string barcode)
+        {
+            var WCommodies = await _context.WCommodities.Where(u => u.Barcode.Equals(barcode)).ToListAsync();
+
+            if (WCommodies.Count.Equals(0))
+            {
+                return NotFound();
+            }
+
+            return WCommodies;
         }
 
         // PUT: api/WCommodities/5
@@ -64,10 +78,41 @@ namespace APIServerofLogisticsCenter.Controllers
 
         private bool WCommodityExists(int id)
         {
-            throw new NotImplementedException();
+            var WCommodity = _context.WCommodities.Find(id);
+            if(WCommodity != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // POST: api/WCommodities
+        [HttpPost]
+        public async Task<ActionResult> PostWCommodity(RecognizingWCommodity RecognizingWCommodity)
+        {
+                foreach (var TCommodity in RecognizingWCommodity.CrossDockingCommodityofSeller)
+                {                   
+                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "CrossDocking"}
+                    await PostWCommodity(WCommodity);
+                }
+                foreach (var TCommodity in RecognizingWCommodity.CodeofCrossDockingBaseForBuyer)
+                {
+                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "CrossDocking"}
+                    await PostWCommodity(WCommodity);
+                }
+                foreach (var Tcommodity in RecognizingWCommodity.LogisticsAgencyCommodityofBuyer)
+                {
+                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "LogisticsAency"}
+                    await PostWCommodity(WCommodity);
+                }
+
+            //return CreatedAtAction("GetWCommodity", new { id = WCommodity.Id }, WCommodity);
+            return NoContent();
+        }
+
         [HttpPost]
         public async Task<ActionResult<WCommodity>> PostWCommodity(WCommodity WCommodity)
         {
