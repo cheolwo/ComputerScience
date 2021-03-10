@@ -11,20 +11,55 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WarehouseDataContext _WarehouseDataContext;
+        private readonly IHttpContextAccessor _httpcontextAccessor;
 
-        public BaseController(WarehouseDataContext context)
+        public BaseController(IHttpContextAccessor httpContextAccessor, WarehouseDataContext context)
         {
-            _context = context;
+            _WarehouseDataContext = context;
+            _httpcontextAccessor = httpContextAccessor;
         }
 
         // GET: api/Bases/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Base>> GetBase(int id)
+        public async Task<ActionResult<Base>> GetBase(string id)
         {
-            var Base = await _context.Bases.FindAsync(id);
+            var Base = await _WarehouseDataContext.Bases.FindAsync(id);
 
             if (Base == null)
+            {
+                return NotFound();
+            }
+
+            return Base;
+        }
+
+         // GET: api/Bases/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Base>>> GetBase(string UserId)
+        {
+            var Base = await _WarehouseDataContext.Bases.Where(
+                u => u.UserId.Equals(UserId)).ToListAsync();
+            )
+
+            if (Base.Count.Equals(0))
+            {
+                return NotFound();
+            }
+
+            return Base;
+        }
+
+         // GET: api/Bases/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Base>>> GetBase()
+        {
+            var UserId = _httpcontextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value; 
+            var Base = await _WarehouseDataContext.Bases.Where(
+                u => u.UserId.Equals(UserId)).ToListAsync();
+            )
+
+            if (Base.Count.Equals(0))
             {
                 return NotFound();
             }
@@ -41,11 +76,11 @@ namespace APIServerofLogisticsCenter.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(Base).State = EntityState.Modified;
+            _WarehouseDataContext.Entry(Base).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _WarehouseDataContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,8 +106,8 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpPost]
         public async Task<ActionResult<Base>> PostBase(Base Base)
         {
-            _context.Bases.Add(Base);
-            await _context.SaveChangesAsync();
+            _WarehouseDataContext.Bases.Add(Base);
+            await _WarehouseDataContext.SaveChangesAsync();
 
             //return CreatedAtAction("GetBase", new { id = Base.Id }, Base);
             return CreatedAtAction(nameof(GetBase), new { id = Base.Id }, Base);
@@ -82,14 +117,14 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBase(int id)
         {
-            var Base = await _context.Bases.FindAsync(id);
+            var Base = await _WarehouseDataContext.Bases.FindAsync(id);
             if (Base == null)
             {
                 return NotFound();
             }
 
-            _context.Bases.Remove(Base);
-            await _context.SaveChangesAsync();
+            _WarehouseDataContext.Bases.Remove(Base);
+            await _WarehouseDataContext.SaveChangesAsync();
 
             return NoContent();
         }
