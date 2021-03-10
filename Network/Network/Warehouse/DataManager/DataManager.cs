@@ -1,675 +1,675 @@
 using System.Collections.Generic;
 using System.Linq;
-using Warehouse;
-using Warehouse.IDataManager;
-using Warehouse.Model;
+using WCommodity;
+using WCommodity.IDataManager;
+using WCommodity.Model;
 
-public class WarehouseManager : IBaseManager
+public class WCommodityManager : IBaseManager
 {
-   private readonly WarehouseDataContext _WarehouseDataContext;
+   private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public WarehouseManager(WarehouseDataContext WarehouseDataContext)
+    public WCommodityManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public Base Add(Base Base)
    {
-       _WarehouseDataContext.Bases.Add(Base);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Bases.Add(Base);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.Bases.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.Bases.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.Bases.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Bases.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
-   public void DeleteByWarehouse(Base Base)
+   public void DeleteByWCommodity(Base Base)
    {
-        _WarehouseDataContext.Remove(Base);
-        _WarehouseDataContext.SaveChanges();
+        _WCommodityDataContext.Remove(Base);
+        _WCommodityDataContext.SaveChanges();
    }
    public Base GetById(int Id)
    {
-       return _WarehouseDataContext.Bases.Find(Id);
+       return _WCommodityDataContext.Bases.Find(Id);
    }
    public Base Update(Base Base)
    {
-       _WarehouseDataContext.Bases.Update(Base);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Bases.Update(Base);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(Base.Id);
    }
    public List<Base> GetToList()
    {
-      return _WarehouseDataContext.Bases.ToList();
+      return _WCommodityDataContext.Bases.ToList();
    }
 }
 
 public class WCommodityManager : IWCommodityManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public WCommodityManager(WarehouseDataContext WarehouseDataContext)
+    public WCommodityManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public WCommodity Add(WCommodity WCommodity)
    {
-       _WarehouseDataContext.WCommodities.Add(WCommodity));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.WCommodities.Add(WCommodity));
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.WCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.WCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.WCommodities.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.WCommodities.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByWCommodity(WCommodity WCommodity)
    {
-       _WarehouseDataContext.WCommodities.Remove(WCommodity);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.WCommodities.Remove(WCommodity);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public WCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.WCommodities.Find(Id);
+        return _WCommodityDataContext.WCommodities.Find(Id);
    }
 
    public WCommodity Update(WCommodity WCommodity)
    {
-       _WarehouseDataContext.WCommodities.Update(WCommodit);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.WCommodities.Update(WCommodit);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(WCommodity.Id);
    }
 
    public List<WCommodity> GetToList()
    {
-       return _WarehouseDataContext.WCommodities.ToList();
+       return _WCommodityDataContext.WCommodities.ToList();
    }
 
 }
 
 public class DividedCommodityManager : IDividedCommodityManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public DividedCommodityManager(WarehouseDataContext WarehouseDataContext)
+    public DividedCommodityManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public DividedCommodity Add(DividedCommodity DividedCommodity)
    {
-       WarehouseDataContext.DividedCommodities.Add(DividedCommodity);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.DividedCommodities.Add(DividedCommodity);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.DividedCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.DividedCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.DividedCommodities.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedCommodities.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByDividedCommodity(DividedCommodity DividedCommodity)
    {
-       _WarehouseDataContext.DividedCommodities.Remove(DividedCommodity);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedCommodities.Remove(DividedCommodity);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public DividedCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.DividedCommodities.Find(Id);
+        return _WCommodityDataContext.DividedCommodities.Find(Id);
    }
 
    public DividedCommodity Update(DividedCommodity DividedCommodity)
    {
-       _WarehouseDataContext.DividedCommodities.Update(DividedCommodity);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedCommodities.Update(DividedCommodity);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(DividedCommodity.Id);
    }
 
    public List<DividedCommodity> GetToList()
    {
-       return _WarehouseDataContext.DividedCommodities.ToList();
+       return _WCommodityDataContext.DividedCommodities.ToList();
    }
 }
 
 public class OutgoingCommodityManager : IOutgoingCommodityManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public OutgoingCommodityManager(WarehouseDataContext WarehouseDataContext)
+    public OutgoingCommodityManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public OutgoingCommodity Add(OutgoingCommodity OutgoingCommodity)
    {
-       WarehouseDataContext.OutgoingCommodities.Add(OutgoingCommodity);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.OutgoingCommodities.Add(OutgoingCommodity);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.OutgoingCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.OutgoingCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.OutgoingCommodities.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.OutgoingCommodities.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByOutgoingCommodity(OutgoingCommodity OutgoingCommodity)
    {
-       _WarehouseDataContext.OutgoingCommodities.Remove(OutgoingCommodity);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.OutgoingCommodities.Remove(OutgoingCommodity);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public OutgoingCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.OutgoingCommodities.Find(Id);
+        return _WCommodityDataContext.OutgoingCommodities.Find(Id);
    }
 
    public OutgoingCommodity Update(OutgoingCommodity OutgoingCommodity)
    {
-       _WarehouseDataContext.OutgoingCommodities.Update(OutgoingCommodity);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.OutgoingCommodities.Update(OutgoingCommodity);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(OutgoingCommodity.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.OutgoingCommodities.ToList();
+       return _WCommodityDataContext.OutgoingCommodities.ToList();
    }
 }
 
 public class PackManager : IPackManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public PackManager(WarehouseDataContext WarehouseDataContext)
+    public PackManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public Pack Add(Pack Pack)
    {
-       WarehouseDataContext.Packs.Add(Pack);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.Packs.Add(Pack);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.Packs.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.Packs.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.Packs.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Packs.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByPack(Pack Pack)
    {
-       _WarehouseDataContext.Packs.Remove(Pack);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Packs.Remove(Pack);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public Pack GetById(int Id)
    {
-        return _WarehouseDataContext.Packs.Find(Id);
+        return _WCommodityDataContext.Packs.Find(Id);
    }
 
    public Pack Update(Pack Pack)
    {
-       _WarehouseDataContext.Packs.Update(Pack);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.Packs.Update(Pack);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(Pack.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.Packs.ToList();
+       return _WCommodityDataContext.Packs.ToList();
    }
 }
 
 public class ImageofPackManager : IImageofPackManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public ImageofPackManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofPackManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public ImageofPack Add(ImageofPack ImageofPack)
    {
-       WarehouseDataContext.ImageofPacks.Add(ImageofPack);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImageofPacks.Add(ImageofPack);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImageofPacks.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImageofPacks.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImageofPacks.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImageofPacks.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofPack(ImageofPack ImageofPack)
    {
-       _WarehouseDataContext.ImageofPacks.Remove(ImageofPack);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImageofPacks.Remove(ImageofPack);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofPack GetById(int Id)
    {
-        return _WarehouseDataContext.ImageofPacks.Find(Id);
+        return _WCommodityDataContext.ImageofPacks.Find(Id);
    }
 
    public ImageofPack Update(ImageofPack ImageofPack)
    {
-       _WarehouseDataContext.ImageofPacks.Update(ImageofPack);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImageofPacks.Update(ImageofPack);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofPack.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.ImageofPacks.ToList();
+       return _WCommodityDataContext.ImageofPacks.ToList();
    }
 }
 
 public class IncomingTagManager : IIncomingTagManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public IncomingTagManager(WarehouseDataContext WarehouseDataContext)
+    public IncomingTagManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
     public IncomingTag Add(IncomingTag IncomingTag)
    {
-       WarehouseDataContext.IncomingTags.Add(IncomingTag);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.IncomingTags.Add(IncomingTag);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.IncomingTags.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.IncomingTags.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.IncomingTags.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.IncomingTags.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByIncomingTag(IncomingTag IncomingTag)
    {
-       _WarehouseDataContext.IncomingTags.Remove(IncomingTag);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.IncomingTags.Remove(IncomingTag);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public IncomingTag GetById(int Id)
    {
-        return _WarehouseDataContext.IncomingTags.Find(Id);
+        return _WCommodityDataContext.IncomingTags.Find(Id);
    }
 
    public IncomingTag Update(IncomingTag IncomingTag)
    {
-       _WarehouseDataContext.IncomingTags.Update(IncomingTag);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.IncomingTags.Update(IncomingTag);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(IncomingTag.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.IncomingTags.ToList();
+       return _WCommodityDataContext.IncomingTags.ToList();
    }
 }
 
 public class DividedTagManager : IDividedTagManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public DividedTagManager(WarehouseDataContext WarehouseDataContext)
+    public DividedTagManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
     
     public DividedTag Add(DividedTag DividedTag)
    {
-       WarehouseDataContext.DividedTags.Add(DividedTag);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.DividedTags.Add(DividedTag);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.DividedTags.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.DividedTags.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.DividedTags.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedTags.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByDividedTag(DividedTag DividedTag)
    {
-       _WarehouseDataContext.DividedTags.Remove(DividedTag);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedTags.Remove(DividedTag);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public DividedTag GetById(int Id)
    {
-        return _WarehouseDataContext.DividedTags.Find(Id);
+        return _WCommodityDataContext.DividedTags.Find(Id);
    }
 
    public DividedTag Update(DividedTag DividedTag)
    {
-       _WarehouseDataContext.DividedTags.Update(DividedTag);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.DividedTags.Update(DividedTag);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(DividedTag.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.DividedTags.ToList();
+       return _WCommodityDataContext.DividedTags.ToList();
    }
 }
 
 public class LoadFrameManager : ILoadFrameManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public LoadFrameManager(WarehouseDataContext WarehouseDataContext)
+    public LoadFrameManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public LoadFrame Add(LoadFrame LoadFrame)
    {
-       WarehouseDataContext.LoadFrames.Add(LoadFrame);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.LoadFrames.Add(LoadFrame);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.LoadFrames.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.LoadFrames.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.LoadFrames.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.LoadFrames.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByLoadFrame(LoadFrame LoadFrame)
    {
-       _WarehouseDataContext.LoadFrames.Remove(LoadFrame);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.LoadFrames.Remove(LoadFrame);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public LoadFrame GetById(int Id)
    {
-        return _WarehouseDataContext.LoadFrames.Find(Id);
+        return _WCommodityDataContext.LoadFrames.Find(Id);
    }
 
    public LoadFrame Update(LoadFrame LoadFrame)
    {
-       _WarehouseDataContext.LoadFrames.Update(LoadFrame);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.LoadFrames.Update(LoadFrame);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(LoadFrame.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.LoadFrames.ToList();
+       return _WCommodityDataContext.LoadFrames.ToList();
    }
 }
 
 public class ImageofCommodityManager : IImageofCommodityManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public ImageofCommodityManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofCommodityManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public ImageofCommodity Add(ImageofCommodity ImageofCommodity)
    {
-       WarehouseDataContext.ImagesofCommodity.Add(ImageofCommodity);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImagesofCommodity.Add(ImageofCommodity);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofCommodity.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImagesofCommodity.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofCommodity.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofCommodity.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofCommodity(ImageofCommodity ImageofCommodity)
    {
-       _WarehouseDataContext.ImagesofCommodity.Remove(ImageofCommodity);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofCommodity.Remove(ImageofCommodity);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofCommodity GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofCommodity.Find(Id);
+        return _WCommodityDataContext.ImagesofCommodity.Find(Id);
    }
 
    public ImageofCommodity Update(ImageofCommodity ImageofCommodity)
    {
-       _WarehouseDataContext.ImagesofCommodity.Update(ImageofCommodity);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofCommodity.Update(ImageofCommodity);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofCommodity.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.IncomingTags.ToList();
+       return _WCommodityDataContext.IncomingTags.ToList();
    }
 }
 public class ImageofIncomingManager : IImageofIncomingManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public ImageofIncomingManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofIncomingManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public ImageofIncoming Add(ImageofIncoming ImageofIncoming)
    {
-       WarehouseDataContext.ImagesofIncoming.Add(ImageofIncoming);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImagesofIncoming.Add(ImageofIncoming);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofIncoming.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImagesofIncoming.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofIncoming.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofIncoming.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofIncoming(ImageofIncoming ImageofIncoming)
    {
-       _WarehouseDataContext.ImagesofIncoming.Remove(ImageofIncoming);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofIncoming.Remove(ImageofIncoming);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofIncoming GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofIncoming.Find(Id);
+        return _WCommodityDataContext.ImagesofIncoming.Find(Id);
    }
 
    public ImageofIncoming Update(ImageofIncoming ImageofIncoming)
    {
-       _WarehouseDataContext.ImagesofIncoming.Update(ImageofIncoming);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofIncoming.Update(ImageofIncoming);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofIncoming.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.ImagesofIncoming.ToList();
+       return _WCommodityDataContext.ImagesofIncoming.ToList();
    }
 }
 
 public class ImageofLoadingManager : IImageofLoadingManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public ImageofLoadingManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofLoadingManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public ImageofLoading Add(ImageofLoading ImageofLoading)
    {
-       WarehouseDataContext.ImageofLoadings.Add(ImageofLoading);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImageofLoadings.Add(ImageofLoading);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofLoading.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImagesofLoading.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofLoading.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofLoading.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofLoading(ImageofLoading ImageofLoading)
    {
-       _WarehouseDataContext.ImagesofLoading.Remove(ImageofLoading);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofLoading.Remove(ImageofLoading);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofLoading GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofLoading.Find(Id);
+        return _WCommodityDataContext.ImagesofLoading.Find(Id);
    }
 
    public ImageofLoading Update(ImageofLoading ImageofLoading)
    {
-       _WarehouseDataContext.ImagesofLoading.Update(ImageofLoading);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofLoading.Update(ImageofLoading);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofLoading.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.ImagesofLoading.ToList();
+       return _WCommodityDataContext.ImagesofLoading.ToList();
    }
 }
 
 public class ImageofOutgoingManager : IImageofOutgoingManager
 {
-    private readonly WarehouseDataContext _WarehouseDataContext;
+    private readonly WCommodityDataContext _WCommodityDataContext;
 
-    public ImageofOutgoingManager(WarehouseDataContext WarehouseDataContext)
+    public ImageofOutgoingManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
 
    public ImageofOutgoing Add(ImageofOutgoing ImageofOutgoing)
    {
-       WarehouseDataContext.ImagesofOutgoing.Add(ImageofOutgoing);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImagesofOutgoing.Add(ImageofOutgoing);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofOutgoing.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImagesofOutgoing.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofOutgoing.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofOutgoing.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofOutgoing(ImageofOutgoing ImageofOutgoing)
    {
-       _WarehouseDataContext.ImagesofOutgoing.Remove(ImageofOutgoing);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofOutgoing.Remove(ImageofOutgoing);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofOutgoing GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofOutgoing.Find(Id);
+        return _WCommodityDataContext.ImagesofOutgoing.Find(Id);
    }
 
    public ImageofOutgoing Update(ImageofOutgoing ImageofOutgoing)
    {
-       _WarehouseDataContext.ImagesofOutgoing.Update(ImageofOutgoing);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofOutgoing.Update(ImageofOutgoing);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofOutgoing.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.ImagesofOutgoiong.ToList();
+       return _WCommodityDataContext.ImagesofOutgoiong.ToList();
    }
 }
 
 public class ImageofDeliveringManager : IImageofDeliveringManager
 {
 
-   private readonly WarehouseDataContext _WarehouseDataContext;
+   private readonly WCommodityDataContext _WCommodityDataContext;
 
-   public ImageofDeliveringManager(WarehouseDataContext WarehouseDataContext)
+   public ImageofDeliveringManager(WCommodityDataContext WCommodityDataContext)
     {
-        _WarehouseDataContext = WarehouseDataContext;
+        _WCommodityDataContext = WCommodityDataContext;
     }
    
     public ImageofDelivering Add(ImageofDelivering ImageofDelivering)
    {
-       WarehouseDataContext.ImagesofDelivering.Add(ImageofDelivering);
-       _WarehouseDataContext.SaveChanges();
+       WCommodityDataContext.ImagesofDelivering.Add(ImageofDelivering);
+       _WCommodityDataContext.SaveChanges();
 
-       return _WarehouseDataContext.ImagesofDelivering.OrderByDescending(e=>e.Id).FirstOrDefault();
+       return _WCommodityDataContext.ImagesofDelivering.OrderByDescending(e=>e.Id).FirstOrDefault();
    }
 
    public void DeleteById(int Id)
    {
-       _WarehouseDataContext.ImagesofDelivering.Remove(GetById(Id));
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofDelivering.Remove(GetById(Id));
+       _WCommodityDataContext.SaveChanges();
    }
 
    public void DeleteByImageofDelivering(ImageofDelivering ImageofDelivering)
    {
-       _WarehouseDataContext.ImagesofDelivering.Remove(ImageofDelivering);
-        _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofDelivering.Remove(ImageofDelivering);
+        _WCommodityDataContext.SaveChanges();
    }
 
    public ImageofDelivering GetById(int Id)
    {
-        return _WarehouseDataContext.ImagesofDelivering.Find(Id);
+        return _WCommodityDataContext.ImagesofDelivering.Find(Id);
    }
 
    public ImageofDelivering Update(ImageofDelivering ImageofDelivering)
    {
-       _WarehouseDataContext.ImagesofDelivering.Update(ImageofDelivering);
-       _WarehouseDataContext.SaveChanges();
+       _WCommodityDataContext.ImagesofDelivering.Update(ImageofDelivering);
+       _WCommodityDataContext.SaveChanges();
 
        return GetById(ImageofDelivering.Id);
    }
 
    public List<OutgoingCommodity> GetToList()
    {
-       return _WarehouseDataContext.ImagesofDelivering.ToList();
+       return _WCommodityDataContext.ImagesofDelivering.ToList();
    }
 }
 

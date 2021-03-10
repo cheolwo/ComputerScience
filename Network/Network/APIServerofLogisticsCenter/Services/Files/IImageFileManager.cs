@@ -17,7 +17,6 @@ namespace APIServerofLogisticsCenter.Services.Files
         Task<string> UploadImageofWCommodity(IFormFile file);
 
         void Delete(string path);
-
     }
 
     public class ImageFileManager : IImageFileManager

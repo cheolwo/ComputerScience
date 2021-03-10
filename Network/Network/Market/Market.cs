@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Market.Model
 {
+    // ì•„ëŠ” ê²Œ ì—†ìœ¼ë©´ ì½”ë”©ë„ ëª»í•œë‹¤ëŠ” ë§ì´ ì‹¤ê°ì´ ë˜ëŠ”êµ¬ë‚˜.
     public class Market
     {
         [Key] public int Id { get; set; }
@@ -11,7 +12,7 @@ namespace Market.Model
 
         public List<Coupang> Coupang { get; set; }
         public List<Ebay> Ebay { get; set; }
-        public List<CompanyMall> Mall { get; set; }
+        public List<IndependentMall> Mall { get; set; }
     }
 
     public class Coupang
@@ -40,7 +41,7 @@ namespace Market.Model
         public Market Market { get; set; }
     }
 
-    public class CompanyMall
+    public class IndependentMall
     {
         [Key] public int Id { get; set; }
         public string UserId { get; set; }
@@ -55,11 +56,10 @@ namespace Market.Model
     public class MCommodity
     {
         [Key] public int Id { get; set; }
-        public string Name { get; set; }        // ÀÌ¸§À» ´Ù½Ã ¼³Á¤ÇÒ ¼ö ÀÖµµ·Î ÇØÁÖ¸é ÁÁÀ» °Í °°´Ù.
+        public string Name { get; set; }        // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         public int SCommodityId { get; set; }
         public int WCommodityId { get; set; }
 
-        public int Quantity { get; set; }       // ÆÇ¸Å¼ö·®   
         public List<Order> Orders { get; set; }
     }
 
@@ -67,7 +67,13 @@ namespace Market.Model
     {
         [Key] public int Id { get; set; }
         public string OrderedAt { get; set; }
-        public Orderer Orderer { get; set; }        // ±¸Á¶Ã¼ 
+        public int Quantity {get; set;}
+
+        public Coupang Coupang {get; set;}
+        public Ebay Ebay {get; set;}
+        public IndependentMall IndependentMall {get; set;}
+
+        public Orderer Orderer { get; set; }        // ï¿½ï¿½ï¿½ï¿½Ã¼ 
         public MCommodity MCommodity { get; set; }
     }
 

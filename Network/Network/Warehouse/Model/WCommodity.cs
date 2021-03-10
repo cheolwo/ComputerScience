@@ -12,6 +12,8 @@ namespace Warehouse.Model
        public double height {get; set;}
        public double length { get; set; }
        
+       public int TCommodityId {get; set;}
+       public string Purpose {get; set;} // LOGISTICS_AGENCY, CROSS_DOCKING
        public StateofIncoming StateofIncoming { get; set; }
        public DateTime? IncomingTime { get; set; }
        public DateTime? InspectingTime { get; set; }
@@ -32,5 +34,12 @@ namespace Warehouse.Model
        public Transaction Transaction {get; set;}
        public List<DividedCommodity> DividedCommodities { get; set; }
        public List<OutgoingCommodity> OutgoingCommodities {get; set;}
+   }
+
+   public class RecognizingWCommodity
+   {
+       public List<TCommodity> CrossDockingCommodityofSeller {get; set;}    // 셀러를 위한 포워딩
+       public List<TCommodity> CrossDockingCommodityofBuyer {get; set;}     // 바이어를 위한 포워딩
+       public List<TCommodity> LogisticsAgencyCommodityofBuyer {get; set;}       // 3PL
    }
 }

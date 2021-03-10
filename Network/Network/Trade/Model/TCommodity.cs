@@ -16,8 +16,8 @@ namespace Trade.Model
         public string Url { get; set; }
 
         public string Incomrterms { get; set; }
-        public string CodeofAgencyofSellerDeliveringBase { get; set; }  // 셀러 중간배송 지역 (포워더)
-        public string CodeofAgencyofBuyerDeliveryBase { get; set; }     // 바이어 중간배송 지역 (포워더) 
+        public string CodeofCrossDockingBaseForSeller { get; set; }  // 셀러 중간배송 지역 (포워더)
+        public string CodeofCrossDockingBaseForBuyer { get; set; }     // 바이어 중간배송 지역 (포워더) 
         public string CodeofBuyerBase { get; set; }                     // 배송 도착지역
         public string CodeofSellerBase { get; set; }                    // 배송 시작지역
 

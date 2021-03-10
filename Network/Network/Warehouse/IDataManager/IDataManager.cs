@@ -6,9 +6,9 @@ namespace Warehouse.IDataManager
  public interface IBaseManager
     {
    Base Add(Base Warehouse);
-   void DeleteById(int WarehouseNo);
+   void DeleteById(int Id);
    void DeleteByWarehouse(Base Warehouse);
-        Base GetById(int WarehouseNo);
+        Base GetById(int Id);
         Base Update(Base Warehouse);
    List<Base> GetToList();
  }
@@ -16,9 +16,9 @@ namespace Warehouse.IDataManager
  public interface IWCommodityManager
  {
      WCommodity Add(WCommodity WCommodity);
-     void DeleteById(int WCommodityNo);
+     void DeleteById(int Id);
      void DeleteByWCommodity(WCommodity WCommodity);
-     WCommodity GetById(int WCommodityNo);
+     WCommodity GetById(int Id);
      WCommodity Update(WCommodity WCommodity);
      List<WCommodity> GetToList();
  }
@@ -26,9 +26,9 @@ namespace Warehouse.IDataManager
  public interface DividedCommodityManager
  {
      DividedCommodity Add(DividedCommodity DividedCommodity);
-     void DeleteById(int dividedCommodityNo);
+     void DeleteById(int Id);
      void DeleteByDividedCommodity(DividedCommodity dividedCommodity);
-     DividedCommodity GetById(int dividedCommodityNo);
+     DividedCommodity GetById(int Id);
      DividedCommodity Update(DividedCommodity dividedCommodity);
      List<DividedCommodity> GetToList();
  }
@@ -36,9 +36,9 @@ namespace Warehouse.IDataManager
  public interface ILoadFrameManager
  {
      LoadFrame Add(LoadFrame LoadFrame);
-     void DeleteById(int LoadFrameNo);
+     void DeleteById(int Id);
      void DeleteByLoadFrame(LoadFrame LoadFrame);
-     LoadFrame GetById(int LoadFrameNo);
+     LoadFrame GetById(int Id);
      LoadFrame Update(LoadFrame LoadFrame);
      List<LoadFrame> GetToList();
  }
@@ -46,9 +46,9 @@ namespace Warehouse.IDataManager
  public interface IImageofCommodityManager
  {
      ImageofWCommodity Add(ImageofWCommodity ImageofCommodity);
-     void DeleteById(int ImageofCommodityNo);
+     void DeleteById(int Id);
      void DeleteByImageofCommodity(ImageofWCommodity ImageofCommodity);
-     ImageofWCommodity GetById(int ImageofCommodityNo);
+     ImageofWCommodity GetById(int Id);
      ImageofWCommodity Update(ImageofWCommodity ImageofCommodity);
      List<ImageofWCommodity> GetToList();
  }
@@ -56,9 +56,9 @@ namespace Warehouse.IDataManager
  public interface IImageofIncomingManager
  {
      ImageofIncoming Add(ImageofIncoming ImageofIncoming);
-     void DeleteById(int ImageofIncomingNo);
+     void DeleteById(int Id);
      void DeleteByImageofIncoming(ImageofIncoming ImageofIncoming);
-     ImageofIncoming GetById(int ImageofIncomingNo);
+     ImageofIncoming GetById(int Id);
      ImageofIncoming Update(ImageofIncoming ImageofIncoming);
      List<ImageofIncoming> GetToList();
  }
@@ -66,9 +66,9 @@ namespace Warehouse.IDataManager
  public interface IImageofLoadingManager
  {
      ImageofLoading Add(ImageofLoading ImageofLoading);
-     void DeleteById(int ImageofLoadingNo);
+     void DeleteById(int Id);
      void DeleteByImageofLoading(ImageofLoading ImageofLoading);
-     ImageofLoading GetById(int ImageofLoadingNo);
+     ImageofLoading GetById(int Id);
      ImageofLoading Update(ImageofLoading ImageofLoading);
      List<ImageofLoading> GetToList();
  }
@@ -76,9 +76,9 @@ namespace Warehouse.IDataManager
  public interface IOutgoingCommodityManager
  {
      OutgoingCommodity Add(OutgoingCommodity OutgoingCommodity);
-     void DeleteById(int OutgoingCommodityNo);
+     void DeleteById(int Id);
      void DeleteByOutgoingCommodity(OutgoingCommodity OutgoingCommodity);
-     OutgoingCommodity GetById(int OutgoingCommodityNo);
+     OutgoingCommodity GetById(int Id);
      OutgoingCommodity Update(OutgoingCommodity OutgoingCommodity);
      List<OutgoingCommodity> GetToList();
  }
@@ -86,9 +86,9 @@ namespace Warehouse.IDataManager
  public interface IPackManager
  {
      Pack Add(Pack Pack);
-     void DeleteById(int PackNo);
+     void DeleteById(int Id);
      void DeleteByPack(Pack Pack);
-     Pack GetById(int PackNo);
+     Pack GetById(int Id);
      Pack Update(Pack Pack);
      List<Pack> GetToList();
  }
@@ -96,9 +96,9 @@ namespace Warehouse.IDataManager
  public interface IImageofPackManager
  {
      ImageofPack Add(ImageofPack ImageofPack);
-     void DeleteById(int ImageofPackNo);
+     void DeleteById(int Id);
      void DeleteByImageofPack(ImageofPack ImageofPack);
-     ImageofPack GetById(int ImageofPackNo);
+     ImageofPack GetById(int Id);
      ImageofPack Update(ImageofPack ImageofPack);
      List<ImageofPack> GetToList();
  }
@@ -106,9 +106,9 @@ namespace Warehouse.IDataManager
  public interface IDividedTagManager
  {
      DividedTag Add(DividedTag DividedTag);
-     void DeleteById(int DividedTagNo);
+     void DeleteById(int Id);
      void DeleteByDividedTag(DividedTag DividedTag);
-     DividedTag GetById(int DividedTagNo);
+     DividedTag GetById(int Id);
      DividedTag Update(DividedTag DividedTag);
      List<DividedTag> GetToList();
  }
@@ -116,9 +116,9 @@ namespace Warehouse.IDataManager
  public interface IIncomingTagManager
  {
      IncomingTag Add(IncomingTag IncomingTag);
-     void DeleteById(int IncomingTagNo);
+     void DeleteById(int Id);
      void DeleteByIncomingTag(IncomingTag IncomingTag);
-     IncomingTag GetById(int IncomingTagNo);
+     IncomingTag GetById(int Id);
      IncomingTag Update(IncomingTag IncomingTag);
      List<IncomingTag> GetToList();
  }
@@ -126,9 +126,9 @@ namespace Warehouse.IDataManager
  public interface IImageofOutgoingManager
  {
      ImageofOutgoing Add(ImageofOutgoing ImageofOutgoing);
-     void DeleteById(int ImageofOutgoingNo);
+     void DeleteById(int Id);
      void DeleteByImageofOutgoing(ImageofOutgoing ImageofOutgoing);
-     ImageofOutgoing GetById(int ImageofOutgoingNo);
+     ImageofOutgoing GetById(int Id);
      ImageofOutgoing Update(ImageofOutgoing ImageofOutgoing);
      List<ImageofOutgoing> GetToList();
  }
@@ -136,9 +136,9 @@ namespace Warehouse.IDataManager
  public interface IImageofDeliveringManager
  {
      ImageofDelivering Add(ImageofDelivering ImageofDelivering);
-     void DeleteById(int ImageofDeliveringNo);
+     void DeleteById(int Id);
      void DeleteByImageofDelivering(ImageofDelivering ImageofDelivering);
-     ImageofDelivering GetById(int ImageofDeliveringNo);
+     ImageofDelivering GetById(int Id);
      ImageofDelivering Update(ImageofDelivering ImageofDelivering);
      List<ImageofDelivering> GetToList();
  }
