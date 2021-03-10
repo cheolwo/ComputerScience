@@ -7,7 +7,7 @@ namespace Warehouse.IDataManager
     {
    Base Add(Base Warehouse);
    void DeleteById(int Id);
-   void DeleteByWarehouse(Base Warehouse);
+   void DeleteByBase(Base Warehouse);
         Base GetById(int Id);
         Base Update(Base Warehouse);
    List<Base> GetToList();
@@ -23,7 +23,7 @@ namespace Warehouse.IDataManager
      List<WCommodity> GetToList();
  }
   
- public interface DividedCommodityManager
+ public interface IDividedCommodityManager
  {
      DividedCommodity Add(DividedCommodity DividedCommodity);
      void DeleteById(int Id);
@@ -43,11 +43,11 @@ namespace Warehouse.IDataManager
      List<LoadFrame> GetToList();
  }
   
- public interface IImageofCommodityManager
+ public interface IImageofWCommodityManager
  {
      ImageofWCommodity Add(ImageofWCommodity ImageofCommodity);
      void DeleteById(int Id);
-     void DeleteByImageofCommodity(ImageofWCommodity ImageofCommodity);
+     void DeleteByImageofWCommodity(ImageofWCommodity ImageofCommodity);
      ImageofWCommodity GetById(int Id);
      ImageofWCommodity Update(ImageofWCommodity ImageofCommodity);
      List<ImageofWCommodity> GetToList();

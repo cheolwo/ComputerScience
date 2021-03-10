@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.AssemblyInfo.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\bin\Debug\netstandard2.0\Coupang.deps.json
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\bin\Debug\netstandard2.0\Coupang.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\bin\Debug\netstandard2.0\Coupang.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Coupang\obj\Debug\netstandard2.0\Coupang.csprojAssemblyReference.cache

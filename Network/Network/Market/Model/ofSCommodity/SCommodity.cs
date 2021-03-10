@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Market.Model
+namespace Market.Model.ofSCommodity
 {
     public class SCommodity
     {
         [Key] public int Id { get; set; }
-        [Required] public string UserName {get; set;}
+        public string UserName {get; set;}
         [Required] public string Name { get; set; }
         public string Category { get; set; }
         public string Url { get; set; }

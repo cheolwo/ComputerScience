@@ -1,22 +1,20 @@
-﻿using Import.DataManager;
-using Import.Model;
-using Logistics.Service;
-using MatBlazor;
+﻿using MatBlazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Components.Forms;
+using Market.IDataManager.ofSCommodity;
+using Logistics.Service;
+using Market.Model.ofSCommodity;
 
 namespace Logistics.Pages.ofOption
 {
     public partial class Update
     {
         [Inject] IOptionManager OptionManager {get; set;}
-        [Inject] ICommodityFileManager FileManager {get; set;}
+        [Inject] ISCommodityFileManager FileManager {get; set;}
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
         [Inject] IWebHostEnvironment WebHostEnvironment {get; set;}
         [Inject] IImageofDetailManager ImageofDetailManager {get; set;}
@@ -138,13 +136,13 @@ namespace Logistics.Pages.ofOption
         public void Reset()
         {
             ImageofOptionFiles.Clear();
-            UpdateOption.Commodity = null;
+            UpdateOption.SCommodity = null;
            /// UpdateOption.CommotityBarcode = null;
             UpdateOption.Images = null;
            // UpdateOption.ModelNo = null;
             UpdateOption.Key = null;
           //  UpdateOption.NormalPrice = null;
-            UpdateOption.OptionNo = 0;
+            UpdateOption.Id = 0;
            // UpdateOption.Quantity = 0;
            // UpdateOption.SalePrice = null;
            // UpdateOption.SellerCodeofCommodity = null;

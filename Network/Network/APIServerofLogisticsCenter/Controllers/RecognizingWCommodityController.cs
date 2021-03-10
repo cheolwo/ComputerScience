@@ -7,45 +7,45 @@ using Warehouse.Model;
 
 namespace APIServerofLogisticsCenter.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RecognizingWCommodityController : ControllerBase
-    {
-        private readonly WCommodityDataContext _WContext;
-        private readonly TCommodityDataContext _TContext;
+    //[Route("api/[controller]")]
+    //[ApiController]
+    //public class RecognizingWCommodityController : ControllerBase
+    //{
+    //    private readonly WCommodityDataContext _WContext;
+    //    private readonly TCommodityDataContext _TContext;
 
-        public WCommodityController(WCommodityDataContext WContext, TCommodityDataContext TContext)
-        {
-            _WContext = WContext;
-            _TContext = TContext;
-        }
+    //    public WCommodityController(WCommodityDataContext WContext, TCommodityDataContext TContext)
+    //    {
+    //        _WContext = WContext;
+    //        _TContext = TContext;
+    //    }
 
-        // GET: api/RecognizingWCommodity/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<RecognizingWCommodity>> GetRecognizingWCommodity(string CodeofBase)
-        {
-            RecognizingWCommodity RecognizingWCommodity = new RecognizingWCommodity();
-            RecognizingWCommodity.CrossDockingCommodityofBuyer = await _TContext.TCommodities.Where(
-                u => u.CodeofCrossDockingBaseForBuyer.Equals(CodeofBase);
-            ).ToListAsync();
+        //// GET: api/RecognizingWCommodity/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<RecognizingWCommodity>> GetRecognizingWCommodity(string CodeofBase)
+        //{
+        //    RecognizingWCommodity RecognizingWCommodity = new RecognizingWCommodity();
+        //    RecognizingWCommodity.CrossDockingCommodityofBuyer = await _TContext.TCommodities.Where(
+        //        u => u.CodeofCrossDockingBaseForBuyer.Equals(CodeofBase);
+        //    ).ToListAsync();
 
-            RecognizingWCommodity.CodeofCrossDockingBaseForSeller = await _TContext.TCommodities.Where(
-                u => u.CodeofCrossDockingBaseForSeller.Equals(CodeofBase);
-            ).ToListAsync();
+        //    RecognizingWCommodity.CodeofCrossDockingBaseForSeller = await _TContext.TCommodities.Where(
+        //        u => u.CodeofCrossDockingBaseForSeller.Equals(CodeofBase);
+        //    ).ToListAsync();
 
-            RecognizingWCommodity.LogisticsAgencyCommodityofBuyer = await _TContext.TCommodities.Where(
-                u => u.CodeofSellerBase.Equals(CodeofBase)
-            ).ToListAsync();
+        //    RecognizingWCommodity.LogisticsAgencyCommodityofBuyer = await _TContext.TCommodities.Where(
+        //        u => u.CodeofSellerBase.Equals(CodeofBase)
+        //    ).ToListAsync();
 
-            if (RecognizingWCommodity.CrossDockingCommodityofBuyer.Count.Equals(0) && 
-                RecognizingWCommodity.CrossDockingCommodityofSeller.Count.Equals(0) &&
-                RecognizingWCommodity.LogisticsAgencyCommodityofBuyer.Count.Equals(0))
-            {
-                return NotFound();
-            }
+        //    if (RecognizingWCommodity.CrossDockingCommodityofBuyer.Count.Equals(0) && 
+        //        RecognizingWCommodity.CrossDockingCommodityofSeller.Count.Equals(0) &&
+        //        RecognizingWCommodity.LogisticsAgencyCommodityofBuyer.Count.Equals(0))
+        //    {
+        //        return NotFound();
+        //    }
 
-            return RecognizingWCommodity;
-        }
+        //    return RecognizingWCommodity;
+        //}
 
     //     // PUT: api/WCommodities/5
     //     [HttpPut("{id}")]

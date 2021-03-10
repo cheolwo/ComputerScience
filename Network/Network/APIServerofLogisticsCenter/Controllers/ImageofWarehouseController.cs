@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class ImageofBaseController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public ImageofBaseController(WarehouseDataContext context)
+        public ImageofBaseController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ImageofBase>> GetImageofBase(int id)
         {
-            var ImageofBase = await _context.ImageofBases.FindAsync(id);
+            var ImageofBase = await _context.ImagesofBase.FindAsync(id);
 
             if (ImageofBase == null)
             {
@@ -62,11 +62,16 @@ namespace APIServerofLogisticsCenter.Controllers
             return NoContent();
         }
 
+        private bool ImageofBaseExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // POST: api/ImageofBases
         [HttpPost]
         public async Task<ActionResult<ImageofBase>> PostImageofBase(ImageofBase ImageofBase)
         {
-            _context.ImageofBases.Add(ImageofBase);
+            _context.ImagesofBase.Add(ImageofBase);
             await _context.SaveChangesAsync();
 
             //return CreatedAtAction("GetImageofBase", new { id = ImageofBase.Id }, ImageofBase);
@@ -77,13 +82,13 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteImageofBase(int id)
         {
-            var ImageofBase = await _context.ImageofBases.FindAsync(id);
+            var ImageofBase = await _context.ImagesofBase.FindAsync(id);
             if (ImageofBase == null)
             {
                 return NotFound();
             }
 
-            _context.ImageofBases.Remove(ImageofBase);
+            _context.ImagesofBase.Remove(ImageofBase);
             await _context.SaveChangesAsync();
 
             return NoContent();

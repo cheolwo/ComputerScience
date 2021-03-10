@@ -14,7 +14,8 @@
     <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.1.21102.12" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Import\Import.csproj" />
+    <ProjectReference Include="..\Market\Market.csproj" />
+    <ProjectReference Include="..\Warehouse\Warehouse.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="File\Commodity\Doc\" />

@@ -1,5 +1,5 @@
-﻿using Market.IDataManager;
-using Market.Model;
+﻿using Market.IDataManager.ofSCommodity;
+using Market.Model.ofSCommodity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,47 +8,47 @@ using System.Threading.Tasks;
 
 namespace Market.DataManager.ofSCommodity
 {
-    public class SCommodityManager : ICommodityManager
+    public class SCommodityManager : ISCommodityManager
     {
-        private readonly SCommodityDataContext _CommodityDataContext;
+        private readonly SCommodityDataContext _SCommodityDataContext;
 
         public SCommodityManager(SCommodityDataContext CommotityDataContext)
         {
-            _CommodityDataContext = CommotityDataContext;
+            _SCommodityDataContext = CommotityDataContext;
         }
 
         public async Task<SCommodity> AddAsync(SCommodity commodity)
         {
-            _CommodityDataContext.Commodities.Add(commodity);
-            await _CommodityDataContext.SaveChangesAsync();
-            return await _CommodityDataContext.Commodities.OrderByDescending(e=>e.Id).FirstOrDefaultAsync();
+            _SCommodityDataContext.SCommodities.Add(commodity);
+            await _SCommodityDataContext.SaveChangesAsync();
+            return await _SCommodityDataContext.SCommodities.OrderByDescending(e=>e.Id).FirstOrDefaultAsync();
         }
 
         public SCommodity Add(SCommodity commodity)
         {
-            _CommodityDataContext.Add(commodity);
-            _CommodityDataContext.SaveChanges();         
-            return _CommodityDataContext.Commodities.OrderByDescending(e=>e.Id).FirstOrDefault();   
+            _SCommodityDataContext.Add(commodity);
+            _SCommodityDataContext.SaveChanges();         
+            return _SCommodityDataContext.SCommodities.OrderByDescending(e=>e.Id).FirstOrDefault();   
         }
 
         public async Task<SCommodity> GetByIdAsync(int id)
         {
-            return await _CommodityDataContext.Commodities.FindAsync(id);
+            return await _SCommodityDataContext.SCommodities.FindAsync(id);
         }
 
         public SCommodity GetById(int id)
         {
-            return _CommodityDataContext.Commodities.Find(id);
+            return _SCommodityDataContext.SCommodities.Find(id);
         }
 
         public async Task<List<SCommodity>> GetToListAsync()
         {
-            return await _CommodityDataContext.Commodities.ToListAsync();
+            return await _SCommodityDataContext.SCommodities.ToListAsync();
         }
    
         public List<SCommodity> GetToList()
         {
-            return _CommodityDataContext.Commodities.ToList();
+            return _SCommodityDataContext.SCommodities.ToList();
         }
 
         public async Task<SCommodity> UpdateAsync(SCommodity commodity)
@@ -60,8 +60,8 @@ namespace Market.DataManager.ofSCommodity
             UpdateCommodity.ImageTitle = commodity.ImageTitle;
             UpdateCommodity.ImageRoute = commodity.ImageRoute;
 
-            _CommodityDataContext.Commodities.Update(UpdateCommodity);
-            await _CommodityDataContext.SaveChangesAsync();
+            _SCommodityDataContext.SCommodities.Update(UpdateCommodity);
+            await _SCommodityDataContext.SaveChangesAsync();
 
             return UpdateCommodity;
         }
@@ -75,27 +75,27 @@ namespace Market.DataManager.ofSCommodity
             UpdateCommodity.ImageTitle = commodity.ImageTitle;
             UpdateCommodity.ImageRoute = commodity.ImageRoute;
 
-            _CommodityDataContext.Commodities.Update(UpdateCommodity);
-            _CommodityDataContext.SaveChanges();
+            _SCommodityDataContext.SCommodities.Update(UpdateCommodity);
+            _SCommodityDataContext.SaveChanges();
 
             return UpdateCommodity;
         }
         
         public async Task DeleteByEntityAsync(SCommodity commodity)
         {
-            _CommodityDataContext.Commodities.Remove(commodity);
-            await _CommodityDataContext.SaveChangesAsync();
+            _SCommodityDataContext.SCommodities.Remove(commodity);
+            await _SCommodityDataContext.SaveChangesAsync();
         }
 
         public void DeleteByEntity(SCommodity commodity)
         {
-            _CommodityDataContext.Commodities.Remove(commodity);
-            _CommodityDataContext.SaveChanges();
+            _SCommodityDataContext.SCommodities.Remove(commodity);
+            _SCommodityDataContext.SaveChanges();
         }
 
         public async Task DeleteByIdAsync(int id)
         {
-            SCommodity commodity = await _CommodityDataContext.Commodities.FirstOrDefaultAsync(
+            SCommodity commodity = await _SCommodityDataContext.SCommodities.FirstOrDefaultAsync(
                 e => e.Id.Equals(id));
 
             if (commodity == null) { throw new ArgumentNullException(); }
@@ -105,7 +105,7 @@ namespace Market.DataManager.ofSCommodity
 
         public void DeleteById(int id)
         {
-            SCommodity commodity = _CommodityDataContext.Commodities.FirstOrDefault(
+            SCommodity commodity = _SCommodityDataContext.SCommodities.FirstOrDefault(
                 e => e.Id.Equals(id));
 
             if (commodity == null) { throw new ArgumentNullException(); }

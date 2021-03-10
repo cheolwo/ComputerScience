@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Market.Model
+namespace Market.Model.ofSCommodity
 {
     public class Option
     {

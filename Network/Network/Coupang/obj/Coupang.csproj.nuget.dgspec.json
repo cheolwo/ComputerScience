@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[6.0.0-preview.1.21102.12, )"
             }
           },
           "imports": [

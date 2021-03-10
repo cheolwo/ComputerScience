@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class DividedTagController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public DividedTagController(WarehouseDataContext context)
+        public DividedTagController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -60,6 +60,11 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return NoContent();
+        }
+
+        private bool DividedTagExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // POST: api/DividedTags

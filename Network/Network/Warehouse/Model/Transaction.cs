@@ -28,6 +28,6 @@ namespace Warehouse.Model
        public string Barcode {get; set;}
        public int Quantity {get; set;}
        public DateTime DateTime {get; set;}
-       public Warehouse Warehouse {get; set;}   // 도착지
+       public Base Base {get; set;}   // 도착지
    }
 }

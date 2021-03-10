@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class OutgoingCommodityController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public OutgoingCommodityController(WarehouseDataContext context)
+        public OutgoingCommodityController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -60,6 +60,11 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return NoContent();
+        }
+
+        private bool OutgoingCommodityExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // POST: api/OutgoingCommodities

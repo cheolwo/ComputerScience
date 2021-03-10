@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Warehouse;
 using Warehouse.Model;
@@ -11,12 +15,12 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        private readonly WarehouseDataContext _WarehouseDataContext;
+        private readonly WCommodityDataContext _WCommodityDataContext;
         private readonly IHttpContextAccessor _httpcontextAccessor;
 
-        public BaseController(IHttpContextAccessor httpContextAccessor, WarehouseDataContext context)
+        public BaseController(IHttpContextAccessor httpContextAccessor, WCommodityDataContext context)
         {
-            _WarehouseDataContext = context;
+            _WCommodityDataContext = context;
             _httpcontextAccessor = httpContextAccessor;
         }
 
@@ -24,7 +28,7 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Base>> GetBase(string id)
         {
-            var Base = await _WarehouseDataContext.Bases.FindAsync(id);
+            var Base = await _WCommodityDataContext.Bases.FindAsync(id);
 
             if (Base == null)
             {
@@ -36,11 +40,10 @@ namespace APIServerofLogisticsCenter.Controllers
 
          // GET: api/Bases/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Base>>> GetBase(string UserId)
+        public async Task<ActionResult<List<Base>>> GetBaseToList(string UserId)
         {
-            var Base = await _WarehouseDataContext.Bases.Where(
+            var Base = await _WCommodityDataContext.Bases.Where(
                 u => u.UserId.Equals(UserId)).ToListAsync();
-            )
 
             if (Base.Count.Equals(0))
             {
@@ -55,9 +58,9 @@ namespace APIServerofLogisticsCenter.Controllers
         public async Task<ActionResult<List<Base>>> GetBase()
         {
             var UserId = _httpcontextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value; 
-            var Base = await _WarehouseDataContext.Bases.Where(
+            var Base = await _WCommodityDataContext.Bases.Where(
                 u => u.UserId.Equals(UserId)).ToListAsync();
-            )
+            
 
             if (Base.Count.Equals(0))
             {
@@ -76,11 +79,11 @@ namespace APIServerofLogisticsCenter.Controllers
                 return BadRequest();
             }
 
-            _WarehouseDataContext.Entry(Base).State = EntityState.Modified;
+            _WCommodityDataContext.Entry(Base).State = EntityState.Modified;
 
             try
             {
-                await _WarehouseDataContext.SaveChangesAsync();
+                await _WCommodityDataContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -106,8 +109,8 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpPost]
         public async Task<ActionResult<Base>> PostBase(Base Base)
         {
-            _WarehouseDataContext.Bases.Add(Base);
-            await _WarehouseDataContext.SaveChangesAsync();
+            _WCommodityDataContext.Bases.Add(Base);
+            await _WCommodityDataContext.SaveChangesAsync();
 
             //return CreatedAtAction("GetBase", new { id = Base.Id }, Base);
             return CreatedAtAction(nameof(GetBase), new { id = Base.Id }, Base);
@@ -117,14 +120,14 @@ namespace APIServerofLogisticsCenter.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBase(int id)
         {
-            var Base = await _WarehouseDataContext.Bases.FindAsync(id);
+            var Base = await _WCommodityDataContext.Bases.FindAsync(id);
             if (Base == null)
             {
                 return NotFound();
             }
 
-            _WarehouseDataContext.Bases.Remove(Base);
-            await _WarehouseDataContext.SaveChangesAsync();
+            _WCommodityDataContext.Bases.Remove(Base);
+            await _WCommodityDataContext.SaveChangesAsync();
 
             return NoContent();
         }

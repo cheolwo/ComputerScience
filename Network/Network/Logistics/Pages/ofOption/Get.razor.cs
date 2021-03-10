@@ -1,16 +1,9 @@
-﻿using Import.DataManager;
-using Import.ImportDataContext;
-using Import.Model;
-using Logistics.Service;
-using MatBlazor;
+﻿using Market.IDataManager.ofSCommodity;
+using Market.Model;
+using Market.Model.ofSCommodity;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 // 목적에 맞게 만드는 게 좋다.
 namespace Logistics.Pages.ofOption
@@ -19,11 +12,11 @@ namespace Logistics.Pages.ofOption
     {        
         [Inject] IOptionManager OptionManager { get; set; }   
         [Inject] NavigationManager NavigationManager {get; set;}
-        [Inject] ICommodityManager CommodityManager { get; set; }
+        [Inject] ISCommodityManager CommodityManager { get; set; }
         [Parameter] public string CommodityNo { get; set; }
               
         public List<Option> Options = new List<Option>();
-        public Commodity Commodity = new Commodity();
+        public SCommodity Commodity = new SCommodity();
         public Option Option = new Option();
             
         public bool AddDialogIsOpen {get; set;}
@@ -35,7 +28,7 @@ namespace Logistics.Pages.ofOption
             // 상품명, 카테고리, 매입경로 보이는데 사용
             Commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
 
-            Option.Commodity = Commodity;
+            Option.SCommodity = Commodity;
             Options = OptionManager.GetToListByCommodity(Commodity);   
 
             if(Options.Count.Equals(0))

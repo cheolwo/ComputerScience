@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class ImagesofDeliveringController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public ImagesofDeliveringController(WarehouseDataContext context)
+        public ImagesofDeliveringController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -60,6 +60,11 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return NoContent();
+        }
+
+        private bool ImageofDeliveringExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // POST: api/ImagesofDelivering

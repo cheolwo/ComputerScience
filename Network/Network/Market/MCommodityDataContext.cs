@@ -20,7 +20,7 @@ namespace Market
         //         .HasForeignKey<DetailofSCommodity>(b => b.CommodityNo);
         // }
 
-        public DbSet<Market> Markets { get; set; }
+        // public DbSet<Market> Markets { get; set; }
         public DbSet<Coupang> Coupangs { get; set; }
         public DbSet<Ebay> Ebays { get; set; }
         public DbSet<IndependentMall> IndependentMalls { get; set; }

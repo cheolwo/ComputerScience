@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace Market.Model
+namespace Market.Model.ofSCommodity
 {
     public class ImageofOption
     {

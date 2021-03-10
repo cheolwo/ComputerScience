@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class DividedCommodityController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public DividedCommodityController(WarehouseDataContext context)
+        public DividedCommodityController(WCommodityDataContext context)
         {
             _context = context;
         }

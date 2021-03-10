@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class PackController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public PackController(WarehouseDataContext context)
+        public PackController(WCommodityDataContext context)
         {
             _context = context;
         }

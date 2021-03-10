@@ -15,4 +15,8 @@
     <Folder Include="Manager\ofCommodity\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.1.21102.12" />
+  </ItemGroup>
+
 </Project>

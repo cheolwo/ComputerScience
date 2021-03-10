@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouse", "Warehouse\Ware
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Market", "Market\Market.csproj", "{7279C1C4-B4AE-4095-8419-4D3621E72DC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseInLogistics", "WarehouseInLogistics\WarehouseInLogistics.csproj", "{E3C3AC96-716C-4046-A9C3-C17EA2822DDF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coupang", "Coupang\Coupang.csproj", "{28EAD4AA-342E-4F76-BE0B-DCCA8EF722AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServerofLogisticsCenter", "APIServerofLogisticsCenter\APIServerofLogisticsCenter.csproj", "{90B023F6-8C07-48BB-BD04-7C02D1FC8405}"
@@ -23,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServerofMarket", "APISer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServerofTrade", "APIServerofTrade\APIServerofTrade.csproj", "{00B93F37-A3D9-44E8-8209-83E3AF53DF88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trade", "Trade\Trade.csproj", "{C90C5404-4D9C-408D-9FE7-801EC94C46E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade", "Trade\Trade.csproj", "{C90C5404-4D9C-408D-9FE7-801EC94C46E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{7279C1C4-B4AE-4095-8419-4D3621E72DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7279C1C4-B4AE-4095-8419-4D3621E72DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7279C1C4-B4AE-4095-8419-4D3621E72DC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3C3AC96-716C-4046-A9C3-C17EA2822DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3C3AC96-716C-4046-A9C3-C17EA2822DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3C3AC96-716C-4046-A9C3-C17EA2822DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3C3AC96-716C-4046-A9C3-C17EA2822DDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{28EAD4AA-342E-4F76-BE0B-DCCA8EF722AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28EAD4AA-342E-4F76-BE0B-DCCA8EF722AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28EAD4AA-342E-4F76-BE0B-DCCA8EF722AC}.Release|Any CPU.ActiveCfg = Release|Any CPU

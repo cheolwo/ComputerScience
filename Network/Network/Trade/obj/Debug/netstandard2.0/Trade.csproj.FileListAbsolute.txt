@@ -1,0 +1,8 @@
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\obj\Debug\netstandard2.0\Trade.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\obj\Debug\netstandard2.0\Trade.AssemblyInfo.cs
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\obj\Debug\netstandard2.0\Trade.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\bin\Debug\netstandard2.0\Trade.deps.json
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\bin\Debug\netstandard2.0\Trade.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\bin\Debug\netstandard2.0\Trade.pdb
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\obj\Debug\netstandard2.0\Trade.dll
+C:\Users\user\Desktop\ComputerScience\Network\Network\Trade\obj\Debug\netstandard2.0\Trade.pdb

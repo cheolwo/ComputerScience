@@ -1,34 +1,30 @@
-﻿using Import.DataManager;
-using Import.Model;
-using Logistics.Service;
+﻿using Logistics.Service;
 using Logistics.ViewModel;
+using Market.IDataManager.ofSCommodity;
+using Market.Model;
+using Market.Model.ofSCommodity;
 using MatBlazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Logistics.Pages.ofOption
 {
     public partial class Create
     {
         [Inject] IOptionManager OptionManager { get; set; }
-        [Inject] ICommodityManager CommodityManager { get; set; }
-        [Inject] ICommodityDetailManager CommodityDetailManager { get; set; }
+        [Inject] ISCommodityManager CommodityManager { get; set; }
+        [Inject] IDetailofSCommodityManager CommodityDetailManager { get; set; }
         [Inject] IImageofOptionManager ImageofOptionManager {get; set;}
-        [Inject] ICommodityFileManager FileManager {get; set;}
+        [Inject] ISCommodityFileManager FileManager {get; set;}
         [Inject] IDetailImageManager DetailImageManager { get; set; }
 
         [Parameter] public string CommodityNo { get; set; }
 
-        public Commodity commodity = new Commodity();
-        public CommodityDetail CommodityDetail = new CommodityDetail();
+        public SCommodity commodity = new SCommodity();
+        public DetailofSCommodity CommodityDetail = new DetailofSCommodity();
         public DetailImage DetailImage = new DetailImage();
         public List<IMatFileUploadEntry> ImagesofDetailBuffer = new List<IMatFileUploadEntry>();
 
@@ -51,9 +47,9 @@ namespace Logistics.Pages.ofOption
         protected override void OnInitialized()
         {
             commodity = CommodityManager.GetById(Convert.ToInt32(CommodityNo));
-            Option.Commodity = commodity;
+            Option.SCommodity = commodity;
             CommodityDetail = CommodityDetailManager.GetByCommodity(commodity);
-            DetailImage.CommodityDetail = CommodityDetail;
+            DetailImage.DetailofSCommodity = CommodityDetail;
 
             EditContext = new EditContext(Option);
 

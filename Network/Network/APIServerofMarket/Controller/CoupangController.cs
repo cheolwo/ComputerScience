@@ -1,9 +1,9 @@
+using Market;
+using Market.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using Warehouse;
-using Warehouse.Model;
 
 namespace APIServerofMarket.Controllers
 {
@@ -11,9 +11,9 @@ namespace APIServerofMarket.Controllers
     [ApiController]
     public class CoupangController : ControllerBase
     {
-        private readonly MCommodityDataContextDataContext _context;
+        private readonly MCommodityDataContext _context;
 
-        public CoupangController(MCommodityDataContextDataContext context)
+        public CoupangController(MCommodityDataContext context)
         {
             _context = context;
         }

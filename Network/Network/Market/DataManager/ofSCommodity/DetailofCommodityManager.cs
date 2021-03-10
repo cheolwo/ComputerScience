@@ -1,18 +1,17 @@
-﻿using Market.IDataManager;
-using Market.Model;
+﻿using Market.IDataManager.ofSCommodity;
+using Market.Model.ofSCommodity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Market.DataManager.ofSCommodity
 {
-    public class DetailofCommodityManager : IDetailofCommodityManager
+    public class DetailofSCommodityManager : IDetailofSCommodityManager
     {
         private readonly SCommodityDataContext _scommodityDataContext;
   
-        public DetailofCommodityManager(SCommodityDataContext scommodityDataContext)
+        public DetailofSCommodityManager(SCommodityDataContext scommodityDataContext)
         {
             _scommodityDataContext = scommodityDataContext;
         }

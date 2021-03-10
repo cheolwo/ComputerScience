@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class IncomingTagController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public IncomingTagController(WarehouseDataContext context)
+        public IncomingTagController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -60,6 +60,11 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return NoContent();
+        }
+
+        private bool IncomingTagExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // POST: api/IncomingTags

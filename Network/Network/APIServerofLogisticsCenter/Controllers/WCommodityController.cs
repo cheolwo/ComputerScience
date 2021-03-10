@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Warehouse;
 using Warehouse.Model;
@@ -90,28 +92,28 @@ namespace APIServerofLogisticsCenter.Controllers
         }
 
         // POST: api/WCommodities
-        [HttpPost]
-        public async Task<ActionResult> PostWCommodity(RecognizingWCommodity RecognizingWCommodity)
-        {
-                foreach (var TCommodity in RecognizingWCommodity.CrossDockingCommodityofSeller)
-                {                   
-                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "CrossDocking"}
-                    await PostWCommodity(WCommodity);
-                }
-                foreach (var TCommodity in RecognizingWCommodity.CodeofCrossDockingBaseForBuyer)
-                {
-                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "CrossDocking"}
-                    await PostWCommodity(WCommodity);
-                }
-                foreach (var Tcommodity in RecognizingWCommodity.LogisticsAgencyCommodityofBuyer)
-                {
-                    var WCommodity = new WCommodity {TCommodityId = Tcommodity.Id, Purpose = "LogisticsAency"}
-                    await PostWCommodity(WCommodity);
-                }
+        //[HttpPost]
+        //public async Task<ActionResult> PostWCommodity(RecognizingWCommodity RecognizingWCommodity)
+        //{
+        //        foreach (var TCommodity in RecognizingWCommodity.CrossDockingCommodityofSeller)
+        //        {
+        //        var WCommodity = new WCommodity { TCommodityId = Tcommodity.Id, Purpose = "CrossDocking" };
+        //            await PostWCommodity(WCommodity);
+        //        }
+        //        foreach (var TCommodity in RecognizingWCommodity.CodeofCrossDockingBaseForBuyer)
+        //        {
+        //        var WCommodity = new WCommodity { TCommodityId = Tcommodity.Id, Purpose = "CrossDocking" };
+        //            await PostWCommodity(WCommodity);
+        //        }
+        //        foreach (var Tcommodity in RecognizingWCommodity.LogisticsAgencyCommodityofBuyer)
+        //        {
+        //        var WCommodity = new WCommodity { TCommodityId = Tcommodity.Id, Purpose = "LogisticsAency" };
+        //            await PostWCommodity(WCommodity);
+        //        }
 
-            //return CreatedAtAction("GetWCommodity", new { id = WCommodity.Id }, WCommodity);
-            return NoContent();
-        }
+        //    //return CreatedAtAction("GetWCommodity", new { id = WCommodity.Id }, WCommodity);
+        //    return NoContent();
+        //}
 
         [HttpPost]
         public async Task<ActionResult<WCommodity>> PostWCommodity(WCommodity WCommodity)

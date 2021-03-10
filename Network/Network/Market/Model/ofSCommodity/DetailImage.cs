@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Market.Model
+namespace Market.Model.ofSCommodity
 {
     public class DetailImage
     {

@@ -11,9 +11,9 @@ namespace APIServerofLogisticsCenter.Controllers
     [ApiController]
     public class LoadFrameController : ControllerBase
     {
-        private readonly WarehouseDataContext _context;
+        private readonly WCommodityDataContext _context;
 
-        public LoadFrameController(WarehouseDataContext context)
+        public LoadFrameController(WCommodityDataContext context)
         {
             _context = context;
         }
@@ -60,6 +60,11 @@ namespace APIServerofLogisticsCenter.Controllers
             }
 
             return NoContent();
+        }
+
+        private bool LoadFrameExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // POST: api/LoadFrames

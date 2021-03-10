@@ -1,5 +1,7 @@
 ﻿using Market.IDataManager;
+using Market.IDataManager.ofSCommodity;
 using Market.Model;
+using Market.Model.ofSCommodity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
